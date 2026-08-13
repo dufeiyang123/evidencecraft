@@ -1,3 +1,5 @@
+<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Multi-Agent Progress” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+
 # Evidencecraft Multi-Agent Progress
 
 ## Run identity
@@ -9,6 +11,12 @@
 - Analysis Brief identity:
 - Source Profile identities:
 - Metric Definition identities:
+- Interaction language:
+- Artifact language:
+- Terminology and source-title handling:
+- Delivery profile: `standalone reader report` unless the confirmed Plan says otherwise
+- Planned final report path (must differ from draft):
+- Reader-report governance exclusions:
 - Started / last reconciled:
 
 ## Work Package ledger
@@ -17,11 +25,11 @@
 |---|---|---|---|---|---|---|
 |  |  |  |  | pending | pending |  |
 
-Allowed dispatch states: `pending | active | reported | correction | blocked | accepted`.
+<!-- Template instruction: allowed dispatch states are `pending | active | reported | correction | blocked | accepted`. -->
 
 ## Dispatch waves
 
-Record why each wave is parallel-safe or why packages were serialized.
+<!-- Template instruction: record why each wave is parallel-safe or why packages were serialized. -->
 
 | Wave | Packages | Dependency-ready evidence | Write/resource isolation | Result |
 |---|---|---|---|---|
@@ -41,12 +49,21 @@ Record why each wave is parallel-safe or why packages were serialized.
 - Evidence log path / identity:
 - Integrated outputs:
 - Report draft path / identity:
+- Staged reader assets path(s) / identity / final relative URI mapping: `none` or exact rows
 - Required sections/comparisons/limitations freshly checked:
+- Reader self-containment and key values in prose/tables checked:
+- Governance leakage, internal IDs, engineering traceability, `...`, glob/brace, and path-only references checked:
+- Formal external citations and substantive code/file identifiers preserved correctly:
+- Every Markdown image resolves through the declared asset mapping:
+- Planned final Markdown/assets are still unwritten:
 
 ## Review Package and route
 
-- Stable Review Package path / identity:
-- Identity recorded at:
+- Review Package manifest path:
+- Manifest members actually opened and identities verified:
+- Missing members / placeholder identities / unresolved assets: `none` or exact blockers
+- Sealed manifest identity (record only after seal):
+- Manifest identity recorded at:
 - Route: `reviewing-analysis` only when ready
 - Final report saved here: `no — outside this Executor`
 
@@ -56,3 +73,14 @@ Record why each wave is parallel-safe or why packages were serialized.
 - Status claims downgraded or restored:
 - First incomplete or blocked package:
 - Exact Return Route and required evidence:
+
+## Independent review and final-save record
+
+<!-- Template instruction: append only after `reviewing-analysis` acts; this mutable section is not a frozen manifest member identity. -->
+
+- Review Report path / identity or compact independent-review record:
+- Verdict: `PASS | QUALIFIED | BLOCKED`
+- Reviewed draft identity -> final report path / verified identity:
+- Reviewed staged assets -> final asset paths / verified identities: `none` or exact mappings
+- Final saved at: [timestamp or not authorized]
+- Governance backlinks added to final report: `no` or blocking defect

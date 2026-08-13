@@ -1,3 +1,5 @@
+<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Analysis Review Report” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical verdict/status codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+
 # Analysis Review Report
 
 ## Review identity
@@ -7,6 +9,8 @@
 - Reviewer independence: fresh context; not author or Executor
 - Reviewed at:
 - Confirmed audience/use:
+- Artifact language:
+- Terminology and source-title handling:
 - Period/as-of:
 - Risk:
 - Prior Review Report superseded, if any:
@@ -23,7 +27,8 @@
 | Evidence log |  |  | yes/no |
 | Work Package outputs |  |  | yes/no |
 | Report draft |  |  | yes/no |
-| Review Package |  |  | yes/no |
+| Staged reader assets |  |  | yes/no/not applicable |
+| Review Package manifest |  |  | yes/no |
 
 ## Checks performed
 
@@ -57,12 +62,27 @@
 ### Reasoning, limitations, and usability
 
 - Method:
+- Artifact-language consistency and allowed exceptions checked:
 - Evidence observed:
+- Result: `PASS | FINDING <id>`
+
+### Reader self-containment and governance separation
+
+- Reader-required context, key values, qualifications, and interpretation checked:
+- Current-run governance paths/IDs/statuses/hashes and engineering traceability checked:
+- External citations and substantive code/file identifiers distinguished from governance references:
+- Result: `PASS | FINDING <id>`
+
+### Assets, package manifest, and save safety
+
+- Manifest members and identities inspected:
+- Markdown image URI to staged/final asset mapping checked:
+- Draft/final paths distinct and final destinations unwritten:
 - Result: `PASS | FINDING <id>`
 
 ## Findings
 
-Repeat for every finding. If none, state `No findings`.
+<!-- Template instruction: repeat for every finding; if none, state the artifact-language equivalent of `No findings`. -->
 
 ### RV-<id>: <title>
 
@@ -94,10 +114,11 @@ Repeat for every finding. If none, state `No findings`.
 
 ## Main Agent verification
 
-Complete after receiving the independent report; do not let the reviewer fill this section.
+<!-- Template instruction: complete after receiving the independent report; do not let the reviewer fill this section. -->
 
 - Material findings checked against actual artifacts:
 - Feedback reclassified or rejected with counter-evidence:
 - Reviewed identities unchanged before save:
 - Review Report saved at:
-- Final report path and verified identity, if authorized:
+- Draft identity -> final report path / verified identity, if authorized:
+- Reviewed staged assets -> final asset paths / verified identities, if authorized:

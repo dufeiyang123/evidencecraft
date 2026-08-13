@@ -32,9 +32,21 @@ Start with whatever is available:
 - an existing Analysis Brief and its confirmation record, if any;
 - a downstream Return Route that identifies a framing defect.
 
-Decide and record the analysis object, audience, use, questions, non-goals, scope, period semantics, constraints, risks, and success criteria. The user retains authority over choices that change the intended decision, audience, commitments, or acceptable risk. Make conservative, reversible assumptions only for non-material details and label them tentative.
+Decide and record the analysis object, audience, use, reader-artifact expectation, questions, non-goals, scope, period semantics, constraints, risks, and success criteria. The reader-artifact expectation says whether the report must stand alone and which delivery formats or distribution context matter; it does not design paths, Work Packages, evidence structures, or rendering mechanics. The user retains authority over choices that change the intended decision, audience, commitments, or acceptable risk. Make conservative, reversible assumptions only for non-material details and label them tentative.
 
 Do not decide source fitness, joins, transformations, metric formulas, Work Packages, Executor choice, findings, or review verdicts here.
+
+## Resolve the language contract
+
+Resolve two presentation fields before the first user-visible question or artifact. Scope each requirement to the field it actually governs: an instruction to deliver the report in English does not by itself change the language used to question a Chinese-speaking user.
+
+- **Interaction language:** use an explicit interaction preference; otherwise use the primary language of the current substantive request.
+- **Artifact language:** use an explicit deliverable language, then a confirmed audience delivery requirement; otherwise inherit the interaction language.
+- **Terminology handling:** record how to treat source titles, proper nouns, quotations, and specialized terms.
+
+Use the interaction language for questions, options, summaries, confirmation requests, and other user-facing messages. Use the artifact language for every heading, label, table header, placeholder replacement, and narrative passage in durable Markdown artifacts. User-visible artifact-type phrases such as “Analysis Brief” are translatable labels, including in the document title and prose; they are not canonical identifiers. Preserve canonical status codes, Work Package IDs, exact Skill names, paths, hashes, citations, code, formulas, and source-language titles unless the user requests a translation.
+
+An English Skill, prompt, template, source, or identifier never changes either field. Infer both fields without asking when the precedence is clear. If explicit requirements conflict, ask one focused question in the interaction language. Record the resolved contract in the Brief. Missing language fields in an otherwise current legacy Brief are presentation metadata, not a reason to reopen its analysis meaning; establish the current-run contract and add the fields when the Brief is next revised.
 
 ## Frame the analysis
 
@@ -46,7 +58,7 @@ Identify likely non-goals early. A Brief that attempts to serve unrelated decisi
 
 ### 2. Resolve material choices
 
-Ask one focused question at a time. Prefer a small set of concrete choices when the trade-off is clear; use an open question when the user must supply meaning.
+Ask one focused question at a time in the interaction language. Prefer a small set of concrete choices when the trade-off is clear; use an open question when the user must supply meaning.
 
 Prioritize questions that can change:
 
@@ -55,7 +67,8 @@ Prioritize questions that can change:
 3. included and excluded populations, periods, regions, products, or cases;
 4. comparison and cutoff semantics that belong to the business question rather than a metric formula;
 5. acceptable uncertainty, sensitivity, confidentiality, and consequence of error;
-6. what observable result would make the analysis useful.
+6. whether the audience artifact must stand alone and which delivery formats materially constrain its use;
+7. what observable result would make the analysis useful.
 
 Keep three explicit buckets while clarifying:
 
@@ -73,7 +86,7 @@ Skip artificial alternatives when only one responsible frame fits the request. N
 
 ### 4. Draft and confirm in sections
 
-Copy [assets/analysis-brief-template.md](assets/analysis-brief-template.md) to `docs/evidencecraft/specs/YYYY-MM-DD-<topic>-analysis-brief.md` and fill it with project-specific language. Do not edit the template in place.
+Instantiate [assets/analysis-brief-template.md](assets/analysis-brief-template.md) at `docs/evidencecraft/specs/YYYY-MM-DD-<topic>-analysis-brief.md`. Treat its English headings and labels, including the top-level “Analysis Brief” document-type label, as semantic slots: render every user-visible part in the artifact language and remove all template comments before saving. Do not edit the template in place.
 
 Present the draft in coherent sections scaled to complexity. Confirm meaning as sections stabilize instead of withholding the whole design until the end. Revise when the user's response changes the intended frame.
 
@@ -85,17 +98,19 @@ Before requesting final confirmation, check the written Brief with fresh eyes:
 
 - no placeholder, contradiction, or unresolved material choice is hidden;
 - every question supports the stated use and fits the scope;
+- the reader-artifact expectation is explicit without absorbing planning or rendering decisions;
 - non-goals prevent plausible scope creep;
 - period and cutoff language is unambiguous enough to plan;
 - risks and success criteria can be checked later;
 - tentative assumptions are visible and have an owner or resolution point;
 - downstream semantic gaps are named without being prematurely solved.
+- headings, labels, and narrative use the artifact language, apart from recorded terminology exceptions and canonical identifiers.
 
-For a high-impact, multi-stakeholder, unusually ambiguous, or substantially revised Brief, dispatch an independent fresh-context reviewer using [prompts/analysis-brief-reviewer.md](prompts/analysis-brief-reviewer.md). Give the reviewer only the specified review package. Treat `REVISE` as a stop before confirmation; treat `BLOCKED` as a return to the user or responsible authority. The reviewer may identify defects but may not make product choices or silently rewrite the Brief.
+For a high-impact, multi-stakeholder, unusually ambiguous, or substantially revised Brief, dispatch an independent fresh-context reviewer using [prompts/analysis-brief-reviewer.md](prompts/analysis-brief-reviewer.md). Give the reviewer only the specified review package, including `{{ARTIFACT_LANGUAGE}}` and `{{TERMINOLOGY_AND_SOURCE_TITLE_HANDLING}}`. Treat `REVISE` as a stop before confirmation; treat `BLOCKED` as a return to the user or responsible authority. The reviewer may identify defects but may not make product choices or silently rewrite the Brief.
 
 ### 6. Apply the confirmation gate
 
-Ask the user to confirm the complete written Brief. Capture the exact confirmation, confirmer, and date in the Confirmation Record. A vague acknowledgment of the conversation is not confirmation of the file; name the path and material tentative choices in the request.
+Ask the user in the interaction language to confirm the complete written Brief. Capture the exact confirmation, confirmer, and date in the Confirmation Record. A vague acknowledgment of the conversation is not confirmation of the file; name the path and material tentative choices in the request.
 
 Declare the Brief confirmed only when:
 
@@ -126,6 +141,7 @@ On resumption, read the Brief and actual project files before relying on convers
 - If the Brief is Confirmed, verify the confirmation record and compare only meaning-bearing changes since confirmation.
 - If a confirmed section changed, mark the Brief Draft, record the reason, revise the affected sections, rerun readiness checks, and reconfirm the whole Brief.
 - If nothing material changed, do not reconfirm it merely because a new reporting period began.
+- If only the interaction language changed, use it immediately without reopening the Brief. If only the requested artifact language changed, record the presentation change and route to planning to revise the report contract; return to framing only when audience or intended use also changed.
 
 Never infer completion from a filename, old chat statement, or status label alone.
 

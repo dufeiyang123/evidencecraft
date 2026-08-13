@@ -1,7 +1,7 @@
 {
   "name": "evidencecraft",
   "description": "Evidence-first analysis and recurring reporting workflows for Claude Code",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "杜斐阳",
     "url": "https://github.com/dufeiyang123"

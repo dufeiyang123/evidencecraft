@@ -1,3 +1,5 @@
+<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Source Profile” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical decisions, IDs, exact Skill names, paths, citations, code, and source-language titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+
 # Source Profile: [logical source]
 
 ## Profile context
@@ -10,6 +12,8 @@
 - Observed at: [timestamp/date]
 - Extraction/as-of context: [version, period, cutoff, or snapshot]
 - Stable citation/hash: [value or unavailable with reason]
+- Artifact language: [language for this durable Profile]
+- Terminology and source-title handling: [translation, first-use explanation, or preserve-original rules]
 
 ## Fitness summary
 

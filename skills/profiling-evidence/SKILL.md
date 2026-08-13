@@ -23,11 +23,14 @@ Do not change the analysis audience, questions, or scope; define metric populati
 
 Start from a confirmed Analysis Brief or an exact downstream Return Route, the intended use, the candidate source locator, and any current Source Profile. Inspect actual project files before asking for information already present.
 
+Recover the interaction language, artifact language, and terminology handling independently. A current explicit requirement takes priority; for an existing Run, use its progress record next, then the confirmed Plan and Brief. If legacy artifacts omit the fields, use the primary language of the current substantive request and record the resolved contract in the current Run rather than rewriting historical artifacts. Use the interaction language for any user-facing question or status. Use the artifact language for a new or materially revised Source Profile, including every heading, label, table header, and narrative passage. Preserve canonical decisions, identifiers, paths, citations, code, and source-language titles.
+
 | Condition | Action |
 |---|---|
 | No named source or no stated intended use | Return to `writing-report-plans`; return to `framing-analysis` if the use itself is undecided. |
 | Current Profile covers the same logical source, semantics, and intended use | Record that profiling is skipped and return to planning. |
 | Only rows, values, documents, or reporting period contents changed under the same semantics | Do not reopen the Profile; let the Executor record period evidence. |
+| Only the interaction or artifact language changed | Do not reopen source semantics; reuse the Profile and let planning apply the current presentation contract. |
 | Structure, grain, keys, time, update, authority, lineage, transformation, mapping, or use may differ | Open or revise a Source Profile and investigate. |
 | The source cannot be observed or authoritative context is unavailable | Record exactly what is inaccessible and use `BLOCKED`; do not guess. |
 
@@ -99,7 +102,7 @@ Decide separately for each use. State allowed uses, prohibited uses, limitations
 
 ### 5. Write the Source Profile
 
-Copy [assets/source-profile-template.md](assets/source-profile-template.md) to `docs/evidencecraft/sources/<logical-source>-profile.md`. Do not edit the template in place. One Profile may cover a tightly coupled logical source group only when its joint semantics cannot be understood separately; otherwise keep profiles source-specific and cross-reference the relationship.
+Instantiate [assets/source-profile-template.md](assets/source-profile-template.md) at `docs/evidencecraft/sources/<logical-source>-profile.md`. Treat its English headings and labels, including the top-level “Source Profile” document-type label, as semantic slots: render every user-visible part in the artifact language and remove all template comments before saving. Artifact-type phrases in prose are also translatable unless they are exact Skill names, paths, or recorded source-exact terms. Do not edit the template in place. One Profile may cover a tightly coupled logical source group only when its joint semantics cannot be understood separately; otherwise keep profiles source-specific and cross-reference the relationship.
 
 Complete the Profile with actual observations, tests, use-specific decisions, and change triggers. Do not create a Source Contract, EvidenceSnapshot, JSON Schema, lifecycle object, or invented evidence ID.
 
@@ -113,6 +116,7 @@ Profiling is complete only when:
 - every intended use has a fitness decision and rationale;
 - limitations, prohibited uses, and change triggers are explicit;
 - unresolved authority or access gaps are `BLOCKED`, not hidden;
+- headings, labels, and narrative use the artifact language apart from recorded terminology exceptions and canonical identifiers;
 - the Profile is saved or the response truthfully says persistence was unavailable.
 
 Do not compute the report metric, create the execution plan, or continue downstream work inside this Skill.
@@ -128,6 +132,8 @@ On resumption, read the current Profile and inspect the actual source before tru
 5. Reissue only the affected use decisions; do not re-profile unrelated sources or dimensions.
 
 A corrected same-period file may require new evidence logging without a semantic Profile change. Reopen the Profile only when its meaning, authority, update behavior, or intended use changed.
+
+Do not translate or rewrite an otherwise current Profile merely because a later report uses a different artifact language. Downstream work may consume semantic artifacts in another language while rendering its own outputs under the current contract.
 
 ## Return Routes
 

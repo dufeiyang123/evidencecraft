@@ -1,0 +1,20 @@
+{
+  "name": "@dufeiyang123/evidencecraft",
+  "version": "0.3.0",
+  "description": "Evidence-first analysis and recurring reporting workflows for Claude Code, Codex, and OpenClaw.",
+  "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/dufeiyang123/evidencecraft",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dufeiyang123/evidencecraft.git"
+  },
+  "keywords": [
+    "agent-skills",
+    "analysis",
+    "evidence",
+    "openclaw",
+    "reporting",
+    "review"
+  ]
+}

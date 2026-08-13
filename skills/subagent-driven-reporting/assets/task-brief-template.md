@@ -1,3 +1,5 @@
+<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Work Package Task Brief” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+
 # Evidencecraft Work Package Task Brief
 
 ## Identity
@@ -6,6 +8,9 @@
 - Run ID:
 - Work Package ID / title:
 - Brief status: `FROZEN FOR DISPATCH`
+- Interaction language: [frozen; workers do not contact the user]
+- Artifact language: [required for output, Task Report, and task review]
+- Terminology and source-title handling: [frozen translation and preservation rules]
 - Prepared at:
 - Decision use / report section served:
 
@@ -50,8 +55,9 @@
 
 - Output format and fields:
 - Required intermediate calculations / extracts:
-- Precise evidence locators to retain:
+- Precise evidence paths, locators, and Evidence IDs to retain for governance:
 - Identity method:
+- Audience boundary: this output and its Task Report are internal governance inputs; do not write or save the reader report.
 
 ## Acceptance checks
 

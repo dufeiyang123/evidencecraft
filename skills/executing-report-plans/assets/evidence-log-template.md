@@ -1,57 +1,51 @@
+<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Evidence Log” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+
 # Evidence Log
 
-Copy this template into the run workspace. Use one entry per source slice, upstream artifact, or distinct evidentiary basis. A file name alone is not traceability.
+<!-- Template instruction: instantiate this internal governance log in the run workspace; use one card per source slice, upstream artifact, or distinct evidentiary basis. A file name alone is not traceability. Evidence IDs and internal paths do not belong in the standalone reader report. -->
 
 ## Log identity
 
 - Run ID:
 - Report Plan path and identity:
 - Period/as-of:
-- Maintainer: Main Agent, sequential Executor
+- Artifact language:
+- Terminology and source-title handling:
+- Maintainer: Main Agent, selected Executor
 - Last updated:
 
-## Evidence entries
+## Coverage index
+
+| Report requirement or consequential claim | Evidence ID(s) | Status | Reader-report handling |
+|---|---|---|---|
+|  |  | `SUPPORTED | QUALIFIED | UNSUPPORTED | BLOCKED` | [include substance / include qualification / omit / block] |
+
+## Evidence cards
 
 ### E-<id>: <short label>
 
-- Supports Work Package/output:
-- Supports report claim/table/section:
-- Evidence type: `observation | calculation | upstream artifact | external citation`
-- Source or upstream artifact path:
-- Source Profile or Metric Definition governing use:
-- Intended use:
-- Period/as-of and timezone:
-- Unit/grain:
-- Locator: table/sheet/range/query/page/section/URL or equivalent
-- Access/citation/content hash:
-- Coverage: included and excluded population/time/content
-- Freshness:
-- Transform or calculation performed:
-- Verification method and observed result:
-- Status: `SUPPORTED | QUALIFIED | UNSUPPORTED | BLOCKED`
-- Qualifications and limitations:
-- Recorded at:
+- Supports / type: [Work Package, output, report claim/table/section] / `observation | calculation | upstream artifact | external citation`
+- Basis: [exact source or upstream path plus locator]; governed by [Profile/Definition or none]; [period/as-of and timezone]; [unit/grain and coverage]; [access/citation/content hash and freshness]
+- Observation or derivation: [source observation, or exact transform/calculation separated from interpretation]
+- Verification: [fresh method and complete observed result]
+- Status and reader handling: `SUPPORTED | QUALIFIED | UNSUPPORTED | BLOCKED` — [qualification/limitation and how it appears or stays out of the reader report]
+- Recorded at: [timestamp]
 
-## Coverage reconciliation
+## Unsupported, blocked, and conflicting items
 
-| Plan requirement or consequential claim | Evidence entry | Status | Limitation carried into draft |
-|---|---|---|---|
-|  |  |  |  |
+<!-- Template instruction: keep these visible even when excluded from the draft. -->
 
-## Unsupported and blocked items
-
-Keep these visible even when excluded from the draft.
-
-| Item | Attempted evidence | Why unsupported/blocked | Affected output | Return Route or disclosure |
+| Item | Attempted evidence or conflict | Why unresolved | Affected output | Return Route or reader disclosure |
 |---|---|---|---|---|
 |  |  |  |  |  |
 
 ## Log checks
 
-- [ ] Every entry names its governing semantic artifact.
+- [ ] Coverage index includes every consequential report requirement and claim.
+- [ ] Every card names its governing semantic artifact when applicable.
 - [ ] Every locator is precise enough for a fresh recheck.
 - [ ] Period, timezone, grain, and coverage are explicit where applicable.
 - [ ] Calculations distinguish source observations from derived results.
 - [ ] Qualifications propagate to every dependent claim.
 - [ ] Unsupported items are not presented as findings.
-- [ ] Coverage table includes every consequential report claim.
+- [ ] Governance paths, Evidence IDs, hashes, and verification detail stay outside the standalone reader report.

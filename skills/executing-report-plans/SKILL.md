@@ -11,12 +11,14 @@ Execute one confirmed Report Plan faithfully in the Main Agent's context. Own th
 
 Read the exact current Plan before doing analysis work. Also inspect the confirmed Analysis Brief, every referenced Source Profile and Metric Definition, the requested period/as-of, relevant prior progress, and the actual run files.
 
+Recover the language contract independently. Apply a current explicit field-scoped requirement first; otherwise, for an existing Run, use the contract recorded in `progress.md`, then the current Plan and Brief, then the primary language of the current substantive request. If legacy artifacts lack the fields, record `interaction_language`, `artifact_language`, and terminology/source-title handling in this Run without rewriting them. Use `interaction_language` for questions, status, route, and confirmation messages. Use `artifact_language` for progress, evidence logs, Package outputs, Review Package text, draft, and final-report content. Preserve canonical codes and identifiers, paths, hashes, citations, code, formulas, and original source titles; English source material, templates, prompts, Profiles, or Definitions never switch the contract.
+
 Proceed only when all are true:
 
 - the Plan is confirmed and still current for its Brief, source uses, metric meanings, report interface, and capabilities;
 - the Plan recommends or the user has selected the sequential Executor;
 - no multi-agent Executor owns this run and no other writer is changing its files;
-- the Plan identifies the run workspace, Work Packages, outputs, checks, stop conditions, and review handoff.
+- the Plan identifies the run workspace, Work Packages, outputs, reader-report contract, distinct draft/final paths, checks, stop conditions, and Review Package manifest.
 
 Route instead when:
 
@@ -27,6 +29,8 @@ Route instead when:
 | Intended use, audience, question, or scope changed | Return to `framing-analysis`. |
 | Source grain, keys, time, authority, lineage, or use-specific fitness changed | Return the exact use to `profiling-evidence`. |
 | Metric population, formula, grain, time, deduplication, aggregation, missing-data rule, or source mapping changed | Return the exact metric to `defining-metrics`. |
+| Only `interaction_language` changed | Continue the same lifecycle state and use the new language for user interaction. |
+| `artifact_language` changed from the confirmed Plan | Stop and return to `writing-report-plans` to revise and reconfirm the report interface; do not rerun unaffected profiling, metric definition, or analysis. |
 | Only current-period records or computed values changed under current semantics | Continue with this Executor. |
 | The draft and evidence package are complete and need judgment | Use `reviewing-analysis`. |
 
@@ -34,11 +38,11 @@ Never run both Executors for the same scenario. An Executor switch requires stop
 
 ## Initialize or recover the run
 
-Use [the progress template](assets/progress-template.md) and [the evidence-log template](assets/evidence-log-template.md). Copy them into the Plan's run workspace; never edit the Skill assets in place.
+Use [the progress template](assets/progress-template.md), [the evidence-log template](assets/evidence-log-template.md), and, when sealing, [the Review Package manifest template](assets/review-package-template.md). Instantiate them in the Plan's run workspace; treat English headings and labels—including “Report Run Progress”, “Evidence Log”, and “Review Package Manifest”—as semantic slots, render all user-visible content and artifact-type phrases in `artifact_language`, preserve only exact Skill names and the recorded canonical or source-exact exceptions, and remove all template comments. Never edit the Skill assets in place.
 
 For a new run:
 
-1. Record the Plan, semantic dependency paths, period/as-of, selected Executor, output paths, and every Work Package.
+1. Record the Plan, semantic dependency paths, period/as-of, selected Executor, frozen language contract, output paths, and every Work Package.
 2. Create only the directories and empty records the Plan authorizes.
 3. Mark the first dependency-ready Package `IN PROGRESS`; leave the rest `NOT STARTED` or `BLOCKED BY <id>`.
 
@@ -69,9 +73,9 @@ Do not silently substitute a convenient source, invent a join, change an eligibi
 
 ### 2. Produce the output
 
-Follow the Package procedure exactly. Write the sole output at its planned path and keep intermediate material inside the run workspace unless the Plan says otherwise.
+Follow the Package procedure exactly. Write the sole output at its planned path in `artifact_language` and keep intermediate material inside the run workspace unless the Plan says otherwise. Localize headings, labels, table headers, placeholders, and narrative; do not translate canonical codes/identifiers or source-exact exceptions recorded by the Plan.
 
-For every consequential result, append an evidence entry containing the source or upstream artifact, period/as-of, locator, access/citation/hash, coverage, freshness, status, limitations, and the claim or output it supports. Distinguish observations, calculations, interpretations, and unsupported possibilities.
+For every consequential result, add a compact evidence card containing the supported requirement/claim, evidence type, exact source or upstream artifact and locator, governing Profile/Definition, period/as-of, grain/coverage, identity, observation or derivation, verification, status, and limitations. Update the coverage index that maps report requirements/claims to Evidence IDs and reader-report handling. Keep precise paths, Evidence IDs, hashes, and verification detail in governance artifacts; do not paste them into the reader draft. Distinguish observations, calculations, interpretations, and unsupported possibilities.
 
 ### 3. Verify freshly
 
@@ -100,6 +104,7 @@ Classify the blocker and use the narrowest Return Route:
 - changed source semantics or fitness: `profiling-evidence`;
 - changed reusable metric meaning or mapping: `defining-metrics`;
 - changed audience, intended use, question, or scope: `framing-analysis`.
+- changed artifact language only: `writing-report-plans` for a presentation-interface revision and reconfirmation.
 
 Write `BLOCKED` in progress with the first failing Package, observed evidence, affected downstream Packages, preserved valid work, requested decision, and exact Return Route. Do not call an incomplete or qualified run complete.
 
@@ -109,11 +114,18 @@ After every Package passes fresh verification:
 
 1. confirm the draft contains every Plan-required section and no unsupported completion markers;
 2. reconcile claims, tables, and limitations with the evidence log;
-3. rerun the Plan's final completeness and traceability checks;
-4. freeze the evidence log, verified Package outputs, and draft, then assemble the exact Plan-defined Review Package: current Brief, Source Profiles, Metric Definitions, Plan, progress, evidence log, verified Package outputs, draft, and unresolved limitations;
-5. in the Review Package, identify stable inputs and outputs by hash or another durable identity, but identify mutable progress by Run ID and status rather than its content hash;
-6. after the Review Package is complete, record the frozen draft and Review Package identities in progress once; do not rewrite frozen files merely to update a self-referential identity;
-7. mark run status `READY FOR INDEPENDENT REVIEW`, never `APPROVED` or `FINAL`.
+3. verify the reader draft against the Plan's publication contract: it stands alone, carries key values in prose/tables, preserves allowed reader-facing citations, and does not use current-run governance paths/IDs/statuses, hashes, engineering traceability, `...`, globs, brace expansions, or path-only figures as reader references;
+4. resolve every Markdown image to the declared staged asset and final relative URI, or confirm that the asset contract is `none`; a filename that is substantive report content may remain, but it cannot be required navigation or the sole support for a claim;
+5. verify the planned final report and final asset destinations are still unwritten;
+6. rerun the Plan's final completeness and internal traceability checks;
+7. freeze the evidence log, verified Package outputs, draft, and staged reader assets, then instantiate the Plan-defined Review Package manifest with the frozen delivery contract, current Brief, Source Profiles, Metric Definitions, Plan, progress by Run ID/status, evidence log, verified Package outputs, draft/assets, final URI mapping, and unresolved limitations;
+8. inspect every manifest member at its exact path and record a real hash or other durable identity for every stable member; do not record a manifest self-hash inside the manifest and do not hash mutable progress;
+9. after the manifest is complete, record the frozen draft/assets and manifest identities in progress once; do not rewrite frozen files merely to update a self-referential identity;
+10. mark run status `READY FOR INDEPENDENT REVIEW`, never `APPROVED` or `FINAL`.
+
+Formal external citations, paper URLs, and file or code identifiers that are themselves report subject matter are not governance leakage. They still cannot make repository access a prerequisite for understanding the report.
+
+When a same-period report is rerendered only because `artifact_language` changed, use the reconfirmed replacement Plan, preserve the prior report, record the existing replacement/supersession relationship, generate a new version, and send that new version through independent review. Do not overwrite the prior report or treat translation as already reviewed.
 
 If a final check reveals a substantive mismatch, reopen the affected Package or record, correct it, and repeat the freeze sequence. Do not churn timestamps or hashes after a passing freeze just to make mutable records hash each other.
 
@@ -126,7 +138,8 @@ Return exact paths for:
 - progress and evidence log;
 - every verified Package output;
 - report draft;
-- Review Package;
+- staged reader assets, when any;
+- Review Package manifest;
 - the next skill or precise blocking Return Route.
 
-State what was freshly verified and what remains limited. The result is execution evidence, not a claim that the analysis is approved or saved.
+State what was freshly verified and what remains limited, using `interaction_language` for the user-facing handoff and `artifact_language` inside referenced artifacts. The result is execution evidence, not a claim that the analysis is approved or saved.

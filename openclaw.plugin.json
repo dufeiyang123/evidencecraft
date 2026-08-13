@@ -1,0 +1,14 @@
+{
+  "id": "evidencecraft",
+  "name": "Evidencecraft",
+  "description": "Evidence-first analysis and recurring reporting workflows for OpenClaw.",
+  "version": "0.3.0",
+  "skills": [
+    "./skills"
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}

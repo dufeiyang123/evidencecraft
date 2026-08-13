@@ -1,3 +1,5 @@
+<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Work Package Task Report” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+
 # Evidencecraft Work Package Task Report
 
 ## Identity and status
@@ -7,6 +9,8 @@
 - Worker identity:
 - Status: `DONE | DONE_WITH_CONCERNS | NEEDS_CONTEXT | BLOCKED`
 - Task Brief path / identity:
+- Artifact language:
+- Terminology and source-title handling:
 - Started / completed:
 
 ## Inputs actually inspected
@@ -29,11 +33,13 @@
 - Grain / period / row or item count:
 - Consequential results:
 
-## Evidence locators
+## Governance evidence locators
 
-| Result / claim | Source or upstream locator | Output locator | Support / qualification |
-|---|---|---|---|
-|  |  |  |  |
+| Result / claim | Evidence ID | Exact source or upstream path / locator | Output locator | Support / qualification |
+|---|---|---|---|---|
+|  |  |  |  |  |
+
+These exact paths and IDs belong to the governance layer. The Main Agent must not copy them into the standalone reader report.
 
 ## Checks run
 
@@ -51,7 +57,7 @@
 
 ## Correction rounds
 
-Append one section per correction; do not erase the original report.
+<!-- Template instruction: append one section per correction; do not erase the original report. -->
 
 ### Round <N>
 

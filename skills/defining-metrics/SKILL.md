@@ -11,12 +11,15 @@ Turn a decision-relevant quantitative concept into a reusable Markdown definitio
 
 Start with a confirmed Analysis Brief, the exact intended use, current Source Profiles, any existing Metric Definition, and the planning or review gap that invoked this Skill.
 
+Recover the language contract independently before producing output. A current explicit requirement takes priority; for an existing Run, prefer its progress record, then the confirmed Report Plan and Analysis Brief. If older artifacts have no language fields, use the primary language of the current substantive request and record the inferred contract in the current Run rather than rewriting the old files. Use `interaction_language` for questions, choices, status, and return messages. Use `artifact_language` for every new or materially revised Definition, including headings, labels, table headers, placeholders, and narrative. Preserve canonical codes and identifiers, paths, hashes, citations, code, formulas, and original source titles; apply the recorded terminology and source-title handling instead of treating those exceptions as a language switch.
+
 | State | Action |
 |---|---|
 | No confirmed use or the business question itself is unresolved | Return to `framing-analysis`. |
 | Required source grain, authority, time, update, or mapping is unknown | Return the exact gap to `profiling-evidence`. |
 | A current Definition covers the same concept, use, population, time, and source mapping | Record that definition work is skipped and return to planning. |
 | Only period values or ordinary source contents changed | Reuse the current Definition; do not reapprove it. |
+| Only `interaction_language` or `artifact_language` changed | Reuse the current Definition as a semantic input; planning owns the report-presentation change. |
 | Population, formula, grain, time, mapping, aggregation, comparison, or interpretation changed | Revise the affected Definition and revalidate it. |
 | The measure is a one-off calculation fully specified in the Plan and has no cross-period or cross-result reuse | Keep it in the Plan rather than creating a durable Definition. |
 
@@ -54,7 +57,7 @@ If two plausible meanings support different decisions, keep them separate. Do no
 
 ### 2. Resolve material choices
 
-Ask one direction-changing question at a time. When multiple responsible definitions exist, present 2–3 approaches with trade-offs and a recommendation. Useful contrasts include snapshot versus period-flow population, account versus contract unit, simple versus weighted rate, event versus receipt time, and strict exclusion versus visible `Unknown`.
+Ask one direction-changing question at a time in `interaction_language`. When multiple responsible definitions exist, present 2–3 approaches with trade-offs and a recommendation in that language. Useful contrasts include snapshot versus period-flow population, account versus contract unit, simple versus weighted rate, event versus receipt time, and strict exclusion versus visible `Unknown`.
 
 Keep each choice **Confirmed**, **Tentative**, or **Open**. A material Open choice stops readiness. Tentative choices must name the owner and the point at which planning will confirm or replace them.
 
@@ -92,7 +95,7 @@ Derive expected values by hand. Do not use the proposed implementation, its quer
 
 ### 6. Write and self-review the Definition
 
-Copy [assets/metric-definition-template.md](assets/metric-definition-template.md) to `docs/evidencecraft/metrics/<metric>-definition.md`. Do not edit the template in place.
+Instantiate [assets/metric-definition-template.md](assets/metric-definition-template.md) at `docs/evidencecraft/metrics/<metric>-definition.md`. Treat the template's English headings and labels, including the top-level “Metric Definition” document-type label, as semantic slots: render every user-visible field, table header, placeholder replacement, and narrative passage in `artifact_language`, preserve only the allowed canonical or source-exact exceptions, and remove all template comments. Artifact-type phrases in prose are translatable unless they are exact Skill names, paths, or recorded source-exact terms. Do not edit the template in place.
 
 Check that:
 
@@ -103,6 +106,7 @@ Check that:
 - limitations and prohibited interpretations are prominent;
 - there are no placeholders or hidden Open choices;
 - change triggers distinguish semantic changes from ordinary values.
+- headings, labels, table headers, and narrative consistently use `artifact_language` except for recorded exceptions.
 
 Do not turn the Definition into JSON Schema, executable lifecycle state, or an Approval object.
 
@@ -116,6 +120,7 @@ Return a Definition as `Ready for Plan Confirmation` only when:
 - invariants name the breaks they catch;
 - hand-derived examples are internally consistent;
 - the file states limitations and change triggers.
+- the Definition follows the recovered language contract without untranslated template labels.
 
 New or materially revised Definitions become `Current` only when the user confirms them together with the Report Plan that names them. Record that confirmation in the Plan and Definition; do not create a separate machine approval record. Until then, stop before execution.
 
@@ -126,6 +131,7 @@ On resumption, read the Definition, its named Brief/Plan/Profiles, and actual so
 - If it is Draft, resume from the earliest Open or unvalidated choice.
 - If it is Ready, verify the candidate Plan still uses the same interface before requesting combined confirmation.
 - If it is Current, compare meaning-bearing changes only; new values and periods do not reopen it.
+- Do not translate or replace a current Definition solely because the interaction or report language changed; it remains a semantic input to a newly rendered report.
 - When a semantic change occurs, preserve the prior Definition for reports that used it, write what changed, and revalidate only affected invariants/examples and consumers.
 
 Never infer currentness from a filename or a formula copied into a report.

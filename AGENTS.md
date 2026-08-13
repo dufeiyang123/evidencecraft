@@ -1,13 +1,14 @@
 # Evidencecraft Agent 工作规范
 
-本仓库已回到干净的 Skill 创建起点。开始设计、创建或修改任何 Skill 前，完整阅读：
+本仓库已完成首个可运行 Skill 流程集，并通过 Claude Code、Codex 与 OpenClaw 插件分发。开始
+设计、创建或修改任何 Skill 前，完整阅读：
 
 1. 本文件；
 2. `PLAN.md`；
 3. `docs/skill-evaluation-policy.md`。
 
-当前工作树没有可复用的旧 Skill、Schema 或历史评测模板。不要主动从 Git 历史恢复旧实现，
-也不要把历史 commit 当成当前设计依据；只有用户明确要求历史审计或迁移时才读取它们。
+当前 `skills/` 是唯一生产基线。不要主动从 Git 历史恢复已删除的旧 Skill、Schema 或历史评测
+模板，也不要把历史 commit 当成当前设计依据；只有用户明确要求历史审计或迁移时才读取它们。
 
 ## 1. 创建 Skill 前先研究 Superpowers
 
@@ -26,6 +27,10 @@ Superpowers 主流程 Skill 的当前正文：
 | `defining-metrics` | `brainstorming`、`writing-plans`、按需 `test-driven-development` |
 
 所有 Skill 还要研究 `../superpowers/skills/writing-skills/SKILL.md`。
+
+未来新增的表外 Skill 应先研究职责最近邻的一个或多个 Superpowers Skill，并完整阅读
+`writing-skills/SKILL.md`。若没有直接对应项，明确记录为什么选择这些流程模式、哪些机制可迁移，
+以及为什么 Evidencecraft 仍需要独立 Skill；不得因表中没有名称就跳过研究门。
 
 在当前任务计划或 commentary 中先记录：
 
@@ -54,7 +59,8 @@ Superpowers 主流程 Skill 的当前正文：
   独立 prompt 文件，避免把角色细节挤进主流程；
 - 重复、确定、容易手工出错的提取、检查或 workspace 操作才进入 `scripts/`，新增脚本必须实跑；
 - 按当前 `skill-creator` 生成并保留实际发现、界面或分发需要的 `agents/openai.yaml`；
-- 不创建 README、安装指南、变更日志、测试说明、空目录、重复 Reference 或无人调用的配套。
+- Skill 包内不创建 README、安装指南、变更日志、测试说明、空目录、重复 Reference 或无人调用的
+  配套；用户明确要求的仓库级分发或维护文档不受此条限制。
 
 “精简”只表示没有无消费者和重复的产物，不表示压缩必要流程。复杂 Skill 可以像对应的
 Superpowers Skill 一样拥有完整正文和配套资源，只要每个部分都有独立职责和实际调用方。
@@ -112,5 +118,49 @@ using → framing → writing plan → 一个 Executor → review → report
 - 完成前运行受影响的 `quick_validate.py`、链接/路径检查、必要脚本测试和
   `git diff --check`，再审阅完整 Diff。
 - 未经明确要求，不推送远端、不创建 PR、不安装连接器或发布配置。
+
+## 7. 插件可发布门与发布授权
+
+**Skill 更新必须保持插件可发布；只有用户明确授权 `release`/`push` 后，才执行版本同步和远端发布。**
+
+“保持插件可发布”适用于任何现在或未来的 Skill，不以当前 Skill 数量为边界：
+
+- `skills/` 是 Claude Code、Codex 与 OpenClaw 共用的唯一生产 Skill 源；不得为不同 Harness
+  复制 Skill 树；
+- 新增、修改、重命名或删除 Skill 后，除第 5 节的行为验收外，还要确认三个分发入口仍能从根目录
+  `skills/` 发现完整的当前集合；验证按实际目录动态枚举，不写死 Skill 数量或名称；
+- 保持 `.codex-plugin/plugin.json`、`.agents/plugins/marketplace.json`、
+  `.claude-plugin/plugin.json`、`.claude-plugin/marketplace.json`、`openclaw.plugin.json` 和根
+  `package.json` 有效，并确认 OpenClaw manifest 只声明根 `skills/`，不注册运行时 entrypoint；
+- 运行 Codex plugin validator、`claude plugin validate --strict .`、ClawHub package validator、
+  受影响 Skill 的 `quick_validate.py`、链接检查和 `git diff --check`；
+- Claude Code fresh-context 调用只验证 Claude 的安装、发现、namespace 与 Harness 兼容性，不替代
+  第 5 节规定的 Codex 行为验收；
+- 候选安装必须来自已提交的临时 Git 快照或真实 tag。Git marketplace 和 ClawHub release 不读取
+  未提交工作树；
+- 安装后比较缓存与源码的完整 `skills/` 集合，并确认仓库内报告、evals、transcript、凭证和本机路径
+  没有进入插件包；
+- 未获发布授权时不修改 semver、不创建 release commit/tag/GitHub Release、不推送；完成报告只说明
+  当前改动是否 release-ready，并给出建议版本级别。
+
+用户明确授权发布后才进入 release gate：
+
+1. 按 semver 确定版本，并同步 Codex manifest、Claude manifest、Claude marketplace entry、
+   `openclaw.plugin.json`、根 `package.json` 及 README 中的固定 tag；Codex repo marketplace 本身
+   没有版本字段，不得人为添加；ClawHub bundle release 使用同一 semver；
+2. 对候选 Git 快照分别执行 Codex、Claude Code 与 OpenClaw 的真实安装，并用 fresh context 验证
+   受影响的入口、边界或交接；测试输入必须给出所有绑定选择，不能让欠规格测试替 Skill 决策；
+3. 精确审计暂存范围和敏感内容；`reports/`、旧 `evals/`、transcript 与本机数据不得发布；
+4. 本地开发历史提交到 `main`；同一最终 tree 追加到精简 `public-main`。远端 `origin/main` 只接收
+   `public-main` 的 fast-forward，不得把本地旧开发历史推到公开仓库；
+5. 创建并推送 `vX.Y.Z` annotated tag；需要对外发布时创建同 tag 的 GitHub Release，并从该 tag
+   发布同版本 ClawHub bundle plugin；
+6. 从 GitHub tag 重新安装 Claude Code 与 Codex 插件，从 ClawHub release 重新安装 OpenClaw
+   bundle，验证解析版本、当前完整 Skill 集、调用和关键路由；最后核对远端 branch/tag SHA、
+   公开文件树、ClawHub 来源与许可证。
+
+完整命令、版本策略、双分支远端同步方式和已验证的 Harness 差异见
+`docs/plugin-release-workflow.md`。若该手册与当前 CLI/validator 冲突，以当前官方文档和实际
+validator 为准，并在同一发布中更新手册。
 
 具体职责、建设顺序和 Markdown 交接见 `PLAN.md`。

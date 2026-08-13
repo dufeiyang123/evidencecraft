@@ -1,3 +1,5 @@
+<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Metric Definition” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+
 # Metric Definition: [metric name]
 
 ## Status and ownership
@@ -7,6 +9,8 @@
 - Intended use: [decision/comparison this supports]
 - Analysis Brief: [exact path]
 - Report Plan: [candidate/current path or not yet written]
+- Artifact language: [confirmed delivery language]
+- Terminology and source-title handling: [translation, first-use explanation, and original-title rules]
 - Current since: [Plan confirmation date or not current]
 - Supersedes: [prior Definition path or none]
 
