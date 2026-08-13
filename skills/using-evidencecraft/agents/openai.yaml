@@ -1,0 +1,4 @@
+interface:
+  display_name: "Route Evidencecraft Work"
+  short_description: "Classify report state and choose the next skill."
+  default_prompt: "Use $using-evidencecraft to inspect this evidence-analysis workspace and route the next responsibility before doing downstream work."

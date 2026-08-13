@@ -1,0 +1,4 @@
+interface:
+  display_name: "Execute Report Plans"
+  short_description: "Run confirmed report plans sequentially with evidence."
+  default_prompt: "Use $executing-report-plans to execute the confirmed current report plan sequentially, verify each work package, and prepare it for independent review."

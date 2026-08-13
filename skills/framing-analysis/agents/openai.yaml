@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frame Analysis"
+  short_description: "Define and confirm the analysis brief"
+  default_prompt: "Use $framing-analysis to turn this reporting request into a confirmed Analysis Brief."

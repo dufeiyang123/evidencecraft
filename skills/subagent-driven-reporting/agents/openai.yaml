@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run Multi-Agent Report"
+  short_description: "Coordinate isolated report workers and verify handoffs."
+  default_prompt: "Use $subagent-driven-reporting to execute this confirmed multi-agent Report Plan through independently reviewed Work Packages."

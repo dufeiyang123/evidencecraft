@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review Analysis"
+  short_description: "Independently check evidence, claims, and limitations."
+  default_prompt: "Use $reviewing-analysis to independently review this completed analysis package and return a verdict with exact responsibility routes."

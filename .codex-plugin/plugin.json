@@ -1,0 +1,38 @@
+{
+  "name": "evidencecraft",
+  "version": "0.1.0",
+  "description": "Evidence-first analysis and recurring reporting workflows for Codex.",
+  "author": {
+    "name": "杜斐阳",
+    "url": "https://github.com/dufeiyang123"
+  },
+  "homepage": "https://github.com/dufeiyang123/evidencecraft",
+  "repository": "https://github.com/dufeiyang123/evidencecraft",
+  "license": "MIT",
+  "keywords": [
+    "evidence",
+    "analysis",
+    "reporting",
+    "review",
+    "multi-agent"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Evidencecraft",
+    "shortDescription": "Evidence-first analysis and recurring reporting",
+    "longDescription": "Frame an analysis, profile evidence, define metrics, write and execute recurring report plans, coordinate optional subagents, and independently review the result before final save.",
+    "developerName": "杜斐阳",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/dufeiyang123/evidencecraft",
+    "defaultPrompt": [
+      "Build my first evidence-backed recurring report.",
+      "Run the next reporting cycle from my current plan.",
+      "Review this analysis package before final save."
+    ]
+  }
+}

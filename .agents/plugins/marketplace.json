@@ -1,0 +1,20 @@
+{
+  "name": "evidencecraft",
+  "interface": {
+    "displayName": "Evidencecraft"
+  },
+  "plugins": [
+    {
+      "name": "evidencecraft",
+      "source": {
+        "source": "url",
+        "url": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Profile Evidence"
+  short_description: "Assess source semantics and fitness"
+  default_prompt: "Use $profiling-evidence to assess whether these sources are fit for the confirmed analysis."

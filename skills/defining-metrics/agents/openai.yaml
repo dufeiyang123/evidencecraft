@@ -1,0 +1,4 @@
+interface:
+  display_name: "Define Metrics"
+  short_description: "Freeze reusable quantitative definitions"
+  default_prompt: "Use $defining-metrics to turn this metric question into a reusable, testable definition."

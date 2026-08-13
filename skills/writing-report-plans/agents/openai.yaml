@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Report Plans"
+  short_description: "Turn confirmed analysis into executable work"
+  default_prompt: "Use $writing-report-plans to turn this confirmed Analysis Brief into an executable Report Plan."
