@@ -8,7 +8,11 @@
 
 - Run ID:
 - Status: `NOT STARTED | IN PROGRESS | BLOCKED | READY FOR INDEPENDENT REVIEW`
-- Executor: `sequential`
+- Executor: `executing-report-plans`
+- Execution mode: `Inline Execution`
+- User selection statement:
+- Selected at:
+- Explicit parallel authorization: `none`
 - Report Plan path:
 - Plan identity/version/hash:
 - Analysis Brief path:
@@ -33,7 +37,8 @@
 
 - Current owner: Main Agent
 - Other active writer checked: `none | describe conflict`
-- Prior Executor handoff, if any:
+- Prior Run reference, if this Run replaces a different mode: `none | exact Run ID and reason`
+- Work started: `no | yes — first Package and timestamp`
 
 ## Work Package ledger
 

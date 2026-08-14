@@ -2,7 +2,7 @@
   "id": "evidencecraft",
   "name": "Evidencecraft",
   "description": "Evidence-first analysis and recurring reporting workflows for OpenClaw.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "skills": [
     "./skills"
   ],

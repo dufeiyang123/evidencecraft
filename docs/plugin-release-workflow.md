@@ -147,9 +147,10 @@ OPENCLAW_CONFIG_PATH=/tmp/evidencecraft-openclaw/openclaw.json \
 安装后用 fresh context 调用至少一个受影响入口，并验证最近邻边界或交接。Claude Code 的显式
 Skill 语法是 `/evidencecraft:<skill-name>`；Codex 的显式语法是
 `$evidencecraft:<skill-name>`。OpenClaw bundle Skills 使用普通 Skill 发现与调用，不假设 Claude/
-Codex namespace。路由测试必须明确 Plan 已绑定的选择，例如 sequential 或 multi-agent Executor；
-若输入没有该选择，Skill 停止并索取上下文是正确行为，不应为了让测试返回唯一 Skill 而修改生产
-规则。
+Codex namespace。路由测试必须明确当前 Run 是否已有冻结的 Executor 选择；若只有 current Plan
+而没有 Run 选择，Skill 应呈现 Subagent-Driven 与 Inline handoff 并停止。显式 parallel 请求只
+授权 `dispatching-parallel-research` 在 Subagent-Driven Run 中判断候选批次，不构成第三个
+顶层 Executor。
 
 ## 5. 公开仓库的双历史策略
 

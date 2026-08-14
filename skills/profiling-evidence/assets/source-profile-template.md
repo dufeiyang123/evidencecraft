@@ -94,5 +94,5 @@
 ## Return Route
 
 - Decision: [FIT / QUALIFIED / UNFIT / BLOCKED by intended use]
-- Return to: `writing-report-plans` | `framing-analysis` | `defining-metrics` | chosen Executor
+- Return to: `writing-report-plans` | `framing-analysis` | `defining-metrics` | Run-selected Executor
 - Next condition: [what the receiving stage must do or resolve]

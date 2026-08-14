@@ -1,6 +1,6 @@
 ---
 name: reviewing-analysis
-description: Use when a completed report draft and Review Package need independent evidence review or re-review before final save; verify scope, source and metric fidelity, calculations, traceability, claims, and limitations, then return PASS, QUALIFIED, or BLOCKED with exact responsibility routes without silently editing the analysis.
+description: Independently review a sealed Review Package when it is ready for whole-report review or re-review before final save.
 ---
 
 # Reviewing Analysis
@@ -20,13 +20,13 @@ Review only a sealed Review Package from `executing-report-plans` or `subagent-d
 
 Before dispatch, open the Review Package manifest and verify that it is a real, sealed file; every required member and staged reader asset exists; every recorded identity matches the current bytes; the draft and planned final paths are distinct; and the Executor marked the run ready for independent review. A status phrase, virtual package directory, missing member, placeholder identity, or coordinator summary is not an admissible Review Package. Do not infer readiness from a draft alone.
 
-Recover the language contract independently from Run progress, then the confirmed Plan and Brief. For legacy packages without language fields, use the user's current explicit requirement or the primary language of the current substantive request and record the inferred contract in the current Run rather than rewriting old artifacts. Use `interaction_language` for questions, status, Return Routes, and the user-facing verdict message. Use `artifact_language` for the Review Report and all persistent review text. Pass `artifact_language` and terminology/source-title handling to the reviewer explicitly; English sources, templates, prompts, Profiles, or Definitions do not change them.
+Read and apply [the shared language contract](../using-evidencecraft/references/language-and-localization-contract.md), recovering the frozen fields from Run progress, then Plan and Brief. Pass them explicitly to the reviewer and record any legacy inference in the current Run.
 
 | Observed state | Action |
 |---|---|
-| A Work Package output, evidence log, draft, staged reader asset, or manifest is missing/incomplete or has an identity mismatch | Return to the selected Executor. |
+| A Work Package output, evidence log, draft, staged reader asset, or manifest is missing/incomplete or has an identity mismatch | Return to the Run-selected Executor. |
 | The Plan has no usable review inputs, checks, or final-save rule | Return to `writing-report-plans`. |
-| The request is to calculate, research, draft, or fix findings | Use the selected Executor; do not turn review into execution. |
+| The request is to calculate, research, draft, or fix findings | Use the Run-selected Executor; do not turn review into execution. |
 | The user changed intended use, audience, question, or scope | Return to `framing-analysis`. |
 | A source or reusable metric semantic change is already known | Return to `profiling-evidence` or `defining-metrics` before review. |
 | The requested `artifact_language` differs from the confirmed Plan/Run | Return to `writing-report-plans` for report-interface revision and reconfirmation before reviewing a new version. |
@@ -47,52 +47,11 @@ If an independent context is unavailable, stop as `BLOCKED`: review independence
 
 ## Review against the confirmed use
 
-The reviewer must inspect the actual package and report only findings supported by locators and evidence.
-
-### 1. Package and semantic identity
-
-Check that every Brief, Profile, Definition, Plan, run output, evidence entry, and draft identity is current and mutually consistent. Treat a stale or mixed-semantic package as blocking even if its prose is polished.
-
-### 2. Coverage and fidelity
-
-Map each Brief question, Plan-required section, comparison, and success criterion to draft content and evidence. Verify that:
-
-- scope, audience, intended use, period/as-of, and exclusions match the confirmed Brief;
-- source grain, keys, time, authority, lineage, fitness qualifications, and transformations are respected;
-- metric population, numerator/denominator, time, deduplication, aggregation, missing-data behavior, and source mapping are respected;
-- Work Package completion evidence supports the consumed outputs.
-
-### 3. Reproducibility and traceability
-
-Reperform or spot-check the Plan's highest-impact calculations from source locators when feasible. Trace every consequential number and claim through the evidence log to a qualified source or verified upstream output. Status labels and agent reports are not evidence.
-
-### 4. Reasoning and limitations
-
-Check for unsupported inference, causal language without design, denominator or grain shifts, cherry-picking, contradictory sections, false precision, missing uncertainty, and qualifications that failed to propagate. A disclosed limitation may constrain use without invalidating the analysis; an undisclosed limitation affecting a decision is blocking.
-
-### 5. Report usability and save safety
-
-Check required sections, clear distinction between observation and interpretation, decision-relevant caveats, and absence of unreviewed final/approved claims. Treat reader self-containment and governance separation as formal review dimensions:
-
-- the reader report must contain the context, evidence explanation, key values, qualifications, and interpretation needed to understand its conclusions without opening repository governance files;
-- current-run Brief, Plan, Evidence log, Review Package, progress, Run/WP/Evidence IDs, review status, identities, hashes, and engineering traceability must stay outside the reader report;
-- an internal or engineering path cannot be the only support for a consequential claim;
-- every Markdown image must resolve through the Plan-declared staging-to-final asset mapping, and a path-only figure reference is not a figure;
-- the reviewed draft path must differ from the planned final path, and the final report and final asset set must still be unwritten before authorization.
-
-Formal external citations, paper links, reader-accessible URLs, and code or file names that are themselves report subject matter are allowed. They become defects only when the report requires repository access, uses them as internal navigation, or makes them carry the evidence chain instead of explaining the claim.
-
-Check the draft and all audience-facing artifacts against the confirmed `artifact_language`: untranslated English template headings, labels, table headers, placeholders, or unexplained narrative mixing in a Chinese report are usability defects. Exact governance paths, hashes, and internal IDs remain legitimate inside the Review Package and Review Report, but their presence there does not authorize them in the reader report. Confirm the Plan's final destination and whether qualified reports may be saved.
+The independent reviewer applies [the reviewer prompt](prompts/analysis-reviewer.md) as the normative rubric. It covers package identity, scope and semantic fidelity, reproducibility and traceability, reasoning and limitations, reader usability, governance separation, localization, and save safety. Findings must cite actual artifact locators and evidence.
 
 ## Classify findings by consequence
 
-Use exactly these levels:
-
-- `BLOCKING`: a wrong or unsupported consequential result; stale/mixed semantics; missing required evidence or section; hidden material limitation; unreconciled contradiction; internal governance path or run identity leaked into the reader report; engineering path used as sole support; path-only or unmapped key figure; mixed draft/final identity; missing Review Package manifest/member or identity mismatch; unsafe final-save condition; or an untranslated template heading/field that violates the confirmed artifact language and report interface.
-- `QUALIFICATION`: the analysis is technically supported only for a narrower or explicitly caveated use, and that limitation is already prominent everywhere it matters.
-- `ADVISORY`: a non-consequential clarity or presentation improvement that does not change fitness for the confirmed use.
-
-For every finding record an ID, level, exact artifact and locator, observed evidence, expected requirement, why it matters for the confirmed use, affected claims, responsible stage, and required action. Do not inflate preferences into blockers.
+Use the prompt's `BLOCKING | QUALIFICATION | ADVISORY` definitions and required finding fields exactly. The Main Agent verifies consequence and responsibility against the actual package; style preferences do not become blockers.
 
 ## Return a verdict
 
@@ -110,7 +69,7 @@ Choose the earliest stage that owns the defect, not the easiest place to patch p
 
 | Defect | Return Route |
 |---|---|
-| Access, calculation, evidence capture, reader self-containment, governance leakage, asset mapping, draft/final handling, package assembly, or verification error under unchanged semantics | The Plan-selected Executor—`executing-report-plans` or `subagent-driven-reporting`—at the first affected Work Package. |
+| Access, calculation, evidence capture, reader self-containment, governance leakage, asset mapping, draft/final handling, package assembly, or verification error under unchanged semantics | The Run-selected Executor—`executing-report-plans` or `subagent-driven-reporting`—at the first affected Work Package. |
 | Work Package, dependency, output, check, review input, or save-rule defect | `writing-report-plans`. |
 | Source grain, keys, time, authority, lineage, transformation, mapping, or fitness defect | `profiling-evidence`, then planning. |
 | Metric meaning, population, formula, time, deduplication, aggregation, missing rule, or source mapping defect | `defining-metrics`, then planning. |
@@ -140,7 +99,7 @@ After `PASS`, or `QUALIFIED` when explicitly permitted:
 4. verify the final Markdown identity equals the reviewed draft identity and every final asset identity equals its reviewed staged identity;
 5. record `draft identity -> final path / final identity`, the reviewed-to-final asset mapping and identities, the verdict, and the Review Report path in the Review Report and progress—not in the final report.
 
-The final report must not gain a backlink to the Brief, Plan, Evidence log, Review Package, Review Report, or progress during save. If any reviewed input changed, do not save; create a new Review Package and re-review. If saving would require adding a missing qualification, editing wording, repairing a URI, or regenerating an asset, return to the Plan-selected `executing-report-plans` or `subagent-driven-reporting` Executor and re-review the revised draft and asset set.
+The final report must not gain a backlink to the Brief, Plan, Evidence log, Review Package, Review Report, or progress during save. If any reviewed input changed, do not save; create a new Review Package and re-review. If saving would require adding a missing qualification, editing wording, repairing a URI, or regenerating an asset, return to the Run-selected `executing-report-plans` or `subagent-driven-reporting` Executor and re-review the revised draft and asset set.
 
 Low-risk clean review may be recorded compactly when the Plan allows it; high-risk, qualified, or blocked review requires the full Review Report. External publication remains outside this Skill.
 

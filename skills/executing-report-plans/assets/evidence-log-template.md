@@ -11,7 +11,7 @@
 - Period/as-of:
 - Artifact language:
 - Terminology and source-title handling:
-- Maintainer: Main Agent, selected Executor
+- Maintainer: Main Agent under the Run-selected Executor
 - Last updated:
 
 ## Coverage index

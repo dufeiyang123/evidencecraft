@@ -67,7 +67,7 @@
 - Review record: [path or compact-record rule]
 - Final report: [exact path]
 
-The selected Executor must return actual progress/evidence/output/draft/asset/manifest paths, fresh verification performed, unresolved limitations, and either the route to `reviewing-analysis` or an exact blocking Return Route. It does not issue the whole-report verdict, and status never substitutes for inspecting files.
+The Run-selected Executor must return actual progress/evidence/output/draft/asset/manifest paths, fresh verification performed, unresolved limitations, and either the route to `reviewing-analysis` or an exact blocking Return Route. It does not issue the whole-report verdict, and status never substitutes for inspecting files.
 
 ## Work Package dependency map
 
@@ -96,7 +96,8 @@ The selected Executor must return actual progress/evidence/output/draft/asset/ma
   - [observable command/inspection/reconciliation and expected result]
 - Stop conditions:
   - [condition -> exact Return Route]
-- Delegation: safe | unsafe — [reason and context boundary]
+- Delegation: safe | unsafe — [reason and context boundary; every required non-integration Package must be safe for Subagent-Driven availability]
+- Parallel candidate: yes | no — [independence across dependencies, reads, writes, source sessions, and resources; informational only]
 - Downstream consumers: [WP IDs/report/reviewer]
 
 <!-- Template instruction: repeat only for independently reviewable deliverables. -->
@@ -110,11 +111,14 @@ The selected Executor must return actual progress/evidence/output/draft/asset/ma
 - Reader-report rule: [self-contained prose/tables, allowed reader citations, prohibited current-run governance references]
 - Prohibited conclusions: [Brief/source/metric limitations]
 
-## Executor recommendation
+## Execution recommendation
 
-- Recommended: `executing-report-plans` | `subagent-driven-reporting`
-- Rationale: [coupling, independence, context, risk]
-- Mutual exclusion: Record the selected Executor in `progress.md`; do not start the other for this run.
+- Recommended: `subagent-driven-reporting` | `executing-report-plans`
+- Available alternatives: [feasible modes other than Recommended, or none]
+- Rationale: [context load, task length, coupling, delegation fitness, capabilities]
+- Delegation boundary: [Work Packages that a fresh worker can execute from an exact Task Brief]
+- Parallel candidates: [WP IDs or none; informational only and never authorization]
+- Run choice: User selects a feasible mode at execution handoff; `progress.md` freezes it for that Run.
 - Shared completion interface: [progress, coverage-index/evidence-card log, verified outputs, draft, staged assets/mappings, real manifest, status, limitations]
 
 ## Fresh verification
@@ -123,7 +127,7 @@ The selected Executor must return actual progress/evidence/output/draft/asset/ma
 |---|---|---|---|
 | [WP/report] | [command/inspection/reconciliation] | [fresh output] | [route] |
 | Reader draft | Inspect self-containment, exact current-run governance strings, path-only references, and Markdown assets | No governance leakage; key content stands alone; every asset mapping resolves | First affected synthesis Package |
-| Review Package | Inspect every manifest member and identity; confirm final path is still unwritten | Real sealed manifest; no placeholder identity; draft/final remain separate | Selected Executor |
+| Review Package | Inspect every manifest member and identity; confirm final path is still unwritten | Real sealed manifest; no placeholder identity; draft/final remain separate | Run-selected Executor |
 
 ## Review and save
 
@@ -149,4 +153,4 @@ The selected Executor must return actual progress/evidence/output/draft/asset/ma
 - Confirmation: [exact statement/reference]
 - Metric Definitions confirmed together: [paths or none]
 - Accepted qualifications: [list or none]
-- Next responsible Skill: [Executor or blocker]
+- Next: [execution handoff, Run-selected Executor, or blocker]

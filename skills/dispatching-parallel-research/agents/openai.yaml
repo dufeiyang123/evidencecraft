@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dispatch Parallel Research"
+  short_description: "Dispatch explicitly authorized independent research"
+  default_prompt: "Use $dispatching-parallel-research for this explicitly authorized batch of independent, dependency-ready Evidencecraft Work Packages."

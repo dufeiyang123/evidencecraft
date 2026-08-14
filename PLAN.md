@@ -2,8 +2,8 @@
 
 状态：`ACTIVE — CROSS-HARNESS SKILLS PLUGIN`
 
-当前实现：首个八 Skill 流程集已作为 Claude Code、Codex 与 OpenClaw 共用的 skills-only/bundle
-plugin 发布；无活动 Schema；无仓库内历史评测套件。
+当前生产源已扩展为九 Skill 流程集，继续由 Claude Code、Codex 与 OpenClaw 共用同一
+skills-only/bundle plugin，并作为 `v0.4.0` 发布。无活动 Schema；无仓库内历史评测套件。
 
 目标：维护并扩展适度完整、可移植、可组合的周期证据报告方法；只有职责达到独立 Skill 门槛时
 才扩展当前流程集，并持续保持 Claude Code、Codex 与 OpenClaw 插件可发布。
@@ -22,6 +22,7 @@ MVP 负责澄清目标、写计划、执行、记录证据、审查和保存报�
 using-evidencecraft
 → framing-analysis
 → writing-report-plans
+→ 新 Run 执行 handoff
 → executing-report-plans 或 subagent-driven-reporting
 → reviewing-analysis
 → 保存报告
@@ -35,18 +36,20 @@ writing-report-plans
   ↳ defining-metrics   → 返回 planning
 ```
 
-首次默认确认 Brief 和 Plan 两次；需要新指标时与 Plan 一起确认。正常周期复用 Plan，只执行、
-审查和保存新报告。普通内容或数值变化不触发重新 Profiling/定义 Metric。
+首次默认确认 Brief 和 Plan 两次；需要新指标时与 Plan 一起确认。Plan 只保存执行建议；每个新
+Run 在 handoff 中选择一次 Inline 或 Subagent-Driven，恢复同一 Run 不重复询问。正常周期复用
+Plan，只执行、审查和保存新报告。普通内容或数值变化不触发重新 Profiling/定义 Metric。
 
-## 3. 首个八 Skill 流程集
+## 3. 首个九 Skill 流程集
 
 | Skill | 主要判断权 | 默认结果 | 对应 Superpowers 结构模式 |
 |---|---|---|---|
-| `using-evidencecraft` | 识别首次、周期、恢复或回跳 | 下一责任和简短路由记录 | 类似 `using-superpowers`：高频、短小、自包含，不接管下游工作 |
+| `using-evidencecraft` | 识别首次、周期、恢复、回跳或新 Run handoff | 下一责任、执行选择或简短路由记录 | 类似 `using-superpowers`：高频、短小、自包含，不接管下游工作 |
 | `framing-analysis` | 冻结对象、读者、用途、范围和风险 | `analysis-brief.md` | 类似 `brainstorming`：完整澄清与确认流程；可带 Brief 模板或独立 fresh-context reviewer prompt |
-| `writing-report-plans` | 把 Brief 变成可执行计划 | `report-plan.md` | 类似 `writing-plans`：精确输入、依赖、任务和验证；可带 Plan 模板及按需 plan-reviewer prompt |
-| `executing-report-plans` | 顺序执行并综合报告 | progress、evidence log、报告草稿 | 类似 `executing-plans` + verification：正文可紧凑，但必须覆盖预检、忠实执行、阻断、恢复和新鲜验证 |
-| `subagent-driven-reporting` | 委派真正独立的任务并验收交接 | task briefs/reports、同一核心输出 | 类似 `subagent-driven-development`：可拆 worker、task-reviewer、re-review prompt 和 ledger；格式稳定后再加 brief/review-package/workspace 脚本 |
+| `writing-report-plans` | 把 Brief 变成可执行计划并推荐执行方式 | `report-plan.md` 与非绑定推荐 | 类似 `writing-plans`：精确输入、依赖、任务、验证与执行 handoff |
+| `executing-report-plans` | 执行 Run 已选择的 Inline 模式 | progress、evidence log、报告草稿 | 类似 `executing-plans` + verification：覆盖预检、忠实执行、阻断、恢复和新鲜验证 |
+| `subagent-driven-reporting` | 逐个委派 fresh worker 并验收交接 | task briefs/reports、同一核心输出 | 类似 `subagent-driven-development`：上下文隔离、文件化交接、任务审查和 ledger；不等同并行 |
+| `dispatching-parallel-research` | 判断显式授权的 ready Packages 是否可并发 | 并发 worker claims，返回父 Executor | 类似 `dispatching-parallel-agents`：独立问题域才并发，不拥有整合或 review |
 | `reviewing-analysis` | 独立核对证据、限制和结论 | pass/qualified/blocked 与 Return Routes | 类似 code-review Skills：允许独立 reviewer prompt、输入包契约、反馈分级和责任阶段 Return Routes |
 | `profiling-evidence` | 判断来源语义和用途适用性 | 按需 `source-profile.md` | 类似 `systematic-debugging`：正文承载调查阶段；稳定来源维度和诊断技术可拆 References，重复探查稳定后才脚本化 |
 | `defining-metrics` | 冻结可复用定量口径 | 按需 `metric-definition.md` | 结合 brainstorming、planning 与 TDD 不变量；可带 Metric Definition 模板和详细口径 Reference |
@@ -121,7 +124,8 @@ reports/assets/<topic>/...                   # 仅有已审查的报告本地 as
 - 表格优先的 figure policy，以及可选图片的 staging、最终 asset root 和相对 URI 映射；
 - 最终 Markdown 加声明 assets 作为下游转换器的完整输入；
 - Work Packages、依赖、输出位置和完成检查；
-- 一个推荐 Executor；
+- 一个非绑定执行建议、可行替代、delegation boundary 和仅供判断的 parallel candidates；
+- 新 Run handoff 由用户选择 Executor，Run progress 冻结选择原文、时间和并行授权；
 - Run draft 与不同 final path、Executor 不提前写 final 的规则；
 - 停止条件、Return Routes、真实 Review Package manifest、独立整报告 review 输入和保存位置；
 - 默认不生成工程型追溯附录；明确需要审计材料时生成独立 companion dossier，除非用户要求合并。
@@ -166,9 +170,11 @@ Task Brief、Task Report 与 worker output 属于治理层，应保留精确路�
 5. `executing-report-plans`
 6. `reviewing-analysis`
 7. `subagent-driven-reporting`
-8. `using-evidencecraft`
+8. `dispatching-parallel-research`
+9. `using-evidencecraft`
 
-入口最后创建，因为它必须路由到已经可靠的下游；多智能体 Skill 在顺序闭环可靠后创建。
+入口最后创建，因为它必须路由到已经可靠的下游；Subagent-Driven 在顺序闭环可靠后创建，
+Parallel Skill 在其父 Executor 稳定后创建。
 
 创建每个 Skill 前：研究对应 Superpowers 原文和配套结构，写简短研究记录，确定职责匹配的
 结构包、实际调用方和有意省略项，再开始实现。
@@ -189,9 +195,10 @@ Task Brief、Task Report 与 worker output 属于治理层，应保留精确路�
 
 流程级：
 
-- 首次 Brief → Plan → 一个 Executor → Review → Report 可运行；
-- 正常周期复用 Plan，不重复确认；
-- 两个 Executor 对同一次运行互斥，输出接口一致；
+- 首次 Brief → Plan → execution handoff → 一个 Executor → Review → Report 可运行；
+- 正常周期复用 Plan，不重复确认 Plan；每个新 Run 选择一次执行方式，恢复时不重复询问；
+- 两个顶层 Executor 对同一次运行互斥，输出接口一致；Parallel Skill 只在显式授权后从
+  Subagent-Driven 临时调用；
 - 条件专业 Skills 能正确触发，也能在 current 定义存在时正确跳过；
 - 会话可从 progress 和实际文件恢复；
 - 重要陈述可追溯到 evidence log、任务结果或明确限制。
@@ -204,7 +211,7 @@ Task Brief、Task Report 与 worker output 属于治理层，应保留精确路�
 
 ## 8. 后续 Skill 与插件分发
 
-第 3 节列出的八个 Skills 是首个可运行流程集，不是产品上限。未来只有候选满足独立自然
+第 3 节列出的九个 Skills 是首个可运行流程集，不是产品上限。未来只有候选满足独立自然
 Trigger、主要判断权、可观察结果、停止门和 Return Route 时，才按 `AGENTS.md` 与验收政策
 增加新的生产 Skill；普通知识、固定格式和确定性操作仍优先使用 Reference、模板或脚本。
 

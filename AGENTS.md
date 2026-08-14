@@ -21,7 +21,8 @@ Superpowers 主流程 Skill 的当前正文：
 | `framing-analysis` | `brainstorming` |
 | `writing-report-plans` | `writing-plans` |
 | `executing-report-plans` | `executing-plans`、`verification-before-completion` |
-| `subagent-driven-reporting` | `subagent-driven-development`、按需 `dispatching-parallel-agents` |
+| `subagent-driven-reporting` | `subagent-driven-development` |
+| `dispatching-parallel-research` | `dispatching-parallel-agents` |
 | `reviewing-analysis` | `requesting-code-review`、`receiving-code-review`、`verification-before-completion` |
 | `profiling-evidence` | `brainstorming`、`systematic-debugging`、`writing-plans` |
 | `defining-metrics` | `brainstorming`、`writing-plans`、按需 `test-driven-development` |
@@ -84,14 +85,17 @@ ledger、证据日志、最终报告和按风险需要的 review。
 首次流程：
 
 ```text
-using → framing → writing plan → 一个 Executor → review → report
+using → framing → writing plan → execution handoff → 一个 Executor → review → report
 ```
 
 `profiling-evidence` 和 `defining-metrics` 是条件专业 Skill，只在计划或恢复发现来源/指标语义
 缺口时插入，完成后返回计划或发起调查的阶段。正常周期复用已确认 Plan。
 
-同一次运行只能选择顺序或多智能体 Executor 之一。工作 Agent 只收到一个任务 brief，不与
-用户交互、不修改共享报告、不重新定义来源或指标；主 Agent 验证实际输出后再综合。
+Report Plan 只推荐执行方式；每个新 Run 在 handoff 中由用户选择 Inline 或 Subagent-Driven，
+并在 progress 中冻结。Subagent-Driven 默认逐个派 fresh worker；只有用户对当前 Run 明确要求
+并行时，才由 `dispatching-parallel-research` 对真正独立的 ready Packages 做一次并发调度。
+工作 Agent 只收到一个任务 brief，不与用户交互、不修改共享报告、不重新定义来源或指标；
+主 Agent 验证实际输出后再综合。
 
 ## 5. 验收纪律
 

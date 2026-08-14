@@ -1,12 +1,16 @@
-<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Multi-Agent Progress” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Subagent-Driven Progress” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
 
-# Evidencecraft Multi-Agent Progress
+# Evidencecraft Subagent-Driven Progress
 
 ## Run identity
 
 - Report Plan path / identity:
 - Run ID:
 - Executor: `subagent-driven-reporting`
+- Execution mode: `Subagent-Driven`
+- User selection statement:
+- Selected at:
+- Explicit parallel authorization: `none | exact current-Run user statement`
 - Status: `INITIALIZING | RUNNING | BLOCKED | INTEGRATING | READY FOR INDEPENDENT REVIEW`
 - Analysis Brief identity:
 - Source Profile identities:
@@ -18,22 +22,22 @@
 - Planned final report path (must differ from draft):
 - Reader-report governance exclusions:
 - Started / last reconciled:
+- Work started: `no | yes — first Package and timestamp`
+- Prior Run reference, if this Run replaces a different mode: `none | exact Run ID and reason`
 
 ## Work Package ledger
 
-| Package | Dependencies | Owner | Unique output / report / review paths | Dispatch state | Verification / review | Accepted output identity |
+| Package | Dependencies | Worker | Output / report / review paths | Dispatch state | Verification / review | Accepted output identity |
 |---|---|---|---|---|---|---|
 |  |  |  |  | pending | pending |  |
 
-<!-- Template instruction: allowed dispatch states are `pending | active | reported | correction | blocked | accepted`. -->
+<!-- Template instruction: allowed dispatch states are `pending | active | reported | correction | blocked | accepted`. Only one normal research worker may be `active`. -->
 
-## Dispatch waves
+## Dispatch record
 
-<!-- Template instruction: record why each wave is parallel-safe or why packages were serialized. -->
-
-| Wave | Packages | Dependency-ready evidence | Write/resource isolation | Result |
-|---|---|---|---|---|
-|  |  |  |  |  |
+| Dispatch | Packages | Mode | Dependency-ready evidence | Parallel authorization / safety result | Result |
+|---|---|---|---|---|---|
+|  |  | `serial | dispatching-parallel-research` |  |  |  |
 
 ## Verification and correction log
 
@@ -70,8 +74,9 @@
 ## Recovery record
 
 - Ledger state compared with actual files:
+- Legacy in-flight parallel workers reconciled without cancellation or redispatch:
 - Status claims downgraded or restored:
-- First incomplete or blocked package:
+- First incomplete or blocked Package:
 - Exact Return Route and required evidence:
 
 ## Independent review and final-save record

@@ -11,7 +11,7 @@ Turn a decision-relevant quantitative concept into a reusable Markdown definitio
 
 Start with a confirmed Analysis Brief, the exact intended use, current Source Profiles, any existing Metric Definition, and the planning or review gap that invoked this Skill.
 
-Recover the language contract independently before producing output. A current explicit requirement takes priority; for an existing Run, prefer its progress record, then the confirmed Report Plan and Analysis Brief. If older artifacts have no language fields, use the primary language of the current substantive request and record the inferred contract in the current Run rather than rewriting the old files. Use `interaction_language` for questions, choices, status, and return messages. Use `artifact_language` for every new or materially revised Definition, including headings, labels, table headers, placeholders, and narrative. Preserve canonical codes and identifiers, paths, hashes, citations, code, formulas, and original source titles; apply the recorded terminology and source-title handling instead of treating those exceptions as a language switch.
+Read and apply [the shared language contract](../using-evidencecraft/references/language-and-localization-contract.md) before producing output. Use it for questions and any new or materially revised Definition; record inferred legacy fields in the current Run without rewriting history.
 
 | State | Action |
 |---|---|
@@ -143,8 +143,8 @@ Never infer currentness from a filename or a formula copied into a report.
 | Definition is Ready for Plan Confirmation | `writing-report-plans` with the Definition path and unresolved tentative conditions |
 | Business use, population choice, or acceptable risk is unresolved | `framing-analysis` |
 | Source grain, authority, time, update, lineage, or fitness is unresolved | `profiling-evidence` |
-| Current Definition is unchanged for a new period | `writing-report-plans`; planning may select the Executor |
-| Execution disagrees with the Definition while semantics remain current | Return to the chosen Executor with the violated invariant/example |
+| Current Definition is unchanged for a new period | `writing-report-plans`; planning may recommend an execution mode but does not bind the Run |
+| Execution disagrees with the Definition while semantics remain current | Return to the Run-selected Executor with the violated invariant/example |
 | Review finds an ambiguous or unsupported metric meaning | Return to `defining-metrics`, or to the upstream stage named by the actual defect |
 
 The normal terminal state is a readable Definition returned to planning, not a computed metric value.

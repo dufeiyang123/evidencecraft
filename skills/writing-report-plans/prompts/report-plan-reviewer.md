@@ -25,9 +25,9 @@ Check:
 1. every Brief question and report section has owned work and verification;
 2. named semantic dependencies are exact, current, and used within qualifications;
 3. Work Packages have independently checkable deliverables, exact inputs/outputs, and usable interfaces;
-4. dependency order is complete, non-circular, and free of unsafe parallel writes;
+4. dependency order is complete and non-circular; delegation fitness is separate from parallel safety, and parallel candidates have no shared dependency, write, source-session, or mutable-resource conflict;
 5. stop conditions route to the stage that owns the defect;
-6. sequential and multi-agent Executors consume the same core outputs and remain mutually exclusive;
+6. Inline and Subagent-Driven execution can consume the same core outputs, the Plan recommends without binding a Run, and parallel dispatch is not presented as a third normal mode;
 7. the default reader artifact stands alone, while exact governance references, Run/Work Package/Evidence IDs, statuses, paths, and hashes remain outside it;
 8. formal external and reader-accessible citations remain allowed, while internal paths never substitute for reader-facing support;
 9. key quantitative content is in prose/tables first, and every required figure has exact staging, final asset-root, and relative-URI mapping;

@@ -1,6 +1,6 @@
 ---
 name: framing-analysis
-description: Use when a new recurring evidence report or analysis lacks a confirmed Analysis Brief, or when its audience, decision use, questions, scope, period, risk, or success criteria have materially changed; do not use merely to inspect sources, define a metric, write an execution plan, run analysis, or review a draft.
+description: Create or revise an Analysis Brief when an evidence-first analysis lacks one, or its audience, intended use, questions, scope, period semantics, risk, or success criteria changed.
 ---
 
 # Framing Analysis
@@ -34,19 +34,11 @@ Start with whatever is available:
 
 Decide and record the analysis object, audience, use, reader-artifact expectation, questions, non-goals, scope, period semantics, constraints, risks, and success criteria. The reader-artifact expectation says whether the report must stand alone and which delivery formats or distribution context matter; it does not design paths, Work Packages, evidence structures, or rendering mechanics. The user retains authority over choices that change the intended decision, audience, commitments, or acceptable risk. Make conservative, reversible assumptions only for non-material details and label them tentative.
 
-Do not decide source fitness, joins, transformations, metric formulas, Work Packages, Executor choice, findings, or review verdicts here.
+Do not decide source fitness, joins, transformations, metric formulas, Work Packages, execution recommendations, Run choices, findings, or review verdicts here.
 
 ## Resolve the language contract
 
-Resolve two presentation fields before the first user-visible question or artifact. Scope each requirement to the field it actually governs: an instruction to deliver the report in English does not by itself change the language used to question a Chinese-speaking user.
-
-- **Interaction language:** use an explicit interaction preference; otherwise use the primary language of the current substantive request.
-- **Artifact language:** use an explicit deliverable language, then a confirmed audience delivery requirement; otherwise inherit the interaction language.
-- **Terminology handling:** record how to treat source titles, proper nouns, quotations, and specialized terms.
-
-Use the interaction language for questions, options, summaries, confirmation requests, and other user-facing messages. Use the artifact language for every heading, label, table header, placeholder replacement, and narrative passage in durable Markdown artifacts. User-visible artifact-type phrases such as “Analysis Brief” are translatable labels, including in the document title and prose; they are not canonical identifiers. Preserve canonical status codes, Work Package IDs, exact Skill names, paths, hashes, citations, code, formulas, and source-language titles unless the user requests a translation.
-
-An English Skill, prompt, template, source, or identifier never changes either field. Infer both fields without asking when the precedence is clear. If explicit requirements conflict, ask one focused question in the interaction language. Record the resolved contract in the Brief. Missing language fields in an otherwise current legacy Brief are presentation metadata, not a reason to reopen its analysis meaning; establish the current-run contract and add the fields when the Brief is next revised.
+Read and apply [the shared language contract](../using-evidencecraft/references/language-and-localization-contract.md) before the first question or artifact, especially when no router ran or a field changed. Record all three fields in the Brief. Missing fields in a current legacy Brief are presentation metadata, not a reason to reopen its analysis meaning.
 
 ## Frame the analysis
 
@@ -121,6 +113,8 @@ Declare the Brief confirmed only when:
 - the user explicitly confirms the written Brief.
 
 If confirmation is unavailable, save a Draft with Open Choices and stop. Do not write a Report Plan, profile evidence, define metrics, or begin execution while waiting.
+
+When routing a confirmed Brief to `writing-report-plans`, tell the user that any new or revised Plan will be drafted and presented for separate confirmation before execution. A request to continue made before that Plan is presented authorizes only the transition to planning; it cannot confirm the unseen Plan.
 
 ## Observable result
 

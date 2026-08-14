@@ -23,7 +23,7 @@ Do not change the analysis audience, questions, or scope; define metric populati
 
 Start from a confirmed Analysis Brief or an exact downstream Return Route, the intended use, the candidate source locator, and any current Source Profile. Inspect actual project files before asking for information already present.
 
-Recover the interaction language, artifact language, and terminology handling independently. A current explicit requirement takes priority; for an existing Run, use its progress record next, then the confirmed Plan and Brief. If legacy artifacts omit the fields, use the primary language of the current substantive request and record the resolved contract in the current Run rather than rewriting historical artifacts. Use the interaction language for any user-facing question or status. Use the artifact language for a new or materially revised Source Profile, including every heading, label, table header, and narrative passage. Preserve canonical decisions, identifiers, paths, citations, code, and source-language titles.
+Read and apply [the shared language contract](../using-evidencecraft/references/language-and-localization-contract.md). Use it for questions and any new or materially revised Source Profile; record inferred legacy fields in the current Run without rewriting history.
 
 | Condition | Action |
 |---|---|
@@ -143,7 +143,7 @@ Do not translate or rewrite an otherwise current Profile merely because a later 
 | Audience, decision, question, scope, or acceptable risk is unresolved | `framing-analysis` |
 | Metric population, formula, time basis, aggregation, or cross-source mapping is the unresolved meaning | `defining-metrics` |
 | Source should be replaced, added, or used differently in the work design | `writing-report-plans` |
-| A query, extraction, calculation, or period-specific data handling failed under already confirmed semantics | Return to the chosen Executor. |
+| A query, extraction, calculation, or period-specific data handling failed under already confirmed semantics | Return to the Run-selected Executor. |
 | Evidence is insufficient for a downstream claim | Preserve the limitation and let `reviewing-analysis` route the claim or plan defect. |
 
 The normal Return Route is planning. Report the exact remaining condition for `QUALIFIED`, `UNFIT`, or `BLOCKED` decisions so planning can narrow, replace, or stop the affected work.

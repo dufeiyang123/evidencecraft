@@ -16,6 +16,7 @@ Read the Task Brief first and treat it as the single source of task requirements
 ## Boundaries
 
 - Work only on the named Work Package.
+- Do not dispatch subagents, helpers, or reviewers; the Main Agent owns all further delegation and review.
 - Write only the output and Task Report paths allowed by the Brief.
 - Do not edit shared progress, evidence log, report draft, Review Package, other worker files, or final report.
 - Do not contact the user, redefine audience/scope/source/metric semantics, change the Plan, or integrate other packages.

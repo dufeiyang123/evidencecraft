@@ -2,15 +2,16 @@
 
 Evidencecraft is a skills-only plugin for evidence-first analysis and recurring reporting in Claude Code, Codex, and OpenClaw. It turns an ambiguous reporting request into a confirmed brief, reusable source and metric definitions, an executable plan, a verified run, and an independent review.
 
-It bundles eight composable skills and does not require an MCP server, app connection, or external service:
+It bundles nine composable skills and does not require an MCP server, app connection, or external service:
 
-- `using-evidencecraft` routes first-time setup, recurring runs, recovery, and semantic rework.
+- `using-evidencecraft` routes first-time setup, recurring runs, recovery, semantic rework, and new-Run execution handoffs.
 - `framing-analysis` creates and confirms the Analysis Brief.
 - `profiling-evidence` tests source semantics and fitness.
 - `defining-metrics` freezes reusable quantitative definitions.
-- `writing-report-plans` turns confirmed analysis intent into executable Work Packages.
-- `executing-report-plans` runs a confirmed plan sequentially with evidence and progress records.
-- `subagent-driven-reporting` runs eligible Work Packages through isolated workers and independent task review.
+- `writing-report-plans` turns confirmed analysis intent into executable Work Packages and a non-binding execution recommendation.
+- `executing-report-plans` runs a Report Plan after the Run selects Inline Execution.
+- `subagent-driven-reporting` runs Work Packages one fresh worker at a time with independent task review.
+- `dispatching-parallel-research` handles an explicitly requested batch only after proving its ready Work Packages independent.
 - `reviewing-analysis` returns an independent `PASS`, `QUALIFIED`, or `BLOCKED` verdict before final save.
 
 ## Installation
@@ -36,7 +37,7 @@ Invoke the router explicitly with:
 To pin an immutable semver release instead of tracking the default branch:
 
 ```text
-/plugin marketplace add dufeiyang123/evidencecraft@v0.3.0
+/plugin marketplace add dufeiyang123/evidencecraft@v0.4.0
 /plugin install evidencecraft@evidencecraft
 /reload-plugins
 ```
@@ -59,7 +60,7 @@ Use $evidencecraft:using-evidencecraft to route this reporting task.
 To install an immutable release instead of tracking the default branch, pin its semver tag:
 
 ```bash
-codex plugin marketplace add dufeiyang123/evidencecraft --ref v0.3.0
+codex plugin marketplace add dufeiyang123/evidencecraft --ref v0.4.0
 codex plugin add evidencecraft@evidencecraft
 ```
 
@@ -81,7 +82,7 @@ openclaw plugins inspect evidencecraft
 To pin an immutable release instead of following `latest`:
 
 ```bash
-openclaw plugins install clawhub:@dufeiyang123/evidencecraft@0.3.0
+openclaw plugins install clawhub:@dufeiyang123/evidencecraft@0.4.0
 openclaw gateway restart
 ```
 
@@ -115,7 +116,7 @@ You can update all tracked OpenClaw plugins with `openclaw plugins update --all`
 
 ## How it behaves
 
-Evidencecraft uses Markdown artifacts as durable handoffs. The router selects the next responsible skill but does not perform downstream work. Profiling and metric definition run only when their semantics are missing or stale. A single run uses either the sequential executor or the multi-agent executor, never both, and final save remains gated on independent review.
+Evidencecraft uses Markdown artifacts as durable handoffs. The router selects the next responsibility and asks the user to choose Subagent-Driven or Inline before each new Run; the Report Plan only recommends. A Run freezes one Executor and resumes it without asking again. Subagent-Driven means fresh-context workers in strict sequence by default. True parallel dispatch is a separate, explicitly requested subordinate Skill, not a third normal mode. Profiling and metric definition run only when their semantics are missing or stale, and final save remains gated on independent review.
 
 The reviewed final Markdown is a standalone reader artifact, optionally accompanied only by declared report-local assets. By default it contains no Brief, Plan, Evidence log, Review Package, Run/Work Package/Evidence IDs, review status, hashes, or engineering traceability appendix. Formal external citations and file or code names that are substantive report subject matter remain reader-facing when useful. The governance chain stays in the run package and points forward to the reviewed report and its identity; downstream PDF conversion therefore consumes only the final Markdown and declared assets and does not need to understand Evidencecraft.
 

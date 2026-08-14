@@ -1,27 +1,32 @@
 ---
 name: subagent-driven-reporting
-description: Use when a confirmed Report Plan explicitly selects the multi-agent Executor and contains genuinely independent Work Packages; coordinate isolated workers, verify and review each handoff, integrate accepted evidence, and produce the same draft and Review Package interface as sequential execution.
+description: Use when a new Evidencecraft Run explicitly selects Subagent-Driven execution or an incomplete Run already freezes `subagent-driven-reporting`.
 ---
 
 # Subagent-Driven Reporting
 
-Execute one confirmed Report Plan through isolated workers while the Main Agent remains the sole integrator. Parallelism changes who performs independent Work Packages; it never weakens semantic control, evidence verification, or review.
+Execute one confirmed Report Plan through fresh, isolated workers while the Main Agent remains the sole controller and integrator. Dispatch one research worker at a time by default; context isolation, not parallel speed, is the reason to use this Executor.
 
-## Admit only a multi-agent run
+## Admit only a Subagent-Driven Run
 
-Start only when the current confirmed Plan:
+Start only when a current confirmed Plan exists and:
 
-- explicitly selects `subagent-driven-reporting` as its one Executor;
+- the current execution handoff explicitly selected Subagent-Driven for a new Run, or existing progress freezes `subagent-driven-reporting`;
+- the exact user selection statement and any explicit parallel request are available for a new Run;
 - names Work Packages, dependencies, inputs, unique outputs, checks, review inputs, and final destination;
 - supplies current confirmed Brief, Source Profiles when needed, and Metric Definitions when needed;
 - defines the standalone reader-report, governance-separation, citation, figure/asset, export, distinct draft/final, and real Review Package manifest interfaces required by `writing-report-plans`;
-- contains at least two packages that can be understood and completed without jointly mutating shared state.
+- every delegated Package can be bounded by an exact Task Brief and checked from its declared output, even when it depends on accepted upstream Packages.
 
-Do not run both Executors for the same Run ID. If the Plan selects `executing-report-plans`, route there. If packages are coupled, write the same output, require unresolved results from one another, or cannot be reviewed independently, return to `writing-report-plans` or use the Plan-selected sequential Executor after the Plan is revised.
+Every required research/production Package must be delegation-safe. Main-Agent integration remains outside worker delegation, but a Plan containing another delegation-unsafe required Package is not executable here; return that interface to `writing-report-plans` before dispatch.
 
-The Main Agent may inspect source availability before dispatch. It must not silently change audience, scope, source meaning, metric meaning, Plan checks, or Executor selection.
+Do not run both Executors for the same active Run ID. Before any Package starts, an explicit reselection may replace the mode in that otherwise empty Run. After work starts, a mode change requires a new Run ID. If this Run selected Inline, route to `executing-report-plans`. If no Run selection exists, return to `using-evidencecraft` for the two-option execution handoff. If a Package cannot be bounded or reviewed from a frozen brief, return that interface defect to `writing-report-plans`; sequential dependencies alone are not defects.
 
-Recover the language contract independently before creating or resuming a Run. Apply a current explicit field-scoped requirement first; otherwise, for an existing Run, use the contract in progress, then the confirmed Plan and Brief, then the primary language of the current substantive request. If legacy artifacts lack language fields, record `interaction_language`, `artifact_language`, and terminology/source-title handling in the current progress ledger without rewriting old artifacts. The Main Agent uses `interaction_language` for user questions, status, routing, and confirmation. All persistent run artifacts—including progress, Task Briefs, worker outputs, Task Reports, task reviews, evidence, Review Package, and report draft—use `artifact_language`. Preserve canonical codes and identifiers, paths, hashes, citations, code, formulas, and original source titles. English sources, prompts, templates, Profiles, or Definitions cannot change the frozen contract.
+The Main Agent may inspect source availability before dispatch. It must not silently change audience, scope, source meaning, metric meaning, Plan checks, or the Run-selected Executor.
+
+Read and apply [the shared language contract](../using-evidencecraft/references/language-and-localization-contract.md) before creating or resuming a Run. Recover an existing Run from progress first and pass the frozen fields to every worker and reviewer; they cannot change them.
+
+Read and apply [the common Executor output contract](../executing-report-plans/references/executor-output-contract.md). This Skill adds isolated dispatch, task review, and integration; it must return the same core Run and review-handoff interface as sequential execution.
 
 If only `interaction_language` changes, continue the current lifecycle state and use it for subsequent user interaction. If `artifact_language` differs from the confirmed Plan, stop and return to `writing-report-plans` for report-interface revision and reconfirmation; do not dispatch workers or repeat unaffected semantic/analysis work under an unconfirmed language. A same-period rerender preserves the prior report, records the existing replacement relationship, creates a new version under the reconfirmed Plan, and sends the new bytes through task and whole-report review.
 
@@ -29,27 +34,23 @@ If only `interaction_language` changes, continue the current lifecycle state and
 
 Create or resume a Plan-scoped run namespace. Keep all worker briefs, reports, task reviews, corrections, progress, evidence, draft, and Review Package paths inside that run. Use the Plan's exact paths when it specifies them.
 
-Instantiate [the multi-agent progress ledger](assets/multi-agent-progress-template.md) in `artifact_language`, localizing its headings, labels, table headers, placeholders, narrative, and artifact-type phrases and removing all template comments, with:
+Instantiate [the Subagent-Driven progress ledger](assets/subagent-progress-template.md) in `artifact_language`, localizing its headings, labels, table headers, placeholders, narrative, and artifact-type phrases and removing all template comments, with:
 
 - Plan identity and Run ID;
-- selected Executor, frozen language contract, and semantic dependency identities;
+- Run-selected Executor, exact user selection/time, explicit parallel authorization or `none`, frozen language contract, and semantic dependency identities;
 - one row per Work Package, including dependencies, owner, unique write paths, dispatch/review state, and accepted output identity;
 - integration, draft, and independent-review state.
 - evidence-log, staged-asset, Review Package manifest, planned-final, and reader-contract state.
 
-On recovery, read the Plan once, then reconcile the ledger with actual files. A `DONE` status without the required output and checks is not complete. A verified accepted output with a matching identity is not redispatched merely because conversational history is missing. Never borrow another run's ledger or worker artifacts.
+On recovery, read the Plan once, then reconcile the ledger with actual files. A `DONE` status without the required output and checks is not complete. A verified accepted output with a matching identity is not redispatched merely because conversational history is missing. If a legacy parallel wave is already in flight, do not cancel or duplicate it: reconcile each actual worker and file, allow active work to return, preserve successful claims, and process every result through this Executor's verification and task review. Apply the new serial-default and explicit-authorization rules to subsequent dispatches. Never borrow another run's ledger or worker artifacts.
 
-## Prove independence before dispatch
+## Schedule from accepted dependencies
 
-Build the dependency graph from the Plan. A group is parallel-safe only when every package in it:
+Build the dependency graph from the Plan. Select the next dependency-ready Package whose upstream outputs have been accepted. Create its brief, dispatch one fresh worker, verify and review its result, then accept it before selecting another Package.
 
-- depends only on accepted upstream artifacts already present;
-- has a distinct owner and distinct output/report/review paths;
-- does not edit the shared evidence log, progress ledger, report draft, Review Package, or final report;
-- does not compete for a source session, mutable extract, rate limit, temporary table, or other shared resource in a way that can change results;
-- can be verified against its own required evidence and acceptance checks.
+Never dispatch multiple research workers directly or concurrently from this Skill. Packages with dependencies remain eligible for isolation; pass only accepted upstream artifacts named by the current brief.
 
-Dispatch all dependency-ready, parallel-safe packages together. Serialize packages that share mutable state or a constrained source even if their topics differ. Parallelism is optional; isolation and correct dependencies are mandatory.
+If and only if progress records the user's explicit request for parallel execution and at least two Packages appear dependency-ready, identify the complete proposed batch. Instantiate and freeze a separate Task Brief, unique output path, and Task Report path for every candidate before invoking the required subordinate Skill `dispatching-parallel-research`. That Skill independently proves concurrency safety and returns worker claims. After it returns, this Executor still verifies and task-reviews each Package separately before accepting any result. If the subordinate Skill refuses the batch, continue here serially without treating the refusal as a Run blocker.
 
 ## Give each worker one frozen brief
 
@@ -63,11 +64,11 @@ Create one [Task Brief](assets/task-brief-template.md) per Work Package. Make it
 - frozen `interaction_language`, `artifact_language`, and terminology/source-title handling, which the worker may not change;
 - explicit prohibitions and Return Routes.
 
-Do not paste unrelated run history. Workers do not interact with the user, redefine sources or metrics, edit shared artifacts, integrate other workers, or save the final report.
+Do not paste unrelated run history. Workers do not dispatch subagents, interact with the user, redefine sources or metrics, edit shared artifacts, integrate other workers, or save the final report.
 
 Task Briefs, worker outputs, Task Reports, and task reviews are governance-layer artifacts. They should retain exact evidence paths, locators, identities, Work Package IDs, and Evidence IDs when those are needed for verification. Do not ask workers to make these artifacts audience-ready or to remove governance detail; the Main Agent owns the separate reader-facing synthesis boundary.
 
-Instantiate each Task Brief and Task Report template in `artifact_language`, treating every English heading, label, and artifact-type phrase—including “Work Package Task Brief” and “Work Package Task Report”—as a semantic slot and removing all template comments. Dispatch a fresh-context worker with [the worker prompt](prompts/report-worker.md), passing `artifact_language` and terminology/source-title handling explicitly. Give access to the brief and its declared inputs, not an informal summary in place of available artifacts. Record the worker identity and dispatch state in progress.
+Instantiate each Task Brief and Task Report template in `artifact_language`, treating every English heading, label, and artifact-type phrase—including “Work Package Task Brief” and “Work Package Task Report”—as a semantic slot and removing all template comments. Dispatch a fresh-context worker with [the worker prompt](prompts/report-worker.md), passing `artifact_language` and terminology/source-title handling explicitly. Give access to the brief and its declared inputs, not an informal summary in place of available artifacts. Record the worker identity and dispatch state in progress. A normal dispatch must begin only after the preceding worker has returned and its Package is accepted.
 
 ## Treat worker reports as claims
 
@@ -101,19 +102,17 @@ Follow the Plan's risk-proportionate correction stop rule rather than importing 
 
 ## Accept, then integrate
 
-Accept a Work Package only after actual-output verification and `ACCEPT`, or after all blocking findings are `CLOSED` by re-review. Record its exact output identity, evidence locators, review path/verdict, and accepted state in progress. Downstream packages may consume only accepted outputs.
+Accept a Work Package only after actual-output verification and `ACCEPT`, or after all blocking findings are `CLOSED` by re-review. Record its exact output identity, evidence locators, review path/verdict, and accepted state in progress. Downstream Packages may consume only accepted outputs; then choose the next Package and dispatch a new worker with no inherited conversation history.
 
 The Main Agent alone then:
 
 1. reconciles cross-package grain, period, population, denominators, categories, and semantic identities;
 2. rejects contradictions or incompatible outputs instead of averaging, choosing silently, or smoothing them in prose;
-3. instantiates the common [Evidence log template](../executing-report-plans/assets/evidence-log-template.md), maintaining its coverage index and compact evidence cards with exact governance locators, support status, and propagated qualifications;
+3. instantiates the common [Evidence log template](../executing-report-plans/assets/evidence-log-template.md) and applies the shared evidence interface;
 4. performs the Plan's integration and cross-section checks;
 5. synthesizes one reader-facing draft whose consequential statements are supported by accepted evidence without exposing the internal traceability mechanism;
 6. verifies required sections, comparisons, limitations, and save language;
-7. applies the same reader-report checks as `executing-report-plans`: the draft is self-contained; key values are in prose or tables; current-run Brief/Plan/Evidence log/Review Package/progress paths, Run/WP/Evidence IDs, review states, identities, hashes, and engineering traceability are absent; `...`, globs, brace expansion, and path-only “see file” references are absent; every Markdown image has the Plan-declared staging-to-final mapping; and the final Markdown/assets remain unwritten.
-
-Formal external citations, paper links, reader-accessible URLs, and code or file names that are substantive report subject matter remain allowed. They cannot make repository access a prerequisite, act as governance navigation, or substitute for reader-facing explanation.
+7. applies the common reader-boundary, asset, final-destination, and fresh-verification checks.
 
 The Main Agent also verifies that accepted worker outputs and task reviews use `artifact_language` except for the frozen canonical/source-exact exceptions. Language-contract violations are task defects, not harmless stylistic differences.
 
@@ -121,18 +120,10 @@ If an integration defect is execution-only under unchanged semantics, reopen the
 
 ## Seal the common Executor interface
 
-Produce the same core handoff as `executing-report-plans`:
+Apply the common Executor contract's seal sequence, including the common [Review Package template](../executing-report-plans/assets/review-package-template.md). Add every accepted worker output, Task Brief, Task Report, and task review to the verified handoff. Freeze them in dependency order before integrated outputs and shared artifacts.
 
-- Plan-scoped progress;
-- evidence log;
-- verified Work Package outputs, plus worker Task Briefs, Reports, and task reviews;
-- one report draft;
-- one real Review Package manifest instantiated from the common [Review Package template](../executing-report-plans/assets/review-package-template.md), repeating the frozen language and delivery contracts and enumerating current member paths and identities.
-
-Freeze stable artifacts in dependency order: accepted worker outputs and task reviews, integrated outputs, evidence log, report draft, then staged reader assets. Build the Review Package manifest from those stable identities. The manifest does not record its own hash or a mutable progress hash. After sealing, record its actual identity once in progress, whose status may continue changing under the same Run ID.
-
-Before marking the run `READY FOR INDEPENDENT REVIEW`, open and inspect every manifest member, verify every recorded identity against the actual current file, reject missing files and placeholder hashes, resolve every staged/final asset mapping, and freshly confirm that the final Markdown/assets do not exist. Record the actual files and identities checked in progress. Route the sealed package to `reviewing-analysis` only after all packages are accepted and every integration and package check passes. Task reviews verify individual handoffs; they never replace independent whole-report review. This Skill does not approve or save the final report.
+Route the sealed package to `reviewing-analysis` only after every Package is accepted and every integration check passes. Task reviews verify individual handoffs; they never replace independent whole-report review.
 
 ## Result
 
-Return Run ID, accepted and blocked Work Packages, worker and task-review identities, checks performed, progress/evidence/draft/Review Package paths, unresolved concerns and exact Return Routes, and—only when sealed—the route to `reviewing-analysis`. Use `interaction_language` for this user-facing result and `artifact_language` for the referenced persistent artifacts.
+Return the common Executor handoff result plus accepted/blocked Work Packages and worker/task-review identities. Include any parallel-dispatch batch record, but do not treat dispatch status as acceptance. Name `reviewing-analysis` only when sealed; otherwise return one exact blocker. Use `interaction_language` for the user-facing result and `artifact_language` for persistent artifacts.
