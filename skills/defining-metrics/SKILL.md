@@ -19,7 +19,7 @@ Read and apply [the shared language contract](../using-evidencecraft/references/
 | Required source grain, authority, time, update, or mapping is unknown | Return the exact gap to `profiling-evidence`. |
 | A current Definition covers the same concept, use, population, time, and source mapping | Record that definition work is skipped and return to planning. |
 | Only period values or ordinary source contents changed | Reuse the current Definition; do not reapprove it. |
-| Only `interaction_language` or `artifact_language` changed | Reuse the current Definition as a semantic input; planning owns the report-presentation change. |
+| Only `interaction_language` or `artifact_language` changed | Reuse the current Definition as a semantic input; the current producer applies the shared presentation contract. |
 | Population, formula, grain, time, mapping, aggregation, comparison, or interpretation changed | Revise the affected Definition and revalidate it. |
 | The measure is a one-off calculation fully specified in the Plan and has no cross-period or cross-result reuse | Keep it in the Plan rather than creating a durable Definition. |
 
@@ -77,6 +77,8 @@ Define in plain language before pseudocode:
 
 Reference exact current Source Profiles for source semantics. If implementation would need an undefined join, eligibility source, mapping table, status precedence, or time field, return that gap rather than embedding an assumption.
 
+Give the Definition a stable semantic version/identity and specify result precision, deterministic tie-breaking and relevant time settings. The Executor binds that meaning to versioned SQL/scripts and validates the implementation; do not generate production queries or compute the report here. Existing implementations are references, not authority to silently change the metric. A fixed natural-language formula alone cannot ensure repeatable numbers.
+
 ### 4. Write invariants before implementation
 
 State properties that every correct implementation must preserve. Examples include numerator membership being a subset of denominator membership, one contribution per canonical entity-period, compatible units, explicit zero-denominator behavior, partition totals reconciling to the overall result, and corrections never changing event-period assignment unless the definition says so.
@@ -95,7 +97,7 @@ Derive expected values by hand. Do not use the proposed implementation, its quer
 
 ### 6. Write and self-review the Definition
 
-Instantiate [assets/metric-definition-template.md](assets/metric-definition-template.md) at `docs/evidencecraft/metrics/<metric>-definition.md`. Treat the template's English headings and labels, including the top-level “Metric Definition” document-type label, as semantic slots: render every user-visible field, table header, placeholder replacement, and narrative passage in `artifact_language`, preserve only the allowed canonical or source-exact exceptions, and remove all template comments. Artifact-type phrases in prose are translatable unless they are exact Skill names, paths, or recorded source-exact terms. Do not edit the template in place.
+Instantiate [assets/metric-definition-template.md](assets/metric-definition-template.md) at `docs/evidencecraft/metrics/<metric>-definition.md`. Apply the shared language contract, omit inapplicable optional sections, and do not edit the template in place.
 
 Check that:
 
@@ -122,17 +124,18 @@ Return a Definition as `Ready for Plan Confirmation` only when:
 - the file states limitations and change triggers.
 - the Definition follows the recovered language contract without untranslated template labels.
 
-New or materially revised Definitions become `Current` only when the user confirms them together with the Report Plan that names them. Record that confirmation in the Plan and Definition; do not create a separate machine approval record. Until then, stop before execution.
+New or materially revised Definitions become `Current` when the Plan names them, validation passes, and every material meaning choice has an authoritative basis. Existing explicit user/metric-owner instructions may supply that basis. Record the covered meaning and actual source in the Plan and Definition; never claim approval of an unseen file. Present unresolved choices with their business consequences using [the reader and decision contract](../using-evidencecraft/references/reader-and-decision-contract.md), alongside the Plan overview. Honor any requested approval checkpoint. Until material meaning has authority, stop affected execution.
 
 ## Recovery
 
 On resumption, read the Definition, its named Brief/Plan/Profiles, and actual source semantics.
 
 - If it is Draft, resume from the earliest Open or unvalidated choice.
-- If it is Ready, verify the candidate Plan still uses the same interface before requesting combined confirmation.
+- If it is Ready, verify the candidate Plan still uses the same interface and whether its material choices already have authority before asking again.
 - If it is Current, compare meaning-bearing changes only; new values and periods do not reopen it.
 - Do not translate or replace a current Definition solely because the interaction or report language changed; it remains a semantic input to a newly rendered report.
 - When a semantic change occurs, preserve the prior Definition for reports that used it, write what changed, and revalidate only affected invariants/examples and consumers.
+- A code defect under unchanged meaning returns to execution for a versioned correction. Do not redefine the metric to make faulty output appear compliant.
 
 Never infer currentness from a filename or a formula copied into a report.
 

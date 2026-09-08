@@ -1,4 +1,4 @@
 interface:
   display_name: "Execute Report Plans"
   short_description: "Run the selected Inline report execution"
-  default_prompt: "Use $executing-report-plans after this Run explicitly selects Inline Execution, verify each Work Package, and prepare the report for independent review."
+  default_prompt: "Use $executing-report-plans after this Run resolves to Inline Execution, verify each Work Package, and prepare the report for independent review."

@@ -1,53 +1,42 @@
-<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Review Package Manifest” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+<!-- Apply the language contract and remove template instructions. Preserve the two local-members machine markers and three-column order. -->
+# Review Package: [topic]
 
-# Review Package Manifest
+## Sealed basis
 
-## Package identity
+- Run ID / status: [id; SEALED FOR INDEPENDENT REVIEW]
+- Plan / period / delivery contract: [reference; resolved period/as-of; reader contract]
+- Language contract: [interaction_language; artifact_language; terminology/source-title handling]
+- Progress reference: [path; Run ID/status, not mutable hash]
+- Project root: [absolute base for resolving local member paths]
+- Sealed at: [time]
 
-- Run ID:
-- Package status: `SEALED FOR INDEPENDENT REVIEW`
-- Report Plan path / identity:
-- Period/as-of:
-- Delivery profile:
-- Artifact language:
-- Terminology and source-title handling:
-- Progress reference: [Run ID and current status only; do not hash mutable progress]
-- Sealed at:
+## Reader artifacts and save interface
 
-## Reader artifact contract
+- Draft → final: [distinct paths; final unwritten]
+- Assets or companions: [when used: staging → final; relative URI; identities in member table]
+- Reader and integration verification: [check/result references]
+- Known limitations: [only actual limitations and affected claims]
 
-- Draft path / identity:
-- Staged assets / identities: [none or exact list]
-- Final asset-root and relative-URI mapping: [none or exact mapping]
-- Planned final report path:
-- Final destinations confirmed unwritten at: [timestamp and method]
-- Reader self-containment check:
-- Governance-separation check:
-- Reader citation and path-only-reference check:
+## Stable local members
 
-## Frozen package members
+<!-- Generate concrete rows with manifest_identity.py hash. Include Brief, Plan, required Profiles/Definitions, relied-upon preparation and supporting records/extracts, calculation implementations/settings, evidence, verified outputs, required verification records/checker sources, delegated task records, draft and assets. Unused background reading is not a member. Do not include this manifest or mutable progress. -->
+<!-- evidencecraft:local-members -->
+| Role | Exact path | SHA-256 |
+|---|---|---|
+| [role] | [exact path] | [actual 64-character SHA-256] |
+<!-- /evidencecraft:local-members -->
 
-| Role | Exact path | Stable identity | Inspected and present |
-|---|---|---|---|
-| Confirmed Analysis Brief |  |  | yes/no |
-| Source Profiles |  |  | yes/no/not applicable |
-| Metric Definitions |  |  | yes/no/not applicable |
-| Current Report Plan |  |  | yes/no |
-| Evidence log |  |  | yes/no |
-| Verified Work Package outputs |  |  | yes/no |
-| Work Package governance records (Task Briefs, Task Reports, task reviews) |  |  | yes/no/not applicable |
-| Reader report draft |  |  | yes/no |
-| Staged reader assets |  |  | yes/no/not applicable |
-| Known limitations / qualification record |  |  | yes/no/none |
+## Other evidence identities, when required
 
-## Known limitations and unresolved concerns
+[Provider-native identities and freshness verification that a local-file hash cannot establish. Include exact locators, method, time and result.]
 
-- [none, or exact limitation/concern and affected report content]
+## Correction scope, when re-reviewing
 
-## Seal record
+- Prior manifest and review: [preserved paths and identities]
+- Actual delta: [changed, added, removed members and content-diff/derivation reference]
+- Affected claims and dependencies: [scope and why unaffected checks remain valid]
+- Findings addressed: [correction evidence; reviewer decides closure]
 
-- Every required stable member inspected:
-- Recorded identities freshly verified:
-- Manifest contains no self-hash:
-- Progress will record this manifest's identity only after sealing:
-- Next responsible Skill: `reviewing-analysis`
+## Seal check
+
+[Coverage checked against Plan; all local identities verified; external identity/freshness checks where needed; method/time/result reference. Record this manifest's identity in progress after sealing.]

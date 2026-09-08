@@ -5,28 +5,15 @@ description: Use when an Evidencecraft analysis or recurring report starts or re
 
 # Using Evidencecraft
 
-Choose the next Evidencecraft responsibility before calculating, drafting, or asking broad discovery questions. This Skill owns routing only; the routed Skill owns the work.
+Choose the next responsibility; the routed Skill owns the work. An isolated worker or reviewer follows its supplied package and does not reopen this lifecycle.
 
-If you were dispatched as an isolated report worker or reviewer, stop using this router. Follow the supplied Task Brief or review package instead and do not reopen the full lifecycle.
+## Inspect the smallest useful state
 
-## Check actual state
+Start with the request and current Run progress, otherwise the current Plan and Brief. Verify the existence and identity of artifacts needed for the next transition. Open a Profile, Definition, evidence entry, or prior review only when a dependency, change, or finding makes it relevant. A status label or polished draft alone is not proof of completion.
 
-Inspect the request and the relevant workspace for current:
+Resolve missing or changed language fields using [the language contract](references/language-and-localization-contract.md). Reuse a resolved contract; do not reload unchanged guidance at every handoff.
 
-- confirmed Analysis Brief;
-- Source Profiles and Metric Definitions when the Plan depends on them;
-- confirmed Report Plan and its execution recommendation, including any legacy Plan selection;
-- current Run progress and its frozen Executor choice, user selection record, and explicit parallel authorization when present;
-- Plan-scoped progress, evidence log, draft, and Review Package;
-- latest Review Report, correction record, and final report identity when present;
-- language fields in the Brief, Plan, and current Run progress when present;
-- stated change in audience, intended use, question, scope, source semantics, metric semantics, or Plan structure.
-
-Read status fields, but verify that named artifacts and required files actually exist. Do not infer a current lifecycle from a polished draft or a stale ledger alone.
-
-## Resolve the language contract before routing
-
-Read and apply [the shared language contract](references/language-and-localization-contract.md). This router owns the initial resolution and passes all three fields to the next Skill; it does not rewrite semantic artifacts. If explicit current requirements conflict, ask the contract's one focused question and stop routing until resolved.
+If host planning restrictions left authorized Brief/Plan content in the conversation, route to its producer to persist that exact content and preparation references once writes are permitted. Recheck changed facts, not the entire research process; do not fabricate file identities or run against an unsaved contract.
 
 ## Classify once
 
@@ -34,64 +21,56 @@ Use the first matching state:
 
 | Observed state | Next responsibility |
 |---|---|
-| No confirmed Brief for this decision use | `framing-analysis` |
-| The request explicitly asks for source profiling, or a Return Route, progress record, or review finding identifies an exact changed/unresolved source semantic or fitness gap | `profiling-evidence`, then planning |
-| The request explicitly asks for metric definition, or a Return Route, progress record, or review finding identifies an exact changed/unresolved reusable metric gap | `defining-metrics`, then planning |
-| No confirmed usable Plan exists, semantic dependencies still need first preflight, or package/check/save interfaces changed | `writing-report-plans` |
-| Only `interaction_language` changed | Keep the current lifecycle state; use the new interaction language and route by the underlying work state. |
-| `artifact_language` changed while audience and intended use remain the same | `writing-report-plans` to revise and reconfirm the report interface; reuse current Profiles/Definitions and language-independent analysis. |
-| A sealed Run is `READY FOR INDEPENDENT REVIEW`, or corrected artifacts were resealed | `reviewing-analysis` |
-| A Review Report is `BLOCKED` | Follow its earliest exact Return Route and affected Package; do not restart everything. |
-| Confirmed current Plan and an incomplete non-sealed Run freezes `executing-report-plans` or legacy `sequential` | `executing-report-plans` |
-| Confirmed current Plan and an incomplete non-sealed Run freezes `subagent-driven-reporting` | `subagent-driven-reporting` |
-| Confirmed current Plan, no Run selection, and the current request explicitly chooses Inline | `executing-report-plans` with that selection record |
-| Confirmed current Plan, no Run selection, and the current request explicitly chooses Subagent-Driven or parallel execution | `subagent-driven-reporting`; preserve explicit parallel wording as authorization only when present |
-| Confirmed current Plan, no Run selection, and the current request says to use the recommendation | Route the Plan-recommended mode only when it remains feasible; otherwise present the feasible handoff. |
-| Confirmed current Plan, no Run selection, and no explicit mode choice | Present the execution handoff and stop before creating a Run. |
+| Audience, intended use, business scope, or acceptable risk changed, or no authorized Brief exists | `framing-analysis` |
+| Explicit source investigation or a recorded, exact source semantic/fitness gap | `profiling-evidence`, then planning |
+| Explicit metric definition or a recorded, exact reusable metric gap | `defining-metrics`, then planning |
+| No usable Current Plan, a Draft has unresolved planning prerequisites, or package/check/save interfaces changed | `writing-report-plans` |
+| Sealed Run is `READY FOR INDEPENDENT REVIEW`, including a resealed correction | `reviewing-analysis` |
+| Review is `BLOCKED` | Its earliest exact Return Route and affected Package |
+| Incomplete Run has a frozen Executor | Resume that Executor at the first affected Package |
+| Current Plan and no incomplete Run | Resolve execution below, then invoke that Executor |
 
-A first-time, merely suspected, or unclassified source/metric gap is planning input, not a router investigation. `writing-report-plans` owns the first dependency preflight and invokes a specialist only with an exact intended use and gap. The router recognizes a direct semantic backjump only from explicit or already-recorded evidence.
+A merely suspected or unclassified source/metric gap goes to planning for preflight, not a broad router investigation. A new period or new source values alone is an execution input. Reuse unchanged business and semantic decisions.
 
-A normal recurring cycle with the same confirmed use, source semantics, metric semantics, and Plan does not repeat framing or planning. Resume an existing Run with its frozen Executor. For a new Run, obtain one execution-mode choice before an Executor creates progress. New source bytes or a new reporting period alone are execution inputs, not semantic change.
+Planning owns bounded preparation and a useful Draft when critical checks are unavailable; a Draft cannot start formal execution. A Current legacy Plan merely missing preparation fields goes to its Executor for bounded readiness checks, not automatic replanning.
 
-For a legacy Plan with `Selected Executor`, preserve that value only for an existing Run whose progress froze it. With no Run, treat the legacy value as the Plan recommendation and present the normal handoff; do not revise the Plan solely to move execution choice into Run state.
+An interaction-language change takes effect immediately. A requested translation or presentation change under the same meaning stays with the current producer; record the revised delivery setting and review the new report bytes. Return to planning only if it changes a binding delivery interface, and to framing only if audience or intended use changes.
 
-Treat legacy progress value `Executor: sequential` as `executing-report-plans`. Preserve the Run without reprompting and append a compatibility record: selection source `legacy progress`, selection time `unavailable (legacy)`, and parallel authorization `none` unless an exact prior user statement or already-active legacy parallel wave proves otherwise. Do not invent a selection quote or timestamp.
+## Resolve a new Run without a routine approval stop
 
-A language change is a delivery constraint, not a new analysis responsibility. Do not return to framing merely because interaction language changed. An artifact-language-only change revises the Plan's report interface and requires confirmation, but does not reopen profiling, metric definition, or unaffected execution. Return to framing only when audience or intended use also changed. For a same-period rerender, preserve the prior report, create a replacement version under the Plan's existing supersession rules, and review the new bytes.
+Check execution and independent whole-report review capability before costly work. Inline execution still requires an independent reviewer. If that capability is unavailable, state the limitation before execution; never promise an audited final or invent independence. If the user explicitly changes the request to an unreviewed draft, record that scope change and leave the audited-final workflow; do not mark it review-ready or save it as a reviewed final.
 
-## Route recovery from evidence
+Resolve the mode in order:
 
-For an incomplete run, reconcile progress claims with actual files and identities before choosing the resume point:
+1. Current explicit choice, including “use the recommendation.”
+2. An applicable prior user preference or project instruction.
+3. A feasible Plan recommendation within the user's authorization and resource constraints.
+4. Inline, when feasible and no unresolved material cost or capability trade-off remains.
 
-- execution or verification defect under unchanged semantics → the Run-selected Executor at the first affected Work Package;
-- Work Package, dependency, output, check, execution recommendation, review input, or save-rule defect → `writing-report-plans`;
-- source grain, keys, time, authority, lineage, transformation, mapping, access, or fitness defect → `profiling-evidence`, then planning;
-- metric meaning, population, formula, time, deduplication, aggregation, missing rule, or source mapping defect → `defining-metrics`, then planning;
-- audience, intended use, question, scope, risk, or success criterion change → `framing-analysis`, then planning.
+Honor a request to approve the mode. Otherwise “execute,” “continue,” or “follow the Plan” authorizes the feasible default; explain the choice briefly and proceed. Ask only when a missing choice materially affects cost, isolation, timing, or capability. Explain that trade-off in business terms. If an explicitly selected mode is unavailable, disclose that and obtain a replacement choice; do not silently override it.
 
-Redo only work that depends on the changed semantic or corrected output. Preserve accepted, current artifacts and prior reports as history.
+Subagent-Driven means fresh workers per Package, serial by default. Parallel execution requires explicit authorization for this Run and eligibility checks in `dispatching-parallel-research`; it is not a third Executor. An explicit parallel request selects Subagent-Driven. A recommendation alone never authorizes parallelism or overrides environment restrictions on delegation.
 
-## Hand off a new Run
+The chosen Executor records the mode, basis (explicit choice / standing preference / authorized default), source statement or reference, resolution time, and parallel authorization or `none`. Do not fabricate a user quote for an inferred default.
 
-When a current Plan has no Run selection, inspect actual subagent capability and present feasible choices in `interaction_language`. Put the Plan-recommended option first when it remains feasible, then the other feasible option, and mark only that Plan-recommended option as recommended. If the stored recommendation is no longer feasible, state why and present the remaining option without relabeling it as the Plan recommendation. Describe Subagent-Driven as `subagent-driven-reporting`, with one fresh worker per Work Package and verification/review between Packages. Describe Inline Execution as `executing-report-plans`, with the Main Agent executing Packages in its current context.
+## Preserve ownership and recovery
 
-Ask which approach to use and stop. Do not treat “execute,” “continue,” or “follow the Plan” as a choice. Treat an explicit Inline, Subagent-Driven, or “use the recommendation” statement for this Run as a choice. An explicit request for parallel execution selects Subagent-Driven and also supplies parallel authorization; parallel dispatch remains a subordinate, eligibility-gated mechanism rather than a third top-level mode.
+One Run has one Executor. Before any Package starts, an explicit reselection may update an empty Run. After work starts, stop writes and use a new Run ID for a mode change, preserving the old Run. A resumed Run does not repeat mode selection.
 
-If subagents are unavailable, present only Inline with the reason and still obtain confirmation. Do not create progress, inspect execution inputs, or invoke an Executor while waiting.
+Legacy progress `Executor: sequential` means `executing-report-plans`. Preserve its choice, record basis `legacy progress` and unknown selection time honestly. A legacy Plan selection with no existing Run is advisory. Do not rewrite history just to normalize fields.
 
-## Enforce one Run-selected Executor
+Reconcile actual outputs with progress at the affected boundary:
 
-The chosen Executor creates `progress.md` and records the exact user selection, selection time, and explicit parallel authorization or `none`. Before the first Package starts, an explicit reselection may replace the mode in that otherwise empty Run. Once any Work Package starts, never run the other Executor against that Run. A later mode change stops current writes and starts a new Run ID while preserving the old Run as history; it does not revise an otherwise current Plan. A resumed Run never repeats the handoff.
+- execution, verification, ordinary access or period-data defect → current Executor;
+- package, dependency, output, check, review input, or save-rule defect → planning;
+- source grain, keys, time, authority, mapping, or use-specific fitness defect → profiling, then planning;
+- metric meaning, population, formula, time, aggregation, or missing-data rule defect → metric definition, then planning;
+- business meaning or risk authority change → framing, then planning.
 
-## Announce and stop
+Redo only dependent work. Preserve valid accepted artifacts and prior reports.
 
-For an ordinary route, return a compact user-visible route record in `interaction_language`. Localize its labels and use at most four bullet lines:
+## Hand off
 
-- **State** — always include the canonical state `first setup | current cycle | recovery | review | semantic backjump` and one sentence naming the decisive evidence or change.
-- **Next** — always include exactly one next Skill and the exact Work Package or artifact when applicable.
-- **Evidence and reuse** — include one combined line only when inspected identities or reusable artifacts are needed to justify the route, backjump, or recovery.
-- **Contract or blocker** — include one combined line only when language or terminology handling is non-default, changed, conflicting, or affects delivery, or when an actual blocker or decision is required.
+Tell the user the next action and its reason in one or two natural sentences. Include a decision or blocker only when one exists; keep internal state codes, Skill names, IDs, and hashes in the handoff record unless useful to the user.
 
-The execution handoff above replaces this route shape while a new Run lacks a choice. Default language handling, identity detail that does not affect the route, and the absence of blockers stay out of the user-visible record. Regardless of what is displayed, pass the complete resolved language contract, governing identities, reusable artifacts and rationale, the exact selection statement, parallel authorization, and any blocking evidence to the routed Skill.
-
-Preserve canonical state values, exact Skill names, identifiers, and paths. If the request asks only for classification, routing, or a handoff recommendation, stop after the route record. Otherwise invoke the routed Skill and continue under its instructions. Do not calculate, profile, define, plan, execute, review, or save while acting as this router.
+Pass the resolved contract, relevant artifact references/identities, exact affected scope, execution basis, and any blocking evidence to the next Skill. Do not paste the entire lifecycle or all source files. If asked only to classify or recommend, stop here. Otherwise invoke the routed Skill and continue.

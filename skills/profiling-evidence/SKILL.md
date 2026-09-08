@@ -30,11 +30,13 @@ Read and apply [the shared language contract](../using-evidencecraft/references/
 | No named source or no stated intended use | Return to `writing-report-plans`; return to `framing-analysis` if the use itself is undecided. |
 | Current Profile covers the same logical source, semantics, and intended use | Record that profiling is skipped and return to planning. |
 | Only rows, values, documents, or reporting period contents changed under the same semantics | Do not reopen the Profile; let the Executor record period evidence. |
-| Only the interaction or artifact language changed | Do not reopen source semantics; reuse the Profile and let planning apply the current presentation contract. |
+| Only the interaction or artifact language changed | Do not reopen source semantics; reuse the Profile and let the current producer apply the shared presentation contract. |
 | Structure, grain, keys, time, update, authority, lineage, transformation, mapping, or use may differ | Open or revise a Source Profile and investigate. |
 | The source cannot be observed or authoritative context is unavailable | Record exactly what is inaccessible and use `BLOCKED`; do not guess. |
 
 A source can be current for one use and unassessed for another. Match both source identity and intended use before skipping.
+
+Routine health checks are owned by planning or the current Executor using this Skill's methods reference; they do not require a new Profile. Consume their exact observations when a real semantic gap does require investigation, checking scope and currentness instead of repeating discovery. Temporary access failure alone returns to the caller; it does not reopen otherwise current source meaning.
 
 ## Investigate in phases
 
@@ -61,7 +63,7 @@ Separate **observed**, **documented**, **inferred**, and **unknown** statements.
 
 ### 2. Localize the meaning boundary
 
-Trace an ambiguous or conflicting field backward through views, exports, formulas, manual edits, joins, and upstream systems until reaching the earliest observable source or an authority boundary. Do not repair the downstream symptom and call the meaning known.
+Trace an ambiguous field through relevant documented transformations until enough authoritative evidence resolves the named question, or an unavailable/cost boundary prevents resolution. Apply the methods reference's scope and cost bounds. Do not reconstruct unrelated lineage or repair data and call its meaning known.
 
 Compare:
 
@@ -102,7 +104,7 @@ Decide separately for each use. State allowed uses, prohibited uses, limitations
 
 ### 5. Write the Source Profile
 
-Instantiate [assets/source-profile-template.md](assets/source-profile-template.md) at `docs/evidencecraft/sources/<logical-source>-profile.md`. Treat its English headings and labels, including the top-level “Source Profile” document-type label, as semantic slots: render every user-visible part in the artifact language and remove all template comments before saving. Artifact-type phrases in prose are also translatable unless they are exact Skill names, paths, or recorded source-exact terms. Do not edit the template in place. One Profile may cover a tightly coupled logical source group only when its joint semantics cannot be understood separately; otherwise keep profiles source-specific and cross-reference the relationship.
+Instantiate [assets/source-profile-template.md](assets/source-profile-template.md) at `docs/evidencecraft/sources/<logical-source>-profile.md`. Apply the shared language contract, omit inapplicable optional sections, and do not edit the template in place. One Profile may cover a tightly coupled logical source group only when its joint semantics cannot be understood separately; otherwise keep profiles source-specific and cross-reference the relationship.
 
 Complete the Profile with actual observations, tests, use-specific decisions, and change triggers. Do not create a Source Contract, EvidenceSnapshot, JSON Schema, lifecycle object, or invented evidence ID.
 

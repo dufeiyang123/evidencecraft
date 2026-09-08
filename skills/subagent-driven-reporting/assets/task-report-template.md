@@ -1,73 +1,35 @@
-<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Work Package Task Report” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+<!-- Apply the shared language contract. Keep exact governance locators. Omit empty optional sections and remove this instruction. -->
+# Work Package Result: [WP title]
 
-# Evidencecraft Work Package Task Report
+**Status:** DONE | DONE_WITH_CONCERNS | NEEDS_CONTEXT | BLOCKED
 
-## Identity and status
+- Run / Package / worker: [identities]
+- Task Brief: [path and identity]
+- Output: [exact path and identity; grain, period and count when relevant]
+- Work interval: [started/completed]
+- Result: [consequential outcome and material limit in a few sentences]
 
-- Run ID:
-- Work Package ID:
-- Worker identity:
-- Status: `DONE | DONE_WITH_CONCERNS | NEEDS_CONTEXT | BLOCKED`
-- Task Brief path / identity:
-- Artifact language:
-- Terminology and source-title handling:
-- Started / completed:
+## Evidence and verification
 
-## Inputs actually inspected
+- Inputs: [verified against frozen brief; identity/snapshot verification reference; list deviations only]
+- Method: [versioned calculation/transform reference; complete input/settings binding and keyed result interface; deviations from a reused implementation require explanation]
+- Reused work, when present: [preparation/check references and why their identity, scope, parameters and freshness remain valid; no duplicate tables]
+- Claim support: [exact source/upstream and output locators; evidence reference instead of copying a complete result table]
 
-| Input | Exact path / locator | Observed identity | Matches brief |
+| Check | Method / checker identity | Bound inputs and outputs / result locator | Time / observed vs expected / disposition |
 |---|---|---|---|
-|  |  |  | yes/no |
+| [id] | [command or method] | [identities or exact verification record] | [time; result; PASS/FAIL] |
 
-## Work performed
+- Scope check: [Brief requirements and allowed writes checked; evidence reference]
 
-- Method:
-- Transformations / calculations:
-- Intermediate outputs:
-- Deviations from brief: `none` or exact explanation
+## Concern or blocker, when present
 
-## Output
+[Observed evidence, decision impact, precise missing context or correction, affected requirement, and responsible Return Route.]
 
-- Exact output path:
-- Output identity:
-- Grain / period / row or item count:
-- Consequential results:
+## Correction, when requested
 
-## Governance evidence locators
-
-| Result / claim | Evidence ID | Exact source or upstream path / locator | Output locator | Support / qualification |
-|---|---|---|---|---|
-|  |  |  |  |  |
-
-These exact paths and IDs belong to the governance layer. The Main Agent must not copy them into the standalone reader report.
-
-## Checks run
-
-| Check ID | Command or method | Observed result | PASS/FAIL |
-|---|---|---|---|
-|  |  |  |  |
-
-## Self-review and scope
-
-- Every brief requirement checked:
-- Allowed write scope respected:
-- Shared artifacts unchanged:
-- Limitations / qualifications preserved:
-- Concerns:
-
-## Correction rounds
-
-<!-- Template instruction: append one section per correction; do not erase the original report. -->
-
-### Round <N>
-
-- Prior findings addressed:
-- Exact changes / new output identity:
-- Affected checks rerun, method, and observed result:
-- Remaining concern:
-
-## Blocker or context request
-
-- Exact missing evidence, access, capability, or decision:
-- Work attempted:
-- Responsible Return Route:
+<!-- Append corrections; preserve previous reviewed output and evidence. -->
+- Prior findings: [IDs and prior review reference]
+- Actual delta: [changes and new output identity; preserved prior output reference]
+- Verification: [affected checks and results; unchanged bindings verified]
+- Remaining concerns: [only when present]

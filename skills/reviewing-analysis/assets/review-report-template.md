@@ -1,124 +1,47 @@
-<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Analysis Review Report” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical verdict/status codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+<!-- Apply the language contract. Scale detail to consequence, omit empty optional sections, and remove template instructions. The independent reviewer writes the review; the Main Agent appends verified disposition/save records. -->
+# Analysis Review: [topic]
 
-# Analysis Review Report
+**Verdict:** PASS | QUALIFIED | BLOCKED
 
-## Review identity
+[What this verdict means for the intended use; the material limit or correction, if any.]
 
-- Review ID:
-- Review type: `initial | re-review`
-- Reviewer independence: fresh context; not author or Executor
-- Reviewed at:
-- Confirmed audience/use:
-- Artifact language:
-- Terminology and source-title handling:
-- Period/as-of:
-- Risk:
-- Prior Review Report superseded, if any:
+## Review basis and scope
 
-## Reviewed package
+- Reviewer / independence / time: [identity; separate from author; time]
+- Confirmed use and risk: [concise reference]
+- Reviewed manifest: [path and identity; authoritative member index]
+- Draft: [path and reviewed identity]
+- Mode: [initial complete review / scoped re-review; scope and reason]
+- Prior review, when applicable: [preserved reference; actual diff and unchanged-identity verification]
 
-| Role | Exact path | Identity / Run ID | Inspected |
+## Verification performed
+
+| Duty | Method and evidence reference | Observed result / coverage / limit |
+|---|---|---|
+| [reader use, required coverage, semantic/claim support, independent calculation, consistency, identities, assets/save safety] | [exact method or prior valid check; artifact/locator; identities bound in referenced record] | [actual result; identify sampling or reuse] |
+
+## Material findings, when present
+
+### [ID] — [level]: [reader-relevant issue]
+
+- Evidence and requirement: [exact artifact/locator; observed vs expected]
+- Consequence: [decision impact and affected claims]
+- Correction and owner: [required action; exact Return Route; closure check]
+
+## Prior finding closure, when re-reviewing
+
+| Finding | Evidence of correction | CLOSED / OPEN | Affected checks |
 |---|---|---|---|
-| Analysis Brief |  |  | yes/no |
-| Source Profiles |  |  | yes/no |
-| Metric Definitions |  |  | yes/no |
-| Report Plan |  |  | yes/no |
-| Progress |  |  | yes/no |
-| Evidence log |  |  | yes/no |
-| Work Package outputs |  |  | yes/no |
-| Report draft |  |  | yes/no |
-| Staged reader assets |  |  | yes/no/not applicable |
-| Review Package manifest |  |  | yes/no |
+| [id] | [actual delta and locator] | [state] | [result or valid reused check reference] |
 
-## Checks performed
+## Advisory notes, when useful
 
-### Package and semantic identity
+[Optional improvements that do not change the verdict.]
 
-- Method:
-- Evidence observed:
-- Result: `PASS | FINDING <id>`
+## Main Agent disposition and save
 
-### Brief and Plan coverage
-
-- Method:
-- Questions/sections/success criteria checked:
-- Evidence observed:
-- Result: `PASS | FINDING <id>`
-
-### Source and metric fidelity
-
-- Method:
-- Highest-risk semantic rules checked:
-- Evidence observed:
-- Result: `PASS | FINDING <id>`
-
-### Reproducibility and traceability
-
-- Reperformed or spot-checked calculations:
-- Claim-to-evidence coverage:
-- Evidence observed:
-- Result: `PASS | FINDING <id>`
-
-### Reasoning, limitations, and usability
-
-- Method:
-- Artifact-language consistency and allowed exceptions checked:
-- Evidence observed:
-- Result: `PASS | FINDING <id>`
-
-### Reader self-containment and governance separation
-
-- Reader-required context, key values, qualifications, and interpretation checked:
-- Current-run governance paths/IDs/statuses/hashes and engineering traceability checked:
-- External citations and substantive code/file identifiers distinguished from governance references:
-- Result: `PASS | FINDING <id>`
-
-### Assets, package manifest, and save safety
-
-- Manifest members and identities inspected:
-- Markdown image URI to staged/final asset mapping checked:
-- Draft/final paths distinct and final destinations unwritten:
-- Result: `PASS | FINDING <id>`
-
-## Findings
-
-<!-- Template instruction: repeat for every finding; if none, state the artifact-language equivalent of `No findings`. -->
-
-### RV-<id>: <title>
-
-- Level: `BLOCKING | QUALIFICATION | ADVISORY`
-- Artifact and exact locator:
-- Observed evidence:
-- Expected requirement:
-- Why it matters for the confirmed use:
-- Affected claims/sections/Packages:
-- Responsible stage / Return Route:
-- Required action:
-- Re-review evidence required:
-
-## Prior finding closure (re-review only)
-
-| Prior ID | Actual correction inspected | Dependent checks rerun | Status: OPEN/CLOSED/REPLACED |
-|---|---|---|---|
-|  |  |  |  |
-
-## Verdict
-
-- Verdict: `PASS | QUALIFIED | BLOCKED`
-- Technical basis:
-- Qualified-use boundary, if applicable:
-- Final save authorized: `yes | yes, qualified | no`
-- Exact Return Routes, if blocked:
-- Packages and dependents requiring re-verification:
-- Re-review required: `yes | no`
-
-## Main Agent verification
-
-<!-- Template instruction: complete after receiving the independent report; do not let the reviewer fill this section. -->
-
-- Material findings checked against actual artifacts:
-- Feedback reclassified or rejected with counter-evidence:
-- Reviewed identities unchanged before save:
-- Review Report saved at:
-- Draft identity -> final report path / verified identity, if authorized:
-- Reviewed staged assets -> final asset paths / verified identities, if authorized:
+<!-- Append after independently checking material findings. Never edit the report to silently satisfy review. -->
+- Material finding disposition: [when needed: accepted finding or specific counter-evidence; unresolved disagreement blocks save]
+- Save gate: [verdict; qualified-use authority when required; fresh manifest/member identity verification]
+- Saved mapping: [only after gate: reviewed draft identity → final path/equal identity; reviewed asset/companion identities → final mappings/equal identities]
+- Saved at: [time; preserve prior report/review history]

@@ -18,6 +18,7 @@ Use this reference to choose the semantic dimensions, invariants, and examples t
 | Missingness | null, zero, unknown, not applicable, suppressed | Unknown silently becomes zero or disappears |
 | Comparison | Baseline, cohort, target, comparability, restatement | Trend reflects population/definition changes |
 | Precision | Calculation precision, rounding stage, display | Rounded components produce a different total |
+| Determinism | Exact numeric representation, tie-breaking, time and other result-affecting settings | Same complete inputs produce different business values |
 | Governance | confirmation, currentness, change triggers, restatement | Historical reports silently change meaning |
 
 ## Invariant patterns
@@ -57,6 +58,7 @@ Choose invariants that would fail under a plausible implementation error.
 - Every required concept maps to a named profiled source field or documented transformation.
 - Precedence is deterministic when two sources disagree.
 - Join cardinality matches the intended grain before aggregation.
+- Repeated calculation on identical complete inputs must preserve normalized values by entity/period/dimension and unit. For exact metrics, choose precision and computation rules that do not depend on unstable floating-point reduction order; display rounding alone is not a determinism proof.
 
 For each chosen invariant, append “catches: [specific wrong behavior].” If no realistic break can be named, the statement may be explanatory prose rather than a useful invariant.
 
@@ -79,7 +81,7 @@ Compute expected numerator, denominator, and output independently. State why eac
 | New period values under the same population, mappings, and rules | Reuse the current Definition. |
 | Same-period correction handled by the current correction/restatement rule | Recompute or restate as specified; do not redefine. |
 | Source bytes/format changed but profiled meaning is equivalent | Keep the Definition; update period evidence if needed. |
-| Population, formula, unit, grain, time basis, deduplication, weight, or comparison changed | Revise and reconfirm the Definition with the Plan. |
+| Population, formula, unit, grain, time basis, deduplication, weight, or comparison changed | Revise and revalidate the Definition with the Plan; obtain authority for changed material meaning not already authorized. |
 | Source authority, grain, field meaning, or mapping changed | Return to profiling, then revise affected mapping/invariants. |
 | Display-only rounding or label changed with raw semantics fixed | Update presentation in the Plan/report; preserve metric meaning. |
 | Intended decision or audience changed | Return to framing before deciding metric reuse. |

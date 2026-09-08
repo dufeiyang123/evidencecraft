@@ -1,4 +1,4 @@
 interface:
   display_name: "Route Evidencecraft Work"
   short_description: "Route report state and execution handoffs"
-  default_prompt: "Use $using-evidencecraft to inspect this evidence-analysis workspace, request a new Run's execution choice when needed, and route exactly one responsibility."
+  default_prompt: "Use $using-evidencecraft to inspect this evidence-analysis workspace, resolve a new Run within existing authorization and ask only material choices, and route exactly one responsibility."

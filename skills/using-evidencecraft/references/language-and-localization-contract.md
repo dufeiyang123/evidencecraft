@@ -24,13 +24,13 @@ Infer without asking when the rules yield one answer. If two explicit current re
 ## Respect lifecycle ownership
 
 - An interaction-language-only change takes effect immediately and does not reopen semantic artifacts or lifecycle state.
-- An artifact-language-only change under the same audience and intended use returns to `writing-report-plans` to revise and reconfirm the report interface. Reuse current Profiles, Definitions, and language-independent analysis.
+- An explicit artifact-language-only change under the same audience and intended use authorizes the current producer to update the delivery setting and rerender affected artifacts. Reuse Profiles, Definitions, and language-independent analysis; review new report bytes. Return to planning only if a binding delivery interface changes, without asking the user to authorize the same language request again.
 - A language request coupled with changed audience or intended use returns to `framing-analysis`.
 - For legacy artifacts without language fields, infer the contract and record it in the current Run. Add the fields when that artifact is next revised; do not bulk-rewrite history.
 
 ## Localize artifacts
 
-English templates and prompts are maintenance sources, not delivery defaults. When instantiating an artifact, translate headings, labels, table headers, placeholders, narrative, and artifact-type phrases such as “Analysis Brief,” “Report Plan,” and “Review Report.” Remove template comments.
+English templates and prompts are maintenance sources, not delivery defaults. When instantiating an artifact, translate headings, labels, table headers, placeholders, narrative, and artifact-type phrases such as “Analysis Brief,” “Report Plan,” and “Review Report.” Remove template instruction comments; preserve explicitly identified machine markers. Omit inapplicable optional sections instead of filling them with “none.”
 
 Preserve these exact unless the confirmed contract says otherwise:
 

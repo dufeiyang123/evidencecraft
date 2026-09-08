@@ -1,6 +1,24 @@
 # Source Profiling Methods
 
-Use this reference to select dimensions and diagnostic probes for a real source. Do not require every probe mechanically; cover the dimensions that can change the intended-use decision.
+Planning and Executors read **Planning and Run health checks** for routine readiness; profiling also reads the relevant diagnostic sections for a real semantic gap. Cover only dimensions that can change the intended-use decision.
+
+## Planning and Run health checks
+
+Bound the check by the analysis question, candidate sources, required fields, period, and known rules. Inspect relevant warehouse metadata, files or documents; do not scan a whole warehouse or launch deep governance. Prefer existing valid checks, dictionaries and metadata, then the smallest read-only probe needed for a decision.
+
+| Check | Applicable evidence and boundary |
+|---|---|
+| Access and structure | Required objects/fields exist and can be inspected; distinguish unavailable access, cached previews and full source state. |
+| Time coverage and freshness | Required partitions/periods, snapshot or watermark, and declared update/cutoff expectations. |
+| Required values | Nulls, types, units and domain constraints only for fields required by this use, against an explicit rule or documented expectation. |
+| Declared keys | Uniqueness at the declared grain, including scope and composite keys; repeated IDs alone are not a defect. |
+| Candidate relationships | Expected cardinality and match coverage for the proposed source slices; a successful join alone proves neither correct meaning nor complete coverage. |
+
+Establish query cost bounds from project limits, provider estimates/enforced budgets, or demonstrably bounded local input. A row-output LIMIT or read-only flag alone does not bound warehouse scanning cost. With no reliable boundary, use metadata or existing observations and record the necessary query as not checked. Do not silently exceed a budget or substitute invented thresholds.
+
+Record the decision served, exact inputs/snapshot and parameters, check method/implementation identity, full versus sampled coverage, cost boundary, time, observed result and limits. Known rules supply expectations; missing rule authority is an unresolved question, not an automatic failure or pass. Nulls and negative values can be valid. Sampled success cannot prove full coverage; unperformed checks remain explicitly unverified.
+
+Planning stores relevant observations in its preparation record; execution links valid preparation evidence into its evidence log and renews only invalid checks using the common Executor reuse contract. A new period does not inherit last period's health result. Passing these checks does not establish source semantics or authority. Route real semantic gaps to profiling; ordinary access or period-specific issues stay with the caller, which handles the blocker and any required user decision. Do not repair source data or infer a governance mandate.
 
 ## Source dimensions
 
@@ -42,7 +60,7 @@ If receipt time is required but absent, event time cannot silently substitute fo
 
 ### Lineage probe
 
-Trace a value or record backward through each transformation boundary. At every boundary record inputs, outputs, filtering, grouping, formulas, joins, and manual intervention. Stop only at the authoritative origin or an explicit unavailable boundary.
+Trace only transformations needed to resolve the named meaning or fitness question, using existing documentation, queries and known upstream references. At an inspected boundary, record relevant inputs, outputs and transformations. Stop when sufficient authoritative evidence resolves the question, or at an explicit unavailable/cost boundary; preserve any material uncertainty. Do not reconstruct enterprise-wide lineage or repair source systems.
 
 When two paths disagree, preserve both observations until precedence is documented or decided by the responsible authority.
 

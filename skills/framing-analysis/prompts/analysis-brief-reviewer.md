@@ -28,7 +28,7 @@ Check:
 5. Confirmed, Tentative, and Open choices are classified honestly;
 6. material Open choices stop confirmation;
 7. source or metric semantic gaps are routed rather than silently decided;
-8. a revision identifies meaning-bearing changes and still requires whole-Brief confirmation;
+8. a revision identifies meaning-bearing changes and their authority without claiming approval of an unseen file;
 9. the reader-artifact expectation states standalone/delivery needs without designing paths, Work Packages, evidence structures, or rendering mechanics;
 10. no requested decision, audience, or material constraint was dropped;
 11. every user-visible heading, label, table header, and narrative passage uses `{{ARTIFACT_LANGUAGE}}`, except canonical codes, IDs, paths, citations, code, formulas, and recorded source-language terms.
@@ -37,7 +37,7 @@ Calibrate findings to planning risk. Do not block on style, preferred wording, o
 
 ## Output contract
 
-Return exactly these semantic sections in `{{ARTIFACT_LANGUAGE}}`. Translate the headings and prose; preserve the verdict codes and canonical identifiers:
+Return the verdict and applicable finding sections only in `{{ARTIFACT_LANGUAGE}}`. Translate the headings and prose; preserve the verdict codes and canonical identifiers:
 
 ```markdown
 ## Analysis Brief Review
@@ -45,16 +45,16 @@ Return exactly these semantic sections in `{{ARTIFACT_LANGUAGE}}`. Translate the
 **Verdict:** READY | REVISE | BLOCKED
 
 ### Blocking findings
-- [section or `none`]: [specific defect] — [why planning would be unsafe]
+- [section]: [specific defect] — [why planning would be unsafe]
 
 ### Qualified findings
-- [section or `none`]: [visible limitation or tentative choice] — [required handling]
+- [section]: [visible limitation or tentative choice] — [required handling]
 
 ### Advisory notes
-- [non-blocking improvement or `none`]
+- [non-blocking improvement]
 
 ### Return Route
-- [request revision in `framing-analysis`, obtain a named authority decision, or proceed to final user confirmation]
+- [request revision in `framing-analysis`, obtain a named authority decision, or proceed once material scope has authority]
 ```
 
 Use `READY` when no blocking defect remains, even if advisory notes exist. Use `REVISE` when the author can repair a concrete omission, contradiction, ambiguity, or scope defect. Use `BLOCKED` only when readiness depends on missing authority or unavailable required context.

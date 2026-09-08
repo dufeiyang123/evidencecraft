@@ -1,156 +1,93 @@
-<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Report Plan” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
-
+<!-- Apply the shared language and reader contracts. Resolve required slots; omit unused optional sections. Remove this instruction. -->
 # Report Plan: [topic]
 
-## Identity and outcome
+## Decision overview
+
+[Who needs this analysis, what it will help them decide or understand, and the scope of the intended result. Put detailed readiness, strategy and open choices below.]
+
+## Data readiness and strategy
+
+- Data readiness: [what can be analyzed, material gaps and their impact; dated preparation reference, not copied check tables]
+- Recommended strategy: [method and why it fits; project rules, existing implementations or historical methods adopted]
+- Limits and decisions: [only material unresolved choices; recommendation and consequence; Draft release conditions when blocked]
+
+## Report blueprint
+
+| Reader question | Metrics, dimensions and evidence needed | Presentation and interpretation limits |
+|---|---|---|
+| [question, not a predicted conclusion] | [governed inputs and comparisons] | [prose/table/figure intent; permitted claim strength] |
+
+- Conditional analysis, when useful: [observable trigger → bounded drilldown and stop condition]
+
+## Execution basis
 
 - Status: Draft | Ready for Confirmation | Current
-- Plan owner: [person or role]
-- Analysis Brief: [exact confirmed path]
-- Created/updated: [YYYY-MM-DD]
-- Current since: [confirmation date or not current]
-- Supersedes: [prior Plan path or none]
-- Goal: [one-sentence report outcome]
-- Audience/use: [from Brief]
-- Questions covered: [exact Brief questions]
-- Boundaries inherited from Brief: [exact sections plus any Plan-specific exclusion]
-- Report period parameter: [period represented]
-- As-of/cutoff: [availability rule, timezone, inclusivity, late data]
-- Freshness requirements: [per source/use]
+- Owner / updated: [owner; date]
+- Brief: [exact reference and authorized scope]
+- Authorization: [source references and material choices covered; requested approval checkpoint, if any]
+- Revision: [when applicable: prior Plan, changed interfaces, affected Packages]
+- Period parameters: [period/as-of/cutoff, source selection and freshness rules]
+- Preparation: [exact record/section references; reusable work and remaining conditions; omit if no persisted preparation]
 
 ## Semantic dependencies
 
-### Source Profiles
+| Source Profile or Metric Definition | Intended use | Status and qualifications | Invalidation trigger |
+|---|---|---|---|
+| [exact semantic reference] | [required use] | [usable state and handling] | [meaning/fitness change] |
 
-| Source/use | Profile path | Fitness | Qualification enforced by this Plan | Reopen trigger |
-|---|---|---|---|---|
-| [use] | [path] | FIT / QUALIFIED | [none or exact constraint] | [semantic change] |
+<!-- Dated preparation and Run records own observations; do not turn current counts or snapshots into recurring requirements. -->
 
-### Metric Definitions
+## Reader delivery
 
-| Metric/use | Definition path | Status | Qualification/confirmation condition | Reopen trigger |
-|---|---|---|---|---|
-| [metric] | [path] | Ready / Current | [condition] | [semantic change] |
+- Reader context: [explanations the intended audience needs to interpret the blueprint's measures and comparisons]
+- Presentation: [answer-first structure, concise comparisons, suitable precision; optional figures or required detail companions]
+- Material limitations: [what must appear alongside affected claims]
+- Language contract: [interaction_language; artifact_language; terminology/source-title handling]
+- Citations and governance: [reader citations; internal evidence remains in governance; audit dossier only if requested]
+- Export input: [reviewed Markdown and declared reader assets]
 
-## Report contract
+## Run interfaces
 
-- Delivery profile: `standalone reader report` unless the user explicitly requests another audience artifact
-- Interaction language: [language for questions, status, routes, and confirmation messages]
-- Artifact language: [language for this Plan and all persistent run/report artifacts]
-- Terminology and source-title handling: [translation, first-use explanation, and original-title rules]
-- Localization rule: [localize headings, labels, table headers, placeholders, and narrative; list preserved canonical/source-exact exceptions]
-- Reader self-containment: [context, methods, key values, and limitations that must appear in the report]
-- Governance separation: [exact internal artifact paths and Run/Work Package/Evidence IDs/statuses excluded from the reader report]
-- Reader citation policy: [formal external/reader-accessible citations retained; internal paths never substitute for support]
-- Figure policy: [tables/prose first; figures only when materially useful]
-- Asset contract: [none, or exact staging path, final asset root, and Markdown relative-URI mapping]
-- Export interface: [reviewed Markdown plus declared report-local assets only]
-- Draft path: [.evidencecraft run path]
-- Final path: [different final destination; written only by `reviewing-analysis` after a passing gate]
-- Required sections: [ordered headings]
-- Comparison rules: [period/cohort/target and comparability]
-- Required tables/figures: [reader-facing content; no path-only figure references]
-- Internal traceability rule: [how governance artifacts map statements to evidence without leaking those links into the report]
-- Limitation rule: [where material gaps appear]
-- Companion dossier: [none by default, or separate path when explicitly requested]
+- Workspace / progress / evidence log: [parameterized paths]
+- Draft → final: [distinct paths; final saved only after independent review]
+- Assets or companions, when needed: [staging → final path; relative URI; review requirements]
+- Review manifest / review record: [paths; stable identities; mutable progress referenced by Run ID/status]
+- History: [new-period naming, same-period corrections, prior reports preserved]
+- Capability: [execution and independent reviewer available, or exact blocker]
 
-## Run output interface
+## Work and dependencies
 
-- Run workspace: `.evidencecraft/runs/<plan>-<as-of>/`
-- Progress ledger: `progress.md`
-- Progress language record: [repeat interaction language, artifact language, and terminology/source-title handling]
-- Evidence log: `evidence-log.md`
-- Draft report: [exact path]
-- Staged reader assets: [none or exact paths and identities]
-- Optional delegated task files: `task-N-brief.md`, `task-N-report.md`
-- Review Package manifest: [exact Run-workspace Markdown file path]
-- Review record: [path or compact-record rule]
-- Final report: [exact path]
-
-The Run-selected Executor must return actual progress/evidence/output/draft/asset/manifest paths, fresh verification performed, unresolved limitations, and either the route to `reviewing-analysis` or an exact blocking Return Route. It does not issue the whole-report verdict, and status never substitutes for inspecting files.
-
-## Work Package dependency map
-
-```text
-[WP-1] -> [WP-2]
-[WP-1] -> [WP-3]
-[WP-2, WP-3] -> [WP-4 synthesis]
-```
-
-<!-- Template instruction: replace the example with the actual dependency graph; do not preserve artificial parallelism. -->
-
-## Work Packages
+[Dependency order; distinguish delegated production from Main-Agent integration.]
 
 ### WP-[N]: [deliverable]
 
-- Purpose/report section: [question and section]
-- Start condition: [verified prerequisites]
-- Frozen inputs: [exact paths, periods, definitions, qualifications]
-- Upstream dependencies: [WP IDs or none]
-- Procedure:
-  1. [specific action]
-  2. [specific action]
-- Sole output: [exact path and Markdown/table/data interface]
-- Evidence-log entries: [coverage-index claim mapping and compact evidence cards with exact source/upstream locator, as-of, identity, observation/derivation, verification, status, reader handling, and limitations]
-- Completion checks:
-  - [observable command/inspection/reconciliation and expected result]
-- Stop conditions:
-  - [condition -> exact Return Route]
-- Delegation: safe | unsafe — [reason and context boundary; every required non-integration Package must be safe for Subagent-Driven availability]
-- Parallel candidate: yes | no — [independence across dependencies, reads, writes, source sessions, and resources; informational only]
-- Downstream consumers: [WP IDs/report/reviewer]
+- Purpose: [reader question]
+- Inputs: [exact selectors/references, qualifications; resolve actual identities per Run]
+- Already completed: [preparation/evidence/implementation references and reuse conditions; omit if none]
+- Start condition: [accepted dependencies]
+- Remaining procedure: [calculation or other production method; reference Definitions or explicit one-off rules; identify reusable implementation or where execution will establish it]
+- Owned output: [paths and downstream interfaces, including calculation implementation and results when applicable]
+- Evidence: [claims and required source/calculation locators]
+- Checks: [method, expected-result derivation, producing owner; true invariants rather than sample counts]
+- Stop / Return Route: [exact condition and semantic owner]
+- Delegation: [safe/unsafe and minimum context; parallel candidate only if independently safe]
 
-<!-- Template instruction: repeat only for independently reviewable deliverables. -->
+## Integration and verification
 
-## Synthesis and claim discipline
-
-- Verified inputs required: [WP outputs]
-- Conflict handling: [how disagreements stop/qualify synthesis]
-- Missing evidence handling: [what may be omitted/qualified/blocked]
-- Governance traceability: [claim-to-evidence/task-result rule kept outside the reader artifact]
-- Reader-report rule: [self-contained prose/tables, allowed reader citations, prohibited current-run governance references]
-- Prohibited conclusions: [Brief/source/metric limitations]
+- Reconcile: [cross-Package totals, overlapping populations, conflicts, missing coverage]
+- Synthesize: [accepted result/evidence inputs; new numerical derivations return to calculation owner; no mandatory extra Package]
+- Reader check: [can intended readers find the answer, key evidence, priority and applicable limits without repository access?]
+- Verification reuse: [exact input/output/checker identities and valid freshness; rerun when invalid or unknown]
+- Independent checks: [consequential computations, task acceptance when delegated, whole-report claim and reader review]
 
 ## Execution recommendation
 
-- Recommended: `subagent-driven-reporting` | `executing-report-plans`
-- Available alternatives: [feasible modes other than Recommended, or none]
-- Rationale: [context load, task length, coupling, delegation fitness, capabilities]
-- Delegation boundary: [Work Packages that a fresh worker can execute from an exact Task Brief]
-- Parallel candidates: [WP IDs or none; informational only and never authorization]
-- Run choice: User selects a feasible mode at execution handoff; `progress.md` freezes it for that Run.
-- Shared completion interface: [progress, coverage-index/evidence-card log, verified outputs, draft, staged assets/mappings, real manifest, status, limitations]
+[Inline or Subagent-Driven, why it fits, and any material cost/capability trade-off. The router resolves a Run choice within authorization; parallel work requires explicit Run authorization.]
 
-## Fresh verification
+## Review, save, and recovery
 
-| Scope | Check at execution time | Expected evidence | Stop/Return Route |
-|---|---|---|---|
-| [WP/report] | [command/inspection/reconciliation] | [fresh output] | [route] |
-| Reader draft | Inspect self-containment, exact current-run governance strings, path-only references, and Markdown assets | No governance leakage; key content stands alone; every asset mapping resolves | First affected synthesis Package |
-| Review Package | Inspect every manifest member and identity; confirm final path is still unwritten | Real sealed manifest; no placeholder identity; draft/final remain separate | Run-selected Executor |
-
-## Review and save
-
-- Reviewer package: [manifest containing frozen delivery contract, Brief, Plan, Profiles, Definitions, progress Run ID/status, evidence log, outputs, draft, assets/mappings, limitations, and stable identities]
-- Review outcomes: `PASS | QUALIFIED | BLOCKED`
-- Qualified handling: [visible qualifications and authority]
-- Blocked handling: [responsible Return Route]
-- Save only after: [independent whole-report review and unchanged-identity verification; self-review never substitutes]
-- Save mapping: [record reviewed draft/assets identities to final path/identities in governance artifacts only]
-- Preserve on same-period correction: [prior report and replacement relationship]
-
-## Stop and recovery rules
-
-- Global stops: [missing/changed semantics, access, invalid outputs, unresolved conflict]
-- Resume from: earliest incomplete Work Package whose inputs remain current
-- Trust: actual files and fresh checks, not conversation or status alone
-- Invalidation: [which changes reopen which Packages]
-
-## Confirmation record
-
-- Confirmed by: [person or not yet confirmed]
-- Confirmed at: [date or not yet confirmed]
-- Confirmation: [exact statement/reference]
-- Metric Definitions confirmed together: [paths or none]
-- Accepted qualifications: [list or none]
-- Next: [execution handoff, Run-selected Executor, or blocker]
+- Seal: [complete stable members, actual identities, staged assets/mappings; exclude manifest self-hash and mutable progress hash]
+- Independent whole-report review: [context, risk focus, record; no self-review substitute]
+- Verdict handling: [PASS; QUALIFIED only within allowed use and explicit qualifications; BLOCKED returns to owner]
+- Save: [exact reviewed bytes and assets; verify final identities; record draft → final mapping only in governance]
+- Recovery: [first invalidated Package and dependents; preserve valid work; delta review after correction with full review when scope is uncertain]

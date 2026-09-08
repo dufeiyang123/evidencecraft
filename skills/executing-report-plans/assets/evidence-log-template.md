@@ -22,12 +22,14 @@
 
 ## Evidence cards
 
+<!-- Reference preparation checks and calculation records at their authoritative locations. Record why reuse is valid and which checks remain; do not copy full preparation or result tables. -->
+
 ### E-<id>: <short label>
 
 - Supports / type: [Work Package, output, report claim/table/section] / `observation | calculation | upstream artifact | external citation`
 - Basis: [exact source or upstream path plus locator]; governed by [Profile/Definition or none]; [period/as-of and timezone]; [unit/grain and coverage]; [access/citation/content hash and freshness]
-- Observation or derivation: [source observation, or exact transform/calculation separated from interpretation]
-- Verification: [fresh method and complete observed result]
+- Observation or derivation: [observation reference, or calculation record binding semantic/code versions, complete inputs/settings, and keyed result; separate interpretation]
+- Verification: [new check or reused exact record; identity, parameters, full/sample coverage and freshness verified; observed result and remaining checks]
 - Status and reader handling: `SUPPORTED | QUALIFIED | UNSUPPORTED | BLOCKED` — [qualification/limitation and how it appears or stays out of the reader report]
 - Recorded at: [timestamp]
 
@@ -46,6 +48,7 @@
 - [ ] Every locator is precise enough for a fresh recheck.
 - [ ] Period, timezone, grain, and coverage are explicit where applicable.
 - [ ] Calculations distinguish source observations from derived results.
+- [ ] Every numerical derivation has a calculation reference; reused preparation has valid scope and identity, not just a prior pass label.
 - [ ] Qualifications propagate to every dependent claim.
 - [ ] Unsupported items are not presented as findings.
 - [ ] Governance paths, Evidence IDs, hashes, and verification detail stay outside the standalone reader report.

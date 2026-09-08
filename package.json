@@ -1,6 +1,6 @@
 {
   "name": "@dufeiyang123/evidencecraft",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Evidence-first analysis and recurring reporting workflows for Claude Code, Codex, and OpenClaw.",
   "private": true,
   "license": "MIT",

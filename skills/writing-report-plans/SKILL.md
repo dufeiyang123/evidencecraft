@@ -1,185 +1,115 @@
 ---
 name: writing-report-plans
-description: Use when a confirmed Analysis Brief needs a new or revised executable Report Plan, or its structure, dependencies, Work Packages, outputs, verification, review, or save interfaces changed.
+description: Research relevant project context and data readiness to create or revise a Report Plan from an authorized Analysis Brief, including strategy, report blueprint, work interfaces, and verification; not full report analysis or writing.
 ---
 
 # Writing Report Plans
 
-Translate confirmed analysis meaning into an executable, reviewable Report Plan. Own work decomposition, interfaces, dependencies, verification, stop conditions, and a non-binding execution recommendation; do not perform downstream analysis or choose an Executor for a Run.
+Turn authorized analysis intent into a researched, readable Plan. Own strategy, bounded preparation, dependencies, work interfaces, and recovery. A decision-complete Plan resolves business and method choices; empirical results may remain unknown. Business scope belongs to framing, source-fitness diagnosis to profiling, metric meaning to definition, findings to execution, and independent verdicts to review.
 
-## Establish plan state
+## Establish state
 
-Inspect the exact Analysis Brief, Source Profiles, Metric Definitions, existing Plan, prior run progress, and project capabilities before drafting.
+Read the Brief and relevant existing Plan. Inspect referenced semantic dependencies for the uses this Plan requires; open prior progress or review findings when revising or recovering. Verify status and authority, not merely file existence.
 
-Read and apply [the shared language contract](../using-evidencecraft/references/language-and-localization-contract.md), even if no router ran. Freeze all three fields in the Plan; a current Run repeats them in progress for recovery.
+Apply the resolved [language contract](../using-evidencecraft/references/language-and-localization-contract.md). When defining delivery or presenting decisions, read [the reader and decision contract](../using-evidencecraft/references/reader-and-decision-contract.md).
 
 | State | Action |
 |---|---|
-| No confirmed Brief or the intended use changed | Return to `framing-analysis`. |
-| A source semantic gap blocks a required use | Route that exact gap to `profiling-evidence`. |
-| A reusable metric meaning or mapping is unresolved | Route it to `defining-metrics`. |
-| A sealed Run is ready for independent whole-report review | Route to `reviewing-analysis`; do not resume an Executor. |
-| Current Plan covers the same Brief, definitions, sections, interfaces, capabilities, verification, and execution recommendation | Reuse it; a new Run still needs an execution handoff. |
-| Legacy Plan records a selected Executor and an existing Run froze it in progress | Preserve it for that Run only. |
-| Legacy Plan records a selected Executor but no Run exists | Treat it as a recommendation; do not revise the Plan solely for execution choice. |
-| Only period records or values changed | Do not rewrite or reconfirm the Plan. |
-| Only `interaction_language` changed | Keep the current Plan and lifecycle state; use the new language for user interaction. |
-| `artifact_language` changed while audience and intended use remain the same | Revise and reconfirm only the Plan's report/presentation interface; do not reframe, reprofile, redefine metrics, or repeat language-independent analysis. |
-| Sections, comparisons, dependencies, Work Packages, capabilities, outputs, verification, or save/review rules changed | Revise the affected Plan and reconfirm it. |
-| A prior run failed because execution violated an unchanged Plan | Return to the Run-selected Executor; do not redesign around an implementation error. |
+| No authorized Brief or changed business meaning | Return to `framing-analysis`. |
+| Exact source fitness or reusable metric gap | Route that gap to its specialist, then resume planning. |
+| Current Plan still covers meaning and execution interfaces | Reuse it; new period values alone do not reopen planning. |
+| Sealed Run ready for independent review | `reviewing-analysis`. |
+| Execution violated an unchanged Plan | Return to the Run's Executor. |
+| Dependency, output, check, capability, or save interface changed | Revise affected interfaces and dependent work only. |
 
-Do not call a definition current merely because a file exists. Verify its status, source qualifications, and confirmation relationship.
+Language or layout adjustments within the authorized delivery contract stay with the producer. A binding delivery-interface change belongs here; the explicit request itself may authorize it. Do not reconfirm unchanged business meaning.
 
-## Inputs and planning authority
+## Build the executable contract
 
-Consume exact paths and current contents for:
+### 1. Research only decisions that shape the Plan
 
-- one confirmed Analysis Brief;
-- every required Source Profile and its use-specific fitness decision;
-- every reusable Metric Definition;
-- relevant prior Plan/run files when revising or recovering;
-- available capabilities and output constraints.
+Map Brief questions to candidate sources and metrics. Search project indexes and relevant passages before reading whole documents. Distinguish authoritative business/metric rules, existing SQL/models, and historical analysis examples. Check authority, date, scope, and applicability; a polished historical report may suggest methods or structure, but cannot authorize its old formula or transfer its numbers and conclusions. Record the adopted approach and relevant exceptions, not a literature review.
 
-Decide report structure, data/evidence dependencies, Work Package boundaries, execution order, intermediate/final output locations, completion checks, review package, stop/recovery rules, and one recommended execution mode with rationale and feasible alternatives.
+Before establishing a Current Plan, assess the task's data readiness using the **Planning and Run health checks** section of [source-profiling-methods.md](../profiling-evidence/references/source-profiling-methods.md). Reuse valid observations first. Each additional read-only probe must resolve a named strategy or feasibility question within a known cost boundary. Stop once the questions, metrics, methods, usable sources, and material limits are clear. Do not compute full business metrics, perform attribution, or build report figures here.
 
-Do not decide business scope, source authority, metric population/formula, findings, or review verdicts. Do not bind the reusable Skill to a particular connector, model, platform, or local fixture; a project Plan may name actual available tools and locators.
+Keep one preparation record when persistence supports handoff, recovery, or audit. Use [assets/preparation-notes-template.md](assets/preparation-notes-template.md) under `docs/evidencecraft/preparations/<id>/preparation.md`, or the project's analysis workspace. It records exact references, bounded observations, strategy choices, reusable work and remaining conditions; it is not a second report or a Run. Preserve versions already referenced by a Run. If host planning restrictions prohibit writes, return the Plan and preparation content in the conversation with exact references; persist when permitted, without claiming files already exist.
 
-## Write the Plan
+Explain data readiness to the user as achievable analysis, material impact, and a recommended adjustment. A passing check adds no confirmation gate. If a critical observation or capability is unavailable, provide a useful **Draft** with affected work and release conditions, not an executable Current Plan. Non-critical gaps may remain explicit qualifications. Negotiate only material changes to scope, source, period, meaning, or delivery; an authorized narrower scope can become Current after its own requirements are satisfied.
 
-### 1. Preflight semantic dependencies
+### 2. Resolve semantic dependencies and capability
 
-Map each Brief question and required report section to the exact source uses and Metric Definitions it needs. For each dependency record:
+Record exact semantic artifact references, intended use, usable status, qualifications, and invalidation triggers. A missing Profile or Definition is not automatically a gap: invoke specialists only when source meaning/fitness or reusable metric meaning actually needs investigation. Pass relevant preparation evidence to the specialist instead of restarting discovery. A generic health check does not establish business meaning or source authority.
 
-- path and intended use;
-- `FIT`, `QUALIFIED`, `UNFIT`, `BLOCKED`, `Ready`, or `Current` state as applicable;
-- qualification the Plan must enforce;
-- semantic change that would invalidate downstream work.
+Do not conceal `UNFIT`, `BLOCKED`, or a material unresolved choice inside a Package. Obtain the responsible semantic or business decision before affected execution. Definitions `Ready for Plan Confirmation` may be incorporated once their material choices have an authoritative basis.
 
-If a required dependency is `UNFIT` or `BLOCKED`, do not hide it in a Work Package. Return to the responsible specialist or narrow the Plan only with user authority.
+Check that execution and independent whole-report review are feasible before costly work. Inline does not remove the independent-review requirement. Record an unavailable capability as a blocker; an explicit change to an unreviewed draft leaves this audited-final workflow and cannot satisfy its review/save gate.
 
-### 2. Lock the report and run interfaces
+### 3. Separate reusable meaning from observations
 
-Define the report's required sections, comparison rules, evidence/limitation expectations, delivery profile, and final save path. The default delivery profile is a `standalone reader report`: the audience artifact contains the context needed to understand its conclusions, while governance artifacts point to the report from outside it.
+The Plan contains period parameters, source-selection/freshness rules, semantic versions, output interfaces, and verification methods. Reference preparation observations as dated decision evidence; do not copy them into recurring requirements. Current file identities, counts, and snapshots stay in preparation before a Run, then in or referenced from Run evidence. Never freeze a sample period's values as future expected results.
 
-For that profile, make the Plan state all of these interfaces explicitly:
+A check may require a true invariant, such as conservation across transfer legs, or an independently derived reconciliation total. Explain why it must hold and how the expected result is obtained. A date-specific assertion belongs to that Run unless the task explicitly concerns a fixed historical snapshot.
 
-- reader self-containment: which context, methods, key values, and limitations must appear in the report;
-- governance separation: the exact Brief, Plan, Profiles/Definitions, evidence log, Run/Work Package/Evidence IDs, review records, statuses, paths, and hashes that stay outside the audience artifact;
-- reader citations: formal external sources, URLs, papers, and reader-accessible references remain usable; internal paths never substitute for support;
-- tables and figures: put key quantitative content in prose or tables first; use a figure only when it materially improves understanding, and declare its staging path, final asset root, and relative URI mapping;
-- export interface: downstream renderers consume only the reviewed Markdown and its declared report-local assets;
-- draft/final separation: the draft lives in the Run workspace, the final path is different, and only `reviewing-analysis` may save there after a passing gate.
+### 4. Define delivery and remaining work
 
-Do not add an engineering traceability appendix to the reader report by default. If the user explicitly requests audit materials, plan a separate companion dossier. Combine governance material into the reader artifact only when the user explicitly asks for one combined deliverable.
+Put the user-facing analysis proposal first: task understanding, data readiness, recommended strategy and rationale, report blueprint, and material limits or choices. Keep execution detail below it. The blueprint maps reader questions to required metrics/evidence and presentation intent, without predicted findings. Bound any result-triggered drilldown by its trigger, allowed dimensions, and stop condition; analysis structure may adapt within these authorized bounds.
 
-Define the run workspace and common governance interface that either Executor must produce:
+Default to a standalone reader report. Specify the questions and consequential information readers must find, necessary method explanations, qualifications, language, and external citations. Use the shared reader contract to choose prose, compact tables, or figures. Full intermediate tables need not be copied into the report. Declare any required companion deliverable and its review/save interface.
 
-- `.evidencecraft/runs/<plan>-<as-of>/progress.md`;
-- `evidence-log.md` with a coverage index plus compact evidence cards containing source/upstream locator, period/as-of, identity, observation or derivation, verification, status, reader handling, and limitations;
-- report draft at the exact Plan path;
-- task briefs/reports only when a Run selects Subagent-Driven execution;
-- one real Review Package manifest with exact members and identities;
-- an independent whole-report review; a low-risk clean review may use a compact saved record, but may not be replaced by self-review;
-- final report destination.
+Define these exact Run interfaces:
 
-Freeze `interaction_language`, `artifact_language`, and terminology/source-title handling in the Report contract. Require `progress.md` to repeat them as recovery state. The Plan, progress, evidence log, task artifacts, Review Report, draft, and final report use `artifact_language`; user-facing execution updates use `interaction_language`. A worker, reviewer, English source, prompt, or template cannot silently change either field.
+- Plan-scoped workspace, progress, evidence log, verified Package outputs, and draft path;
+- staged reader assets, final asset root, and relative-URI mappings when used;
+- final report path distinct from the draft; the Executor never writes final destinations;
+- a real manifest containing identities of stable review inputs, with mutable progress referenced by Run ID/status rather than its hash;
+- independent whole-report review and its saved record, followed by exact reviewed-byte/asset saving only through `reviewing-analysis`.
 
-Both Executors must preserve these core semantics. Their orchestration artifacts may differ.
+Downstream rendering consumes the reviewed reader Markdown and declared reader assets. Governance points to the report from outside; internal IDs, hashes, workflow logs, and audit navigation stay in governance. If audit materials are requested, use a separate dossier unless the user asks for a combined deliverable.
 
-### 3. Define Work Packages
+Create a Work Package when its output can be checked and rejected independently. Fold setup, access, and formatting into the deliverable they support. A short analysis may need only one Package plus integration; do not split work to create more agent or review stages.
 
-Create a Work Package only when its deliverable can be independently checked and a reviewer could reject it without necessarily rejecting its neighbors. Fold setup, access, and formatting into the Package whose deliverable needs them; do not split work into arbitrary tiny actions.
+Each Package needs:
 
-For every Package specify:
+1. purpose and linked question;
+2. exact input selectors/references, semantic qualifications, accepted dependencies, reusable preparation and its validity conditions;
+3. remaining procedure sufficient for a capable Executor, with formulas owned by Definitions or an explicit one-off Plan rule; identify existing computation implementations or where execution will establish them;
+4. owned output path/interface and evidence requirements;
+5. observable completion checks, expected-result derivation, and check owner;
+6. stop conditions and exact Return Routes;
+7. delegation fitness and the minimum context a worker needs.
 
-1. purpose and linked Brief question/report section;
-2. exact frozen inputs and semantic qualifications;
-3. upstream dependencies and start condition;
-4. procedure at sufficient detail for a capable Executor with no hidden context;
-5. sole output path and interface consumed downstream;
-6. evidence-log entries and traceability requirements;
-7. completion checks with observable expected results;
-8. stop conditions and precise Return Routes;
-9. whether it is safe to delegate and what context a worker would receive.
+Use parameterized paths for recurring data, resolving exact current identities in the Run. A worker's Task Brief pins its actual inputs before dispatch. Do not use vague instructions such as “validate the result.”
 
-Never use “analyze as appropriate,” “handle edge cases,” “validate the result,” or references to another Package without stating the actual interface and check.
+### 5. Order work and allocate verification
 
-### 4. Order dependencies and synthesis
+Make dependencies explicit and acyclic. Delegation safety is separate from parallel safety. Parallel candidates need accepted prerequisites and no conflicting write, mutable resource, or source-session ownership; candidate status never authorizes concurrency.
 
-Draw the dependency order explicitly. Decide delegation fitness separately from parallel safety: a Package may be safe for a fresh worker even when it depends on accepted upstream outputs. Mark a Package as parallel-candidate only when it has disjoint reads/writes/resources and no dependency on another candidate. This marker is informational and never authorizes concurrency. The final synthesis Package consumes verified Package outputs; it does not rely on worker summaries alone.
+Assign each deterministic check to one producing owner and define its method and expected-result derivation; the producer records actual observations when it runs. Main-Agent acceptance verifies outputs and check bindings rather than automatically repeating calculations. Independent task review still examines consequential correctness; whole-report review checks reader usefulness, coverage, cross-Package consistency, and claim support.
 
-Require important statements to trace internally to evidence-log records, verified task results, or explicit limitations. Keep those internal references in governance artifacts; synthesize the supported substance and reader-facing citations into the report. Specify how conflicting evidence, missing coverage, and cross-Package inconsistencies stop or qualify synthesis.
+Read **Consume preparation before repeating work** and **Verify once per valid evidence boundary** in the [common Executor contract](../executing-report-plans/references/executor-output-contract.md) when designing reuse. Its computation section governs numerical handoffs: execution produces verified results and versioned SQL/scripts; writing consumes accepted results and evidence. New derived numbers return to their calculation owner. These are responsibilities within the chosen Executor, not mandatory separate Packages, agents, or approval stages.
 
-### 5. Recommend an execution mode
+### 6. Recommend execution
 
-Recommend `subagent-driven-reporting` when every research/production Package intended for worker execution can be bounded by an exact Task Brief and fresh contexts reduce long-run context load. Sequential dependencies do not disqualify it: downstream workers receive only accepted upstream artifacts declared by their briefs. Executor-owned final integration is not a delegated Package. If any required non-integration Package is delegation-unsafe, Subagent-Driven is unavailable unless the Plan is revised; recommend Inline instead.
+Recommend Inline for short work, sustained whole-run judgment, unavailable delegation, or work that cannot be bounded safely. Recommend Subagent-Driven when exact Task Briefs and fresh contexts are likely to reduce context load enough to justify worker and review overhead. Every non-integration Package in that mode must be delegation-safe; final integration remains Main-Agent-owned.
 
-Recommend `executing-report-plans` when the work is short, small enough for one context, requires sustained whole-run judgment, cannot be bounded safely for delegation, or subagents are unavailable. List every technically available alternative and explain context load, task length, coupling, delegation fitness, and capabilities. Record parallel candidates separately; do not present parallel dispatch as a third normal mode.
+State the rationale and any material cost/capability trade-off. Do not list infeasible alternatives or force a menu when no decision is needed. The router resolves a new Run using explicit choices, applicable preferences, and feasible authorized defaults; progress freezes that resolution. Parallel execution still needs explicit authorization for the Run.
 
-The recommendation is advisory. The user chooses Subagent-Driven or Inline at the execution handoff for each new Run, and `progress.md` freezes that Run selection. Changing modes does not revise or reconfirm an otherwise current Plan.
+Do not hardcode models, reasoning effort, connectors, or Harnesses in the reusable Skill. Plans may name actual capabilities. Respect user and environment settings; any optional resource allocation must remain within their authority.
 
-### 6. Specify fresh verification and review
+## Write, review, and establish readiness
 
-For each Package and the whole report, name the command, inspection, reconciliation, hand check, or evidence comparison that will demonstrate completion at execution time. Require fresh outputs from the actual run; prior-period success and worker status labels are not evidence.
+When writes are permitted, instantiate [assets/report-plan-template.md](assets/report-plan-template.md) at `docs/evidencecraft/plans/YYYY-MM-DD-<topic>-report-plan.md`. Apply the shared language contract and omit unused optional slots. Use the same structure in the conversation when persistence is unavailable.
 
-Define the exact manifest path and package for `reviewing-analysis`: frozen delivery contract, confirmed Brief, current Plan/Profiles/Definitions, progress by Run ID/status, evidence log, verified Package outputs, draft report, staged assets and final URI mappings when any, and known limitations. Require identities for every stable member; the manifest does not record its own hash, and progress records that hash only after sealing. Define pass, qualified, and blocked handling without preselecting the reviewer verdict.
+Self-review coverage, exact interfaces, dependencies, semantic authority, qualifications, check ownership, delegation boundaries, recovery, reader usability, draft/final separation, and executable review/save gates. Resolve placeholders and hidden choices.
 
-### 7. Write and self-review
+Use [prompts/report-plan-reviewer.md](prompts/report-plan-reviewer.md) for an independent readiness review when new or changed interfaces create unresolved high-consequence semantic, ownership, or verification risk after self-review. Multiple sources or many Packages alone do not trigger another reviewer. If this review is required but unavailable, record the blocker. The initial review covers the complete Plan; subsequent review focuses on prior findings, actual changes, and affected dependencies, widening when impact is uncertain.
 
-Instantiate [assets/report-plan-template.md](assets/report-plan-template.md) at `docs/evidencecraft/plans/YYYY-MM-DD-<topic>-report-plan.md`. Treat its English headings and labels, including the top-level “Report Plan” document-type label, as semantic slots: render every user-visible heading, field, table header, placeholder replacement, and narrative passage in `artifact_language`, preserve only the recorded canonical or source-exact exceptions, and remove all template comments. Artifact-type phrases in prose are translatable unless they are exact Skill names, paths, or recorded source-exact terms. Do not edit the template in place.
+A Plan becomes `Current` when the Brief and required semantic dependencies are usable, critical planning checks are satisfied, required reviews have no blocking findings, and material choices have authority. Full report calculations and execution checks need not have run. Record each new business/metric choice and its real authorization source. Update bundled Definitions to `Current` only for meaning covered by that authority.
 
-Check:
+Present the proposal, including data readiness and material choices, with the saved Plan link or conversation artifact. Ask only unresolved material choices, or honor an explicitly requested Plan approval checkpoint. Existing instructions authorize routine execution design; never claim that they confirm an unseen file. If authority is missing, leave `Draft` or `Ready for Confirmation` and stop dependent execution.
 
-- every Brief question and report section maps to Work and verification;
-- every input/output path and cross-Package interface is exact;
-- dependency order has no hidden or circular prerequisite;
-- no specialist gap is disguised as execution work;
-- both Executors can consume the core interface, and the Plan does not bind either one to a future Run;
-- delegation fitness is not confused with parallel safety;
-- stop, recovery, review, and save paths are usable;
-- draft and final are distinct, and the synthesis Package writes only the draft;
-- the Plan contains an executable reader self-containment, governance-leakage, reference, and asset-resolution check;
-- the Review Package is a real manifest rather than a claimed directory or status sentence;
-- independent whole-report review is mandatory and no self-review shortcut remains;
-- no placeholder or vague completion claim remains.
-- the language contract is frozen and all Plan headings, labels, tables, and narrative follow `artifact_language` without template-language leakage.
+## Completion and recovery
 
-For a high-impact, multi-source, heavily delegated, or substantially revised Plan, dispatch a fresh-context reviewer using [prompts/report-plan-reviewer.md](prompts/report-plan-reviewer.md), passing the frozen `artifact_language` and terminology/source-title handling explicitly. A `REVISE` finding stops confirmation until repaired; a `BLOCKED` finding returns to the named authority or semantic stage. The reviewer reports defects in `artifact_language` and never silently edits the Plan.
+Return the saved Plan path or conversation artifact, readiness, material qualifications, and next action. Route a persisted Current Plan through `using-evidencecraft` to resolve a new Run, resume the frozen Executor, or review a sealed package. A Draft never admits formal execution; continue useful planning while blocking dependent work. Only the bounded preparation above belongs here, not full report analysis or writing.
 
-## Confirmation gate
-
-Present the full Plan, including its execution recommendation and feasible alternatives, for explicit user confirmation. Use `interaction_language` for the confirmation request while leaving the Plan itself in `artifact_language`. When the Plan introduces a Metric Definition in `Ready for Plan Confirmation`, present and confirm them together, then update the Plan and Definition confirmation records to `Current` without creating a separate Approval object.
-
-Declare a Plan `Current` only when:
-
-- the Brief is confirmed and all required semantic dependencies are usable;
-- every Work Package and interface passes self-review;
-- blocking plan-review findings are resolved;
-- the user explicitly confirms the written Plan and any bundled Definitions;
-- confirmation records the exact paths and accepted qualifications.
-
-Only a user response received after the full Plan was presented can confirm it. An earlier request to continue authorizes at most the transition into planning; it cannot confirm an unseen Plan. If confirmation is unavailable, leave the Plan `Draft` or `Ready for Confirmation` and stop before execution.
-
-After valid confirmation, record it, declare the Plan `Current`, and present the execution handoff. Put the recommended feasible option first, then the other feasible option. Describe Subagent-Driven as `subagent-driven-reporting`, with one fresh worker per Package and task verification/review between Packages. Describe Inline Execution as `executing-report-plans`, with the Main Agent executing Packages in its current context. Mark only the actual first option as recommended.
-
-Ask which approach to use. Generic authorization such as “execute,” “continue,” or “follow the Plan” does not select a mode. An explicit current-Run choice of Inline, Subagent-Driven, or “use the recommendation” does. If only Inline is feasible, state why and still obtain confirmation before execution. Do not create a Run or perform analysis until one mode is selected.
-
-## Recovery and completion
-
-On resumption, read the Plan, confirmation, run progress, evidence log, and actual outputs. Apply the shared language contract. Route a sealed `READY FOR INDEPENDENT REVIEW` Run to `reviewing-analysis`. Route an incomplete Run's progress-frozen Executor to its earliest incomplete Package. If no Run exists, present the execution handoff; planning does not choose on the user's behalf. If a semantic dependency changed, stop affected work, return to its owner, and revise only dependent Packages after the semantic artifact is current again.
-
-Return the Plan path, status, execution recommendation, dependency/qualification summary, and either the execution-choice request or an exact upstream blocker. Planning completes at a confirmed current Plan—not at report execution.
-
-## Return Routes
-
-| Finding | Route and stop |
-|---|---|
-| Confirmed current Plan, no Run selection | Present the two-option execution handoff and stop. |
-| Sealed Run is ready for independent whole-report review | `reviewing-analysis`. |
-| Incomplete Run has a frozen Executor | Route that Executor. |
-| Brief meaning or authority changed | `framing-analysis` |
-| Source semantics or use fitness unresolved | `profiling-evidence` |
-| Reusable metric semantics or source mapping unresolved | `defining-metrics` |
-| Execution failed under an unchanged Plan | Return to the Run-selected Executor. |
-
-Do not execute, synthesize findings, or review the report inside this Skill.
+On change, preserve earlier records, identify affected dependencies, and redo only invalidated work. Business changes return to framing; source changes to profiling; metric changes to definition; execution mistakes to the current Executor. A presentation-only correction does not reopen semantic work.

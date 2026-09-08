@@ -11,6 +11,8 @@ Turn an analysis request into a confirmed, durable boundary for planning. Own th
 
 Inspect the request, project instructions, nearby documentation, and any existing Brief before asking questions. Do not ask for facts available in the workspace.
 
+Use project indexes and relevant passages to identify candidate data, business rules, existing implementations and historical method examples. Record exact useful references for planning; do not read every project document or start health queries here. Historical reports inform framing but do not authorize their old metrics or conclusions.
+
 Classify the state:
 
 | State | Action |
@@ -18,7 +20,7 @@ Classify the state:
 | No Brief | Frame from the request and project context. |
 | Draft Brief | Resume from its unresolved material choices. |
 | Confirmed Brief, no semantic change | Report that it remains current, route to `writing-report-plans`, and stop. |
-| Confirmed Brief with changed audience, use, questions, scope, period rule, risk, or success criteria | Reopen only affected sections, then confirm the revised Brief as a whole. |
+| Confirmed Brief with changed audience, use, questions, scope, period rule, risk, or success criteria | Reopen only affected sections, then resolve only changed material choices. |
 | Downstream work returned a framing defect | Resolve the cited defect without absorbing the downstream role. |
 
 Treat new period contents, new values, source refreshes, and execution errors as non-framing changes. Route them to the current Plan, a conditional specialist, or the Executor as appropriate.
@@ -50,7 +52,7 @@ Identify likely non-goals early. A Brief that attempts to serve unrelated decisi
 
 ### 2. Resolve material choices
 
-Ask one focused question at a time in the interaction language. Prefer a small set of concrete choices when the trade-off is clear; use an open question when the user must supply meaning.
+Apply [the reader and decision contract](../using-evidencecraft/references/reader-and-decision-contract.md). Ask only choices not settled by the request or authoritative context. Prefer one focused question; bundle tightly related choices when this avoids repeated interruptions.
 
 Prioritize questions that can change:
 
@@ -76,17 +78,15 @@ When two or more plausible frames would materially change scope, usefulness, or 
 
 Skip artificial alternatives when only one responsible frame fits the request. Never create options merely to satisfy a count.
 
-### 4. Draft and confirm in sections
+### 4. Write a decision overview and durable scope
 
-Instantiate [assets/analysis-brief-template.md](assets/analysis-brief-template.md) at `docs/evidencecraft/specs/YYYY-MM-DD-<topic>-analysis-brief.md`. Treat its English headings and labels, including the top-level “Analysis Brief” document-type label, as semantic slots: render every user-visible part in the artifact language and remove all template comments before saving. Do not edit the template in place.
+Instantiate [assets/analysis-brief-template.md](assets/analysis-brief-template.md) at `docs/evidencecraft/specs/YYYY-MM-DD-<topic>-analysis-brief.md`, applying the language contract. Start with the intended decision, scope, result, and material limits in plain language. Scale detail to the work; omit empty optional sections.
 
-Present the draft in coherent sections scaled to complexity. Confirm meaning as sections stabilize instead of withholding the whole design until the end. Revise when the user's response changes the intended frame.
-
-Keep source names and candidate metrics only as known context. Mark semantic questions for `profiling-evidence` or `defining-metrics`; do not answer those questions inside the Brief.
+Keep source names and candidate metrics as context. Hand off relevant project references and any known access/query-cost constraints; planning owns strategy research and bounded health checks. Name semantic gaps without answering them here. Link the durable Brief when presenting a choice; do not require the user to inspect technical fields to understand the decision. If host planning restrictions prohibit writes, provide the Brief in the conversation and state that persistence remains pending.
 
 ### 5. Review readiness
 
-Before requesting final confirmation, check the written Brief with fresh eyes:
+Before declaring the scope ready, check the written Brief with fresh eyes:
 
 - no placeholder, contradiction, or unresolved material choice is hidden;
 - every question supports the stated use and fits the scope;
@@ -98,23 +98,15 @@ Before requesting final confirmation, check the written Brief with fresh eyes:
 - downstream semantic gaps are named without being prematurely solved.
 - headings, labels, and narrative use the artifact language, apart from recorded terminology exceptions and canonical identifiers.
 
-For a high-impact, multi-stakeholder, unusually ambiguous, or substantially revised Brief, dispatch an independent fresh-context reviewer using [prompts/analysis-brief-reviewer.md](prompts/analysis-brief-reviewer.md). Give the reviewer only the specified review package, including `{{ARTIFACT_LANGUAGE}}` and `{{TERMINOLOGY_AND_SOURCE_TITLE_HANDLING}}`. Treat `REVISE` as a stop before confirmation; treat `BLOCKED` as a return to the user or responsible authority. The reviewer may identify defects but may not make product choices or silently rewrite the Brief.
+When unresolved framing ambiguity could materially affect a high-impact decision or conflicting stakeholder commitments, dispatch an independent fresh-context reviewer using [prompts/analysis-brief-reviewer.md](prompts/analysis-brief-reviewer.md). Give the reviewer only the specified review package, including `{{ARTIFACT_LANGUAGE}}` and `{{TERMINOLOGY_AND_SOURCE_TITLE_HANDLING}}`. Treat `REVISE` as a stop before confirmation; treat `BLOCKED` as a return to the user or responsible authority. The reviewer may identify defects but may not make product choices or silently rewrite the Brief.
 
-### 6. Apply the confirmation gate
+### 6. Record authorization without repeating it
 
-Ask the user in the interaction language to confirm the complete written Brief. Capture the exact confirmation, confirmer, and date in the Confirmation Record. A vague acknowledgment of the conversation is not confirmation of the file; name the path and material tentative choices in the request.
+Declare the Brief `Confirmed` when its material scope and risk choices have an authoritative basis, readiness checks pass, and blocking findings are resolved. Explicit instructions in the current request or applicable standing decisions may supply that basis. Record the source and exactly which choices it covers; this is confirmation of business scope, not a claim that the user reviewed the generated file.
 
-Declare the Brief confirmed only when:
+If material choices remain, present a short decision overview, the recommendation and its consequences, and the Brief link. Ask for those choices only. If the user requested approval of the complete Brief, present it and wait for that approval. Never treat silence as acceptance or turn an Open material choice into a default.
 
-- all required sections are complete;
-- no material Open choice remains;
-- any blocking review finding is resolved;
-- tentative choices are explicitly accepted as tentative;
-- the user explicitly confirms the written Brief.
-
-If confirmation is unavailable, save a Draft with Open Choices and stop. Do not write a Report Plan, profile evidence, define metrics, or begin execution while waiting.
-
-When routing a confirmed Brief to `writing-report-plans`, tell the user that any new or revised Plan will be drafted and presented for separate confirmation before execution. A request to continue made before that Plan is presented authorizes only the transition to planning; it cannot confirm the unseen Plan.
+Leave a `Draft` with an exact Open choice when authority is missing; stop dependent planning and execution. Otherwise route to `writing-report-plans` and continue when the request authorizes the work. New material decisions discovered in planning still need authority; routine implementation details do not create another automatic confirmation gate.
 
 ## Observable result
 
@@ -133,9 +125,9 @@ On resumption, read the Brief and actual project files before relying on convers
 
 - If the Brief is Draft, verify that its Open Choices still match reality and resume at the earliest unresolved choice.
 - If the Brief is Confirmed, verify the confirmation record and compare only meaning-bearing changes since confirmation.
-- If a confirmed section changed, mark the Brief Draft, record the reason, revise the affected sections, rerun readiness checks, and reconfirm the whole Brief.
+- If business meaning changes, mark the affected scope unresolved, record the change, revise it, rerun readiness checks, and obtain authority only for material choices not already covered by the new request. Preserve earlier decision records.
 - If nothing material changed, do not reconfirm it merely because a new reporting period began.
-- If only the interaction language changed, use it immediately without reopening the Brief. If only the requested artifact language changed, record the presentation change and route to planning to revise the report contract; return to framing only when audience or intended use also changed.
+- If only the interaction language changed, use it immediately without reopening the Brief. If only the requested artifact language changed, apply the shared language contract; return to framing only when audience or intended use also changed.
 
 Never infer completion from a filename, old chat statement, or status label alone.
 

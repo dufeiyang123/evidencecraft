@@ -1,128 +1,50 @@
-<!-- Template use: render every heading, label, table header, placeholder replacement, and narrative passage in the confirmed artifact language. The sample title's “Report Run Progress” phrase is a translatable artifact-type label, not a canonical identifier. Preserve canonical codes and IDs, exact Skill names, paths, hashes, citations, code, formulas, and original source titles. Remove this and every Template instruction comment from the instantiated artifact. -->
+<!-- Shared by both Executors. Apply the language contract, omit inapplicable optional blocks, and remove template instructions. Link authoritative evidence/check records rather than copying them. -->
+# Report Run Progress: [topic]
 
-# Report Run Progress
+## Run state
 
-<!-- Template instruction: instantiate this ledger in the Plan's run workspace and add entries without erasing prior run history. -->
+- Run ID / status: [id; NOT STARTED / IN PROGRESS / BLOCKED / READY FOR INDEPENDENT REVIEW]
+- Plan / Brief / semantic basis: [exact references and current identities, or identity-record reference]
+- Period / as-of / freshness: [resolved parameters and source snapshot reference]
+- Executor / Main Agent: [canonical Skill; sole controller; ownership conflict checked]
+- Run history: [started; first Package start; last reconciliation; prior Run/replacement reference when applicable]
+- Mode resolution: [explicit choice / standing preference / authorized default / legacy progress; source and scope; resolution time]
+- Parallel authorization: [exact user statement for this Run, or none]
+- Language contract: [interaction_language; artifact_language; terminology/source-title handling]
+- Workspace / evidence log: [paths]
+- Draft → final: [distinct paths; final remains unwritten before review]
+- Assets or companions: [when used: staging → final and relative URI mapping]
+- Next action: [first ready/affected Package or exact blocker]
 
-## Run identity
+## Package ledger
 
-- Run ID:
-- Status: `NOT STARTED | IN PROGRESS | BLOCKED | READY FOR INDEPENDENT REVIEW`
-- Executor: `executing-report-plans`
-- Execution mode: `Inline Execution`
-- User selection statement:
-- Selected at:
-- Explicit parallel authorization: `none`
-- Report Plan path:
-- Plan identity/version/hash:
-- Analysis Brief path:
-- Source Profile paths and identities:
-- Metric Definition paths and identities:
-- Period/as-of:
-- Interaction language:
-- Artifact language:
-- Terminology and source-title handling:
-- Run workspace:
-- Draft path:
-- Planned final report path:
-- Delivery profile:
-- Governance references excluded from the reader report:
-- Staged/final asset mapping: [none or exact mapping]
-- Review Package manifest path:
-- Review Package manifest identity/hash (record only after the manifest is frozen):
-- Started at:
-- Last reconciled at:
+| Package and dependencies | Owner / state | Output and identity | Check/evidence reference | Task brief/report/review, if delegated |
+|---|---|---|---|---|
+| [WP; prerequisites] | [owner; state] | [path; identity] | [binding, method, time, result, disposition] | [paths and acceptance verdict] |
 
-## Executor ownership
+## Exceptions and recovery
 
-- Current owner: Main Agent
-- Other active writer checked: `none | describe conflict`
-- Prior Run reference, if this Run replaces a different mode: `none | exact Run ID and reason`
-- Work started: `no | yes — first Package and timestamp`
+<!-- Include actual blockers, corrections, mismatches, or unresolved concerns only. Preserve prior entries and replacement relationships. -->
+- Observed issue: [evidence/locator and consequence]
+- Affected work: [first Package and dependents; valid work preserved]
+- Required action / owner: [correction or precise authority decision and Return Route]
+- Resolution: [when resolved: correction evidence, new identities, verification and prior finding closure]
 
-## Work Package ledger
+## Parallel dispatch, when authorized
 
-<!-- Template instruction: repeat in Plan dependency order. -->
+| Batch | Packages / worker identities | Safety and authorization reference | Returned claims / acceptance |
+|---|---|---|---|
+| [batch] | [ids] | [frozen briefs; ownership and prerequisites] | [per-Package state] |
 
-### WP-<id>: <name>
+## Integration and review handoff
 
-- Status: `NOT STARTED | BLOCKED BY <id> | IN PROGRESS | COMPLETE | BLOCKED`
-- Linked question/section:
-- Frozen inputs actually used:
-- Started at:
-- Output path:
-- Output identity/hash:
-- Completion checks:
-  - Method or command:
-  - Checked at:
-  - Complete observed result:
-  - Expected result:
-  - Outcome: `PASS | FAIL`
-- Evidence-log entries:
-- Direct dependents unblocked:
-- Limitations:
+- Integration and reader checks: [result references: coverage, reconciliation, limits, usability, governance exclusion, assets]
+- Sealed manifest: [path and identity; record only after stable members are frozen]
+- Identity verification: [method/checker identity; time; result reference]
+- Readiness: [READY FOR INDEPENDENT REVIEW, or exact unfinished requirement]
 
-## Recovery reconciliation
+## Review and final save
 
-<!-- Template instruction: append one entry for each resume or discrepancy. -->
-
-### <timestamp>: <new run | resume | reconciliation>
-
-- Progress claims inspected:
-- Actual files inspected:
-- Fresh checks rerun:
-- Discrepancies:
-- Preserved verified work:
-- Downgraded or invalidated work:
-- Earliest Package to run:
-- Reason:
-
-## Blocking record
-
-<!-- Template instruction: complete only when blocked. -->
-
-- First failing Package:
-- Observed evidence:
-- Blocker class: `execution | plan | source semantics | metric semantics | framing`
-- Affected downstream Packages:
-- Valid work preserved:
-- Partial files quarantined or marked:
-- Requested input or decision:
-- Exact Return Route:
-
-## Final execution gate
-
-- Review Package members actually opened and identities verified:
-- Final destinations absence check (method / checked at / result):
-- Missing members, placeholder identities, or unresolved asset mappings: `none` or exact blocker
-
-- [ ] Every Package output exists at the planned path.
-- [ ] Every Package has fresh passing completion evidence.
-- [ ] Evidence log covers every consequential result.
-- [ ] Draft contains all Plan-required sections.
-- [ ] Claims, calculations, and limitations reconcile to evidence entries.
-- [ ] Reader draft stands alone and contains no current-run governance paths/IDs/statuses, engineering traceability appendix, path-only figures, shorthand paths, globs, or brace expansions.
-- [ ] Formal reader citations and substantive source/code identifiers were preserved where needed without making repository access a prerequisite.
-- [ ] Every Markdown image resolves through the declared staged/final asset mapping, or the asset contract is `none`.
-- [ ] Planned final report and final asset destinations are still unwritten.
-- [ ] Every Review Package manifest member exists and has the recorded real identity; no placeholder identity remains.
-- [ ] Frozen draft/assets and Review Package manifest identities are recorded without self-referential or mutable-progress hashes.
-- [ ] Status is `READY FOR INDEPENDENT REVIEW`, not approved or final.
-
-## Handoff
-
-- Next skill: `reviewing-analysis`
-- Exact paths supplied:
-- Execution-only corrections that may resume here:
-- Open limitations for reviewer judgment:
-
-## Independent review and final-save record
-
-<!-- Template instruction: append only after `reviewing-analysis` acts; this mutable section is not a frozen manifest member identity. -->
-
-- Review Report path / identity or compact independent-review record:
-- Verdict: `PASS | QUALIFIED | BLOCKED`
-- Reviewed draft identity -> final report path / verified identity:
-- Reviewed staged assets -> final asset paths / verified identities: `none` or exact mappings
-- Final saved at: [timestamp or not authorized]
-- Governance backlinks added to final report: `no` or blocking defect
+- Independent review: [path / identity / verdict; prior review if superseded]
+- Material finding disposition: [reference, when needed]
+- Save record: [after passing gate only: reviewed draft identity → final path and equal identity; asset mappings/identities; verification time]

@@ -6,12 +6,13 @@
 
 - Status: Draft | Ready for Plan Confirmation | Current
 - Metric owner: [person or role]
+- Semantic version / identity: [stable revision reference; preserve prior versions used by reports]
 - Intended use: [decision/comparison this supports]
 - Analysis Brief: [exact path]
 - Report Plan: [candidate/current path or not yet written]
 - Artifact language: [confirmed delivery language]
 - Terminology and source-title handling: [translation, first-use explanation, and original-title rules]
-- Current since: [Plan confirmation date or not current]
+- Current since: [date material meaning and Plan linkage became current, or not current]
 - Supersedes: [prior Definition path or none]
 
 ## Metric interface
@@ -50,7 +51,7 @@
 ### Identity, deduplication, and corrections
 
 - Canonical keys: [fields]
-- Deduplication/version order: [rule]
+- Deduplication/version order: [rule and deterministic tie-breaker]
 - Cross-source mapping/cardinality: [rule]
 - Correction/restatement treatment: [rule]
 
@@ -76,6 +77,7 @@
 - Comparison basis: [prior period/cohort/target and comparability]
 - Calculation precision: [rule]
 - Display rounding: [stage and rule]
+- Deterministic result requirements: [numeric representation, rounding and other result-affecting settings; execution binds actual code and environment versions]
 
 ## Source mapping
 
@@ -127,4 +129,4 @@
 - Reopen when: [semantic change triggers]
 - Ordinary new-period changes that do not reopen: [examples]
 - Return to: `writing-report-plans` | `framing-analysis` | `profiling-evidence`
-- Next condition: [combined Plan confirmation or exact blocker]
+- Next condition: [Plan linkage plus authority for material choices, or exact blocker]
